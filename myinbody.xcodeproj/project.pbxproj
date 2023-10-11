@@ -19,6 +19,7 @@
 		1B11B8402AD66BEF00B0F5DB /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		1B11B8422AD66BF000B0F5DB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1B11B8452AD66BF000B0F5DB /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		1B11B84C2AD675FA00B0F5DB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -51,6 +52,7 @@
 		1B11B83D2AD66BEF00B0F5DB /* myinbody */ = {
 			isa = PBXGroup;
 			children = (
+				1B11B84C2AD675FA00B0F5DB /* Info.plist */,
 				1B11B83E2AD66BEF00B0F5DB /* myinbodyApp.swift */,
 				1B11B8402AD66BEF00B0F5DB /* ContentView.swift */,
 				1B11B8422AD66BF000B0F5DB /* Assets.xcassets */,
@@ -275,6 +277,7 @@
 				DEVELOPMENT_TEAM = QU9EPTU238;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = myinbody/Info.plist;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.healthcare-fitness";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -304,6 +307,7 @@
 				DEVELOPMENT_TEAM = QU9EPTU238;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = myinbody/Info.plist;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.healthcare-fitness";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
