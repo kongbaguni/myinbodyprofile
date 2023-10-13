@@ -65,6 +65,34 @@ extension ProfileModel  {
         }
     }
     
+    func downloadFirestore(complete:@escaping(_ error:Error?)->Void) {
+        guard let collection = collection else {
+            return
+        }
+        let id = self.id
+        collection.document(id).getDocument { snapShot, error in
+            if var data = snapShot?.data() {
+                data["id"] = id
+                let realm = Realm.shared
+                try! realm.write {
+                    realm.create(ProfileModel.self,value: data, update: .all)
+                }
+            }
+            complete(error)
+        }
+    }
+    
+    func updateFirestore(complete:@escaping(_ error:Error?)->Void) {
+        guard let collection = collection else {
+            return
+        }
+        var dicValue = dictionmaryValue
+        dicValue["id"] = nil
+        collection.document(id).setData(dictionmaryValue) { error in
+            complete(error)
+        }
+    }
+    
     func delete(removeWithLocal:Bool = false ,complete:@escaping (_ error:Error?)->Void) {
         guard let collection = collection else {
             return

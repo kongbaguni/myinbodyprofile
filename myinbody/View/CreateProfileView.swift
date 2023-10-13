@@ -8,6 +8,7 @@
 import SwiftUI
 import RealmSwift
 
+
 struct CreateProfileView: View {
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     
@@ -22,25 +23,30 @@ struct CreateProfileView: View {
     }
     
     @State var isAlert:Bool = false
+    @State var photoData:Data? = nil
     
     var body: some View {
         List {
-            HStack {
-                Text("name")
-                TextField("name input", text: $name)
-            }
+            PhotoPickerView(selectedImageData: $photoData)
+            TitleTextFieldView(title: .init("name"),
+                               placeHolder: .init("name input"), value: $name)
+            
             Button {
                 let value = [
                     "name":name
                 ]
-                ProfileModel .create(value: value) { error in
+                if let data = photoData {
+                    
+                }
+                ProfileModel.create(value: value) { error in
                     self.error = error
                     if error == nil {
                         presentationMode.wrappedValue.dismiss()
                     }
                 }
+                
             } label: {
-                ImageTextView(image: .init(systemName: "square.and.pencil"), text: .init("create"))
+                ImageTextView(image: .init(systemName: "return"), text: .init("create"))
             }
 
         }

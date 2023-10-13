@@ -39,7 +39,7 @@ struct ProfileDetailView: View {
         }
         .toolbar {
             NavigationLink {
-                
+                UpdateProfileView(profile: profile)
             } label: {
                 Text("edit")
             }
