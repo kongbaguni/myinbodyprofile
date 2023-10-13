@@ -157,7 +157,10 @@ class AuthManager : NSObject {
     //MARK: - 로그아웃
     func signout()->Error? {
         do {
-            try Auth.auth().signOut()
+            if auth.currentUser?.isAnonymous == true {
+                auth.currentUser?.delete()
+            }
+            try auth.signOut()
         } catch {
             return error
         }

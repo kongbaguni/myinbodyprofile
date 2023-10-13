@@ -1,0 +1,21 @@
+/* 
+  Localizable.strings
+  myinbody
+
+  Created by Changyeol Seo on 10/12/23.
+  
+*/
+"anomymouse signout title" = "익명계정으로 로그인중입니다.";
+"anomymouse signout msg" = "지금 로그아웃을 하면 이 계정은 삭제되고 다시 같은 계정으로 로그인 할 수 없습니다. 로그아웃 하시겠습니까?";
+"confirm" = "확인";
+"signout" = "로그아웃";
+"signin" = "로그인";
+"signin with Apple" = "Apple로 로그인";
+"signin with Google" = "Google로 로그인";
+"singin anomymouse" = "익명 로그인";
+"alert" = "알림";
+"name" = "이름";
+"name input" = "이름 입력";
+"create" = "등록";
+"add people" = "프로필 추가";
+"home" = "홈";
