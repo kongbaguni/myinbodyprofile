@@ -11,6 +11,11 @@ import SwiftUI
 import FirebaseStorage
 import FirebaseFirestore
 
+extension Notification.Name {
+    /** 프로필 이미지 갱신됨 */
+    static let profileImageUpdated = Notification.Name("ProfileImageUpdated_observer")
+}
+
 class FirebaseStorageHelper {
     enum DataPath : String {
         case profileImage = "profileimages"
@@ -57,7 +62,12 @@ class FirebaseStorageHelper {
             print(path)
             
             ref.downloadURL { (downloadUrl, err) in
-                complete(downloadUrl, nil)
+                var err:Error? = nil
+                if let url = downloadUrl {
+                    err = FirestorageDownloadUrlCacheModel.reg(id: id, url: url.absoluteString)
+                }
+                NotificationCenter.default.post(name: .profileImageUpdated, object: downloadUrl)
+                complete(downloadUrl, err)
             }
         }
         task.observe(.failure) { snapshot in

@@ -204,10 +204,10 @@
 				1BFACFE32AD7C9EB00AA106C /* HomeView.swift */,
 				1B11B8912AD6884800B0F5DB /* SignInView.swift */,
 				1BFACFF62AD7D79F00AA106C /* CreateProfileView.swift */,
+				1B97E53D2AD91937007EC45B /* UpdateProfileView.swift */,
 				1B97E53B2AD91319007EC45B /* ProfileDetailView.swift */,
 				1B97E54D2ADCD3B1007EC45B /* ProfileImageView.swift */,
 				1B97E5392AD91051007EC45B /* ImageTextView.swift */,
-				1B97E53D2AD91937007EC45B /* UpdateProfileView.swift */,
 				1B97E53F2AD922D3007EC45B /* TitleTextFieldView.swift */,
 				1B97E5412AD92EEB007EC45B /* PhotoPickerView.swift */,
 			);

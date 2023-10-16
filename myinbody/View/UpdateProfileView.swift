@@ -7,6 +7,8 @@
 
 import SwiftUI
 import RealmSwift
+import ActivityIndicatorView
+
 
 struct UpdateProfileView: View {
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
@@ -25,44 +27,82 @@ struct UpdateProfileView: View {
     @State var needDeletePhoto:Bool = false
     
     func updateProfile() {
+        isEdited = true
+        guard let profileImageId = profile.profileImageId else {
+            return
+        }
         
+        if needDeletePhoto {
+            FirebaseStorageHelper.shared.delete(path: .profileImage, id: profileImageId) { error in
+                let error2 = FirestorageDownloadUrlCacheModel.remove(id: profileImageId)
+                self.error = error ?? error2
+                if self.error == nil {
+                    needDeletePhoto = false
+                    updateProfile()
+                }
+            }
+            return
+        }
+        
+        if let data = photoData {
+            FirebaseStorageHelper.shared.uploadData(data: data, contentType: .jpeg, uploadPath: .profileImage, id: profileImageId) { downloadURL, error in            
+                self.error = error
+                if self.error == nil {
+                    photoData = nil
+                    updateProfile()
+                }
+            }
+            return
+        }
+        
+        profile.updateFirestore { error in
+            if error == nil {
+                presentationMode.wrappedValue.dismiss()
+            }
+            self.error = error
+        }
     }
+    
     var body: some View {
-        List {
-            if photoData == nil {
-                ProfileImageView(profile: profile, size: .init(width: 150, height: 150))
-            }
-            PhotoPickerView(selectedImageData: $photoData, size: .init(width: 150, height: 150))
-            if photoData != nil {
-                Button {
+        Group {
+            if isEdited {
+                VStack(alignment:.center) {
+                    ActivityIndicatorView(isVisible: $isEdited, type: .default(count: 10))
+                        .frame(width:50, height:50)
+                    Text("update profile...")
+                }
+            } else {
+                List {
+                    if photoData == nil {
+                        ProfileImageView(profile: profile, size: .init(width: 150, height: 150))
+                    }
+                    PhotoPickerView(selectedImageData: $photoData, size: .init(width: 150, height: 150))
                     if photoData != nil {
-                        photoData = nil
+                        Button {
+                            if photoData != nil {
+                                photoData = nil
+                            }
+                        } label: {
+                            ImageTextView(image: .init(systemName: "trash.circle"), text: Text("cancel photo upload"))
+                        }
                     }
-                } label: {
-                    ImageTextView(image: .init(systemName: "trash.circle"), text: Text("cancel photo upload"))
-                }
-            }
-            else if profile.profileImageURL != nil {
-                Toggle(isOn: $needDeletePhoto) {
-                    Text("delete photo")
-                }
-            }
-            TitleTextFieldView(
-                title: .init("name"),
-                placeHolder: .init("input name"),
-                value: $profile.name)
-            Button {
-                isEdited = true
-                profile.updateFirestore { error in
-                    if error == nil {
-                        presentationMode.wrappedValue.dismiss()
+                    else if profile.profileImageURL != nil {
+                        Toggle(isOn: $needDeletePhoto) {
+                            Text("delete photo")
+                        }
                     }
-                    self.error = error
+                    TitleTextFieldView(
+                        title: .init("name"),
+                        placeHolder: .init("input name"),
+                        value: $profile.name)
+                    Button {
+                        updateProfile()
+                    } label: {
+                        ImageTextView(image: .init(systemName: "return"),
+                                      text:
+                                        Text("confirm"))
+                    }
                 }
-            } label: {
-                ImageTextView(image: .init(systemName: "return"),
-                              text:
-                        Text("confirm"))
             }
         }
         .onDisappear {

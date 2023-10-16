@@ -46,6 +46,20 @@ extension FirestorageDownloadUrlCacheModel {
         return nil
         
     }
+    
+    static func remove(id:String)->Error? {
+        do {
+            let realm = Realm.shared
+            if let obj = realm.object(ofType: FirestorageDownloadUrlCacheModel.self, forPrimaryKey: id) {
+                realm.beginWrite()
+                realm.delete(obj)
+                try realm.commitWrite()
+            }            
+        } catch {
+            return error
+        }
+        return nil
+    }
 }
 
 

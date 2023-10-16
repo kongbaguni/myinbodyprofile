@@ -61,34 +61,35 @@ struct CreateProfileView: View {
     }
     
     var body: some View {
-        List {
-            if isLoading {
+        Group {
+            if isLoading {                
                 VStack(alignment:.center) {
                     ActivityIndicatorView(isVisible: $isLoading, type: .default(count: 10))
                         .frame(width:50,height:50)
                     Text("uploading")
                 }
             } else {
-                PhotoPickerView(selectedImageData: $photoData, size:.init(width: 150, height: 150))
-                if photoData != nil {
+                List {
+                    PhotoPickerView(selectedImageData: $photoData, size:.init(width: 150, height: 150))
+                    if photoData != nil {
+                        Button {
+                            photoData = nil
+                        } label: {
+                            ImageTextView(image: .init(systemName: "trash.circle"), text: Text("cancel photo upload"))
+                        }
+                    }
+                    
+                    TitleTextFieldView(title: .init("name"),
+                                       placeHolder: .init("name input"), value: $name)
+                    
                     Button {
-                        photoData = nil
+                        createProfile()
+                        
                     } label: {
-                        ImageTextView(image: .init(systemName: "trash.circle"), text: Text("cancel photo upload"))
+                        ImageTextView(image: .init(systemName: "return"), text: .init("create"))
                     }
                 }
-                
-                TitleTextFieldView(title: .init("name"),
-                                   placeHolder: .init("name input"), value: $name)
-    
-                Button {
-                    createProfile()
-                    
-                } label: {
-                    ImageTextView(image: .init(systemName: "return"), text: .init("create"))
-                }
             }
-
         }
         .navigationTitle(Text("add people"))
         .alert(isPresented:$isAlert) {

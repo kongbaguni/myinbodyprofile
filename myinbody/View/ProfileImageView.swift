@@ -12,6 +12,7 @@ import CachedAsyncImage
 struct ProfileImageView: View {
     @ObservedRealmObject var profile:ProfileModel
     let size:CGSize
+    @State var profileImageUrl:String? = nil
     
     var placeholder : some View {
         Image(systemName: "person")
@@ -21,24 +22,34 @@ struct ProfileImageView: View {
     }
     
     var body: some View {
-        if let url = profile.profileImageURL {
-            CachedAsyncImage(url: .init(string:url)) { image in
-                image.resizable()
-                    .cornerRadius(10)
-                    .overlay {
-                        RoundedRectangle(cornerRadius: 10)
-                            .stroke(Color.primary, lineWidth: 2)
-                    }
-                    .shadow(color:.secondary,radius: 10)
-                    .scaledToFill()
-                    .frame(width:size.width,height: size.height)
-            } placeholder: {
+        Group {
+            if let url = profileImageUrl {
+                CachedAsyncImage(url: .init(string:url)) { image in
+                    image.resizable()
+                        .cornerRadius(10)
+                        .overlay {
+                            RoundedRectangle(cornerRadius: 10)
+                                .stroke(Color.primary, lineWidth: 2)
+                        }
+                        .shadow(color:.secondary,radius: 10)
+                        .scaledToFill()
+                        .frame(width:size.width,height: size.height)
+                } placeholder: {
+                    placeholder
+                }
+            }
+            else {
                 placeholder
             }
         }
-        else {
-            placeholder
+        .onAppear {
+            profileImageUrl = profile.profileImageURL
         }
+        .onReceive(NotificationCenter.default.publisher(for: .profileImageUpdated, object: nil), perform: { noti in
+            if let url = noti.object as? URL {
+                profileImageUrl = url.absoluteString
+            }
+        })
         
     }
 }
