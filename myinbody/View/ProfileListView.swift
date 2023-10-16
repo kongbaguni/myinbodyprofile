@@ -31,7 +31,7 @@ struct ProfileListView: View {
                 var deletedCount = 0
                 for idx in indexSet {
                     let profile = profiles[idx]
-                    profile.delete(removeWithLocal: false) { error in
+                    profile.delete(removeWithLocal: true) { error in
                         deletedCount += 1
                         $profiles.remove(profile)
                         if deletedCount == indexSet.count {

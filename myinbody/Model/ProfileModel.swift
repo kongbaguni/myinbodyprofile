@@ -118,16 +118,30 @@ extension ProfileModel  {
     }
     
     func delete(removeWithLocal:Bool = false ,complete:@escaping (_ error:Error?)->Void) {
+        if profileImageURL != nil  {
+            if let id = profileImageId {
+                FirebaseStorageHelper.shared.delete(path: .profileImage, id: id) { error in
+                    self.delete(removeWithLocal: removeWithLocal, complete: complete)
+                }
+                return
+            }
+        }
         guard let collection = collection else {
             return
         }
         
         func deleteself()  {
-            if removeWithLocal {
-                let realm = Realm.shared
-                try! realm.write {
-                    realm.delete(self)
+            let id = self.id
+            DispatchQueue.main.async {
+                if removeWithLocal {
+                    let realm = Realm.shared
+                    if let obj = realm.object(ofType: ProfileModel.self, forPrimaryKey: id) {
+                        try! realm.write {
+                            realm.delete(obj)
+                        }
+                    }
                 }
+
             }
         }
         
