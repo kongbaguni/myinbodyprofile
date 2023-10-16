@@ -21,7 +21,7 @@ struct ProfileDetailView: View {
             NavigationLink {
                 UpdateProfileView(profile: profile)
             } label: {
-                Text("edit")
+                Text("edit profile")
             }
         }
         .navigationTitle(Text(profile.name))

@@ -8,3 +8,6 @@
 "anomymouse signout title" = "You are logging in with an anonymous account.";
 "anomymouse signout msg" = "If you log out now, this account will be deleted and you will not be able to log in with the same account again. Do you want to log out?";
 "empty name error" = "No name entered.";
+
+"delete profile title" = "Delete this profile.";
+"delete profile message" = "All data saved with this profile will be deleted. This action is irreversible.";

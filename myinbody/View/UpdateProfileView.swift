@@ -25,6 +25,7 @@ struct UpdateProfileView: View {
     @State var isEdited:Bool = false
     @State var photoData:Data? = nil
     @State var needDeletePhoto:Bool = false
+    @State var deleteAlert:Bool = false
     
     func updateProfile() {
         if profile.name.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty {
@@ -69,45 +70,57 @@ struct UpdateProfileView: View {
     }
     
     var body: some View {
-        Group {
+        VStack(alignment:.center) {
             if isEdited {
-                VStack(alignment:.center) {
-                    ActivityIndicatorView(isVisible: $isEdited, type: .default(count: 10))
-                        .frame(width:50, height:50)
-                    Text("update profile...")
-                }
+                ActivityIndicatorView(isVisible: $isEdited, type: .default(count: 10))
+                    .frame(width:50, height:50)
+                Text("update profile...")
             } else {
                 List {
-                    if photoData == nil {
-                        ProfileImageView(profile: profile, size: .init(width: 150, height: 150))
-                    }
-                    PhotoPickerView(selectedImageData: $photoData, size: .init(width: 150, height: 150))
-                    if photoData != nil {
-                        Button {
-                            if photoData != nil {
-                                photoData = nil
+                    Section {
+                        if photoData == nil {
+                            ProfileImageView(profile: profile, size: .init(width: 150, height: 150))
+                        }
+                        
+                        PhotoPickerView(selectedImageData: $photoData, size: .init(width: 150, height: 150))
+                        if photoData != nil {
+                            Button {
+                                if photoData != nil {
+                                    photoData = nil
+                                }
+                            } label: {
+                                ImageTextView(image: .init(systemName: "trash.circle"), text: Text("cancel photo upload"))
                             }
+                        }
+                        else if profile.profileImageURL != nil {
+                            Toggle(isOn: $needDeletePhoto) {
+                                Text("delete photo")
+                            }
+                        }
+                    }
+                    Section {
+                        TitleTextFieldView(
+                            title: .init("name"),
+                            placeHolder: .init("input name"),
+                            value: $profile.name)
+                    }
+                                    
+                    Section {
+                        Button {
+                            deleteAlert = true
+                            isAlert = true
                         } label: {
-                            ImageTextView(image: .init(systemName: "trash.circle"), text: Text("cancel photo upload"))
+                            ImageTextView(image: .init(systemName: "trash.square"), text: .init("delete"))
                         }
-                    }
-                    else if profile.profileImageURL != nil {
-                        Toggle(isOn: $needDeletePhoto) {
-                            Text("delete photo")
-                        }
-                    }
-                    TitleTextFieldView(
-                        title: .init("name"),
-                        placeHolder: .init("input name"),
-                        value: $profile.name)
-                    Button {
-                        updateProfile()
-                    } label: {
-                        ImageTextView(image: .init(systemName: "return"),
-                                      text:
-                                        Text("confirm"))
                     }
                 }
+            }
+        }
+        .toolbar {
+            Button {
+                updateProfile()
+            } label: {
+                Text("save")
             }
         }
         .onDisappear {
@@ -118,10 +131,23 @@ struct UpdateProfileView: View {
                 }
             }
         }
-        .navigationTitle(Text("edit"))
+        .navigationTitle(Text("edit profile"))
         .alert(isPresented: $isAlert)  {
-            Alert(title: .init("alert"),
-                  message: Text(error!.localizedDescription))
+            if deleteAlert {
+                return .init(
+                    title: .init("delete profile title"),
+                    message: .init("delete profile message"),
+                    primaryButton: .cancel(),
+                    secondaryButton: .default(.init("confirm"), action: {
+                        profile.delete(removeWithLocal: true) { error in
+                            presentationMode.wrappedValue.dismiss()
+                        }
+                    })
+                )
+            } else {
+                return .init(title: .init("alert"),
+                      message: Text(error!.localizedDescription))
+            }
         }
     }
 }

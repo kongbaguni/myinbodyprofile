@@ -20,6 +20,10 @@
 "add people" = "프로필 추가";
 "home" = "홈";
 "edit" = "편집";
+"save" = "저장";
 "cancel photo upload" = "사진 업로드 취소";
 "delete photo" = "사진 삭제";
 "empty name error" = "이름을 입력하지 않았습니다.";
+"delete profile title" = "프로필을 삭제합니다.";
+"delete profile message" = "이 프로필로 저장된 데이터가 전부 삭제됩니다. 이 행동은 복구할 수 없습니다.";
+"edit profile" = "프로필 편집";

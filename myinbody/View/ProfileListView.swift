@@ -12,7 +12,7 @@ struct ProfileListView: View {
     @ObservedResults(
         ProfileModel .self,
         sortDescriptor: .init(
-            keyPath: "regDtTimeIntervalSince1970"
+            keyPath: "name"
             ,ascending: true
         )
     ) var profiles
@@ -20,7 +20,6 @@ struct ProfileListView: View {
     var body: some View {
         List {
             ForEach(profiles, id:\.self) { profile in
-                
                 NavigationLink {
                     ProfileDetailView(profile: profile)
                 } label: {
@@ -30,19 +29,6 @@ struct ProfileListView: View {
                     }
                 }
             }
-            .onDelete(perform: { indexSet in
-                var deletedCount = 0
-                for idx in indexSet {
-                    let profile = profiles[idx]
-                    profile.delete(removeWithLocal: true) { error in
-                        deletedCount += 1
-                        $profiles.remove(profile)
-                        if deletedCount == indexSet.count {
-                            print("delete complete!")
-                        }
-                    }
-                }
-            })
             NavigationLink {
                 CreateProfileView()
             } label: {
@@ -52,9 +38,6 @@ struct ProfileListView: View {
             }
         }
         .navigationTitle(Text("profiles"))
-        .toolbar {
-            EditButton()
-        }
         .onAppear {
             ProfileModel.sync { error in
                 
