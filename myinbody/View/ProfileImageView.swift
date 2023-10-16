@@ -31,7 +31,6 @@ struct ProfileImageView: View {
                             RoundedRectangle(cornerRadius: 10)
                                 .stroke(Color.primary, lineWidth: 2)
                         }
-                        .shadow(color:.secondary,radius: 10)
                         .scaledToFill()
                         .frame(width:size.width,height: size.height)
                 } placeholder: {
@@ -48,6 +47,11 @@ struct ProfileImageView: View {
         .onReceive(NotificationCenter.default.publisher(for: .profileImageUpdated, object: nil), perform: { noti in
             if let url = noti.object as? URL {
                 profileImageUrl = url.absoluteString
+            }
+            if let url = noti.userInfo?["url"] as? URL, let id = noti.userInfo?["id"] as? String {
+                if profile.profileImageId == id {
+                    profileImageUrl = url.absoluteString
+                }
             }
         })
         

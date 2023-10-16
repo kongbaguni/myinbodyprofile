@@ -24,7 +24,10 @@ struct ProfileListView: View {
                 NavigationLink {
                     ProfileDetailView(profile: profile)
                 } label: {
-                    Text(profile.name)
+                    HStack {
+                        ProfileImageView(profile: profile, size: .init(width: 50, height: 50))
+                        Text(profile.name)
+                    }
                 }
             }
             .onDelete(perform: { indexSet in

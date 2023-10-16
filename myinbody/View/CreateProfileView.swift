@@ -25,6 +25,10 @@ struct CreateProfileView: View {
     @State var isLoading:Bool = false
     
     private func createProfile(profileId:String? = nil) {
+        if name.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty {
+            error = CustomError.emptyName
+            return
+        }
         guard let userId = AuthManager.shared.userId else {
             return
         }
@@ -62,7 +66,7 @@ struct CreateProfileView: View {
     
     var body: some View {
         Group {
-            if isLoading {                
+            if isLoading {
                 VStack(alignment:.center) {
                     ActivityIndicatorView(isVisible: $isLoading, type: .default(count: 10))
                         .frame(width:50,height:50)

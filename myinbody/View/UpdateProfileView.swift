@@ -27,6 +27,11 @@ struct UpdateProfileView: View {
     @State var needDeletePhoto:Bool = false
     
     func updateProfile() {
+        if profile.name.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty {
+            error = CustomError.emptyName
+            return
+        }
+
         isEdited = true
         guard let profileImageId = profile.profileImageId else {
             return

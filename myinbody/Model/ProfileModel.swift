@@ -66,7 +66,15 @@ extension ProfileModel  {
                 for document in snapshot?.documents ?? [] {
                     var data = document.data()
                     data["id"] = document.documentID
-                    realm.create(ProfileModel .self, value: data, update: .all)
+                    let model = realm.create(ProfileModel .self, value: data, update: .all)
+                    if let id = model.profileImageId {
+                        FirebaseStorageHelper.shared.getDownloadURL(uploadPath: .profileImage, id: id) { url, error in
+                            if let url = url {
+                                NotificationCenter.default.post(name: .profileImageUpdated, object: nil, userInfo: ["id":id, "url":url])
+                            }
+                        }
+                    }
+
                 }
             }
         }
@@ -85,6 +93,7 @@ extension ProfileModel  {
                     realm.create(ProfileModel .self, value: dbData, update: .all)
                 }
             }
+            
             complete(error)
         }
     }

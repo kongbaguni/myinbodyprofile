@@ -22,3 +22,4 @@
 "edit" = "편집";
 "cancel photo upload" = "사진 업로드 취소";
 "delete photo" = "사진 삭제";
+"empty name error" = "이름을 입력하지 않았습니다.";

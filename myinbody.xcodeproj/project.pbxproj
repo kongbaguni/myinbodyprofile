@@ -56,6 +56,7 @@
 		1B97E54C2ADCD32B007EC45B /* CachedAsyncImage in Frameworks */ = {isa = PBXBuildFile; productRef = 1B97E54B2ADCD32B007EC45B /* CachedAsyncImage */; };
 		1B97E54E2ADCD3B1007EC45B /* ProfileImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B97E54D2ADCD3B1007EC45B /* ProfileImageView.swift */; };
 		1BACDCFE2ADCFC30000E3AFE /* ActivityIndicatorView in Frameworks */ = {isa = PBXBuildFile; productRef = 1BACDCFD2ADCFC30000E3AFE /* ActivityIndicatorView */; };
+		1BACDD022ADD14AC000E3AFE /* CustomError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BACDD012ADD14AC000E3AFE /* CustomError.swift */; };
 		1BFACFE42AD7C9EB00AA106C /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BFACFE32AD7C9EB00AA106C /* HomeView.swift */; };
 		1BFACFE82AD7D30F00AA106C /* ProfileModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BFACFE72AD7D30F00AA106C /* ProfileModel.swift */; };
 		1BFACFEB2AD7D33D00AA106C /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = 1BFACFEA2AD7D33D00AA106C /* Realm */; };
@@ -89,6 +90,7 @@
 		1B97E5432AD9338D007EC45B /* FirebaseStorageHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirebaseStorageHelper.swift; sourceTree = "<group>"; };
 		1B97E5452AD9346E007EC45B /* FirestorageDownloadUrlCacheModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirestorageDownloadUrlCacheModel.swift; sourceTree = "<group>"; };
 		1B97E54D2ADCD3B1007EC45B /* ProfileImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileImageView.swift; sourceTree = "<group>"; };
+		1BACDD012ADD14AC000E3AFE /* CustomError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomError.swift; sourceTree = "<group>"; };
 		1BFACFE32AD7C9EB00AA106C /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		1BFACFE72AD7D30F00AA106C /* ProfileModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileModel.swift; sourceTree = "<group>"; };
 		1BFACFEF2AD7D3E700AA106C /* Realm+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Realm+Extensions.swift"; sourceTree = "<group>"; };
@@ -174,6 +176,7 @@
 				1B11B8972AD7BAB800B0F5DB /* Localizable.strings */,
 				1B11B8422AD66BF000B0F5DB /* Assets.xcassets */,
 				1B11B8442AD66BF000B0F5DB /* Preview Content */,
+				1BACDD012ADD14AC000E3AFE /* CustomError.swift */,
 			);
 			path = myinbody;
 			sourceTree = "<group>";
@@ -363,6 +366,7 @@
 				1B97E5402AD922D3007EC45B /* TitleTextFieldView.swift in Sources */,
 				1B97E54E2ADCD3B1007EC45B /* ProfileImageView.swift in Sources */,
 				1B97E53C2AD91319007EC45B /* ProfileDetailView.swift in Sources */,
+				1BACDD022ADD14AC000E3AFE /* CustomError.swift in Sources */,
 				1BFACFF92AD7E09900AA106C /* ProfileListView.swift in Sources */,
 				1BFACFF22AD7D44300AA106C /* Realm.Object+Extensions.swift in Sources */,
 				1B11B83F2AD66BEF00B0F5DB /* myinbodyApp.swift in Sources */,
