@@ -8,17 +8,42 @@
 import Foundation
 import RealmSwift
 import FirebaseFirestore
+import SwiftUI
 
 class ProfileModel  : Object, ObjectKeyIdentifiable {
     @Persisted(primaryKey: true) var id:String = ""
     @Persisted var name:String = ""
-    @Persisted var profileImageURL:String = ""
     @Persisted var regDtTimeIntervalSince1970:Double = 0
 }
 
 extension ProfileModel  {
     var regDt:Date {
         .init(timeIntervalSince1970: regDtTimeIntervalSince1970)
+    }
+    var profileImageId:String? {
+        guard let uid = AuthManager.shared.userId else {
+            return nil
+        }
+        return "\(uid)/\(id)"
+    }
+    
+    var profileImageURL:String? {
+        if let id = profileImageId {
+            if let object = FirestorageDownloadUrlCacheModel.get(id: id) {
+                FirebaseStorageHelper.shared.getDownloadURL(uploadPath: .profileImage, id: id) { url, error in
+                    
+                }
+                let url = object.url
+                return url
+            }
+            FirebaseStorageHelper.shared.getDownloadURL(uploadPath: .profileImage, id: id) { url, error in
+                if let url = url {
+                    _ = FirestorageDownloadUrlCacheModel.reg(id: id, url: url.absoluteString)
+                }
+            }
+            
+        }
+        return nil
     }
 }
 
@@ -46,11 +71,10 @@ extension ProfileModel  {
             }
         }
     }
-    static func create(id:String? = nil ,value:[String:Any], complete:@escaping(_ error:Error?)->Void) {
+    static func create(documentId:String ,value:[String:Any], complete:@escaping(_ error:Error?)->Void) {
         guard let collection = collection else {
             return
         }
-        let documentId = id ?? UUID().uuidString
         collection.document(documentId).setData(value) { error in
             if error == nil {
                 var dbData = value

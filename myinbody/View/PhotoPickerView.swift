@@ -7,24 +7,30 @@
 
 import SwiftUI
 import PhotosUI
+import AlamofireImage
+
 struct PhotoPickerView: View {
     @State var selectedItem:PhotosPickerItem? = nil
+    
     @Binding var selectedImageData:Data?
-    var selectedImage:Image? {
+    
+    var selectedImage:SwiftUI.Image? {
         if let data = selectedImageData {
             return .init(uiImage: .init(data: data)!)
         }
         return nil
     }
+    
     var body: some View {
         PhotosPicker(selection: $selectedItem) {
             Group {
                 if let image = selectedImage {
                     image
                         .resizable()
-                        .scaledToFit()
-                        .frame(width:100)
+                        .scaledToFill()
+                        .frame(width:100,height:100)
                         .cornerRadius(10)
+                        .clipped()
                 } else {
                     Text("select photo")
                         .padding(10)
@@ -41,7 +47,9 @@ struct PhotoPickerView: View {
         .onChange(of: selectedItem) { oldValue, newValue in
             Task {
                 if let data = try? await newValue?.loadTransferable(type: Data.self) {
-                    selectedImageData = data
+                    let image:UIImage = .init(data: data)!
+                    let newImage = image.af.imageAspectScaled(toFill: .init(width: 100, height: 100))
+                    selectedImageData = newImage.jpegData(compressionQuality: 7)
                 }
             }
         }

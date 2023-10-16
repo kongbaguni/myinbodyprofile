@@ -52,6 +52,8 @@
 		1B97E5422AD92EEB007EC45B /* PhotoPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B97E5412AD92EEB007EC45B /* PhotoPickerView.swift */; };
 		1B97E5442AD9338D007EC45B /* FirebaseStorageHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B97E5432AD9338D007EC45B /* FirebaseStorageHelper.swift */; };
 		1B97E5462AD9346E007EC45B /* FirestorageDownloadUrlCacheModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B97E5452AD9346E007EC45B /* FirestorageDownloadUrlCacheModel.swift */; };
+		1B97E5492ADCC62B007EC45B /* AlamofireImage in Frameworks */ = {isa = PBXBuildFile; productRef = 1B97E5482ADCC62B007EC45B /* AlamofireImage */; };
+		1B97E54C2ADCD32B007EC45B /* CachedAsyncImage in Frameworks */ = {isa = PBXBuildFile; productRef = 1B97E54B2ADCD32B007EC45B /* CachedAsyncImage */; };
 		1BFACFE42AD7C9EB00AA106C /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BFACFE32AD7C9EB00AA106C /* HomeView.swift */; };
 		1BFACFE82AD7D30F00AA106C /* ProfileModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BFACFE72AD7D30F00AA106C /* ProfileModel.swift */; };
 		1BFACFEB2AD7D33D00AA106C /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = 1BFACFEA2AD7D33D00AA106C /* Realm */; };
@@ -99,6 +101,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1B11B8632AD67F7400B0F5DB /* FirebaseDatabase in Frameworks */,
+				1B97E5492ADCC62B007EC45B /* AlamofireImage in Frameworks */,
 				1B11B8712AD67F7400B0F5DB /* FirebaseFunctionsCombine-Community in Frameworks */,
 				1B11B8692AD67F7400B0F5DB /* FirebaseFirestore in Frameworks */,
 				1B11B8552AD67F7400B0F5DB /* FirebaseAnalyticsSwift in Frameworks */,
@@ -118,6 +121,7 @@
 				1B11B86F2AD67F7400B0F5DB /* FirebaseFunctions in Frameworks */,
 				1B11B8852AD67F7400B0F5DB /* FirebaseStorageCombine-Community in Frameworks */,
 				1B11B87F2AD67F7400B0F5DB /* FirebaseRemoteConfig in Frameworks */,
+				1B97E54C2ADCD32B007EC45B /* CachedAsyncImage in Frameworks */,
 				1B11B85B2AD67F7400B0F5DB /* FirebaseAppDistribution-Beta in Frameworks */,
 				1B11B85F2AD67F7400B0F5DB /* FirebaseAuthCombine-Community in Frameworks */,
 				1B11B87D2AD67F7400B0F5DB /* FirebasePerformance in Frameworks */,
@@ -271,6 +275,8 @@
 				1B11B8892AD682C700B0F5DB /* GoogleSignInSwift */,
 				1BFACFEA2AD7D33D00AA106C /* Realm */,
 				1BFACFEC2AD7D33D00AA106C /* RealmSwift */,
+				1B97E5482ADCC62B007EC45B /* AlamofireImage */,
+				1B97E54B2ADCD32B007EC45B /* CachedAsyncImage */,
 			);
 			productName = myinbody;
 			productReference = 1B11B83B2AD66BEF00B0F5DB /* myinbody.app */;
@@ -305,6 +311,8 @@
 				1B11B84F2AD67F7400B0F5DB /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 				1B11B8862AD682C700B0F5DB /* XCRemoteSwiftPackageReference "GoogleSignIn-ios" */,
 				1BFACFE92AD7D33D00AA106C /* XCRemoteSwiftPackageReference "realm-swift" */,
+				1B97E5472ADCC62B007EC45B /* XCRemoteSwiftPackageReference "AlamofireImage" */,
+				1B97E54A2ADCD32B007EC45B /* XCRemoteSwiftPackageReference "swiftui-cached-async-image" */,
 			);
 			productRefGroup = 1B11B83C2AD66BEF00B0F5DB /* Products */;
 			projectDirPath = "";
@@ -592,6 +600,22 @@
 				minimumVersion = 7.0.0;
 			};
 		};
+		1B97E5472ADCC62B007EC45B /* XCRemoteSwiftPackageReference "AlamofireImage" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Alamofire/AlamofireImage.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 4.3.0;
+			};
+		};
+		1B97E54A2ADCD32B007EC45B /* XCRemoteSwiftPackageReference "swiftui-cached-async-image" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/lorenzofiamingo/swiftui-cached-async-image";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.1.1;
+			};
+		};
 		1BFACFE92AD7D33D00AA106C /* XCRemoteSwiftPackageReference "realm-swift" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/realm/realm-swift.git";
@@ -747,6 +771,16 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 1B11B8862AD682C700B0F5DB /* XCRemoteSwiftPackageReference "GoogleSignIn-ios" */;
 			productName = GoogleSignInSwift;
+		};
+		1B97E5482ADCC62B007EC45B /* AlamofireImage */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 1B97E5472ADCC62B007EC45B /* XCRemoteSwiftPackageReference "AlamofireImage" */;
+			productName = AlamofireImage;
+		};
+		1B97E54B2ADCD32B007EC45B /* CachedAsyncImage */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 1B97E54A2ADCD32B007EC45B /* XCRemoteSwiftPackageReference "swiftui-cached-async-image" */;
+			productName = CachedAsyncImage;
 		};
 		1BFACFEA2AD7D33D00AA106C /* Realm */ = {
 			isa = XCSwiftPackageProductDependency;
