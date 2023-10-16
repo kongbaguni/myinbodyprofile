@@ -7,7 +7,7 @@
 
 import SwiftUI
 import RealmSwift
-
+import ActivityIndicatorView
 
 struct CreateProfileView: View {
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>    
@@ -22,11 +22,13 @@ struct CreateProfileView: View {
     
     @State var isAlert:Bool = false
     @State var photoData:Data? = nil
+    @State var isLoading:Bool = false
     
     private func createProfile(profileId:String? = nil) {
         guard let userId = AuthManager.shared.userId else {
             return
         }
+        isLoading = true
         let value = [
             "name":name
         ]
@@ -52,6 +54,7 @@ struct CreateProfileView: View {
         ProfileModel.create(documentId: profileId, value: value) { error in
             self.error = error
             if error == nil {
+                isLoading = false
                 presentationMode.wrappedValue.dismiss()
             }
         }
@@ -59,15 +62,31 @@ struct CreateProfileView: View {
     
     var body: some View {
         List {
-            PhotoPickerView(selectedImageData: $photoData)
-            TitleTextFieldView(title: .init("name"),
-                               placeHolder: .init("name input"), value: $name)
-            
-            Button {
-                createProfile()
+            if isLoading {
+                VStack(alignment:.center) {
+                    ActivityIndicatorView(isVisible: $isLoading, type: .default(count: 10))
+                        .frame(width:50,height:50)
+                    Text("uploading")
+                }
+            } else {
+                PhotoPickerView(selectedImageData: $photoData, size:.init(width: 150, height: 150))
+                if photoData != nil {
+                    Button {
+                        photoData = nil
+                    } label: {
+                        ImageTextView(image: .init(systemName: "trash.circle"), text: Text("cancel photo upload"))
+                    }
+                }
                 
-            } label: {
-                ImageTextView(image: .init(systemName: "return"), text: .init("create"))
+                TitleTextFieldView(title: .init("name"),
+                                   placeHolder: .init("name input"), value: $name)
+    
+                Button {
+                    createProfile()
+                    
+                } label: {
+                    ImageTextView(image: .init(systemName: "return"), text: .init("create"))
+                }
             }
 
         }

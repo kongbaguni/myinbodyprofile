@@ -7,39 +7,14 @@
 
 import SwiftUI
 import RealmSwift
-import CachedAsyncImage
 
 struct ProfileDetailView: View {
     @ObservedRealmObject var profile:ProfileModel
 
-    var placeholder : some View {
-        Image(systemName: "person")
-            .resizable()
-            .scaledToFill()
-            .frame(width:100,height: 100)
-    }
     
     var body: some View {
         VStack {
-            if let url = profile.profileImageURL {
-                CachedAsyncImage(url: .init(string:url)) { image in
-                    image.resizable()
-                        .cornerRadius(10)
-                        .overlay {
-                            RoundedRectangle(cornerRadius: 10)
-                                .stroke(Color.primary, lineWidth: 2)
-                        }
-                        .shadow(color:.secondary,radius: 10)
-                        .scaledToFill()
-                        .frame(width:100,height: 100)
-                } placeholder: {
-                    placeholder
-                }
-            }
-            else {
-                placeholder
-            }
-            
+            ProfileImageView(profile: profile, size: .init(width: 150, height: 150))
             Text(profile.name)
         }
         .toolbar {

@@ -13,7 +13,7 @@ struct PhotoPickerView: View {
     @State var selectedItem:PhotosPickerItem? = nil
     
     @Binding var selectedImageData:Data?
-    
+    let size:CGSize
     var selectedImage:SwiftUI.Image? {
         if let data = selectedImageData {
             return .init(uiImage: .init(data: data)!)
@@ -28,7 +28,7 @@ struct PhotoPickerView: View {
                     image
                         .resizable()
                         .scaledToFill()
-                        .frame(width:100,height:100)
+                        .frame(width:size.width,height:size.height)
                         .cornerRadius(10)
                         .clipped()
                 } else {
@@ -57,6 +57,5 @@ struct PhotoPickerView: View {
 }
 
 #Preview {
-    PhotoPickerView(selectedImageData: .constant(nil))
-//    PhotoPickerView()
+    PhotoPickerView(selectedImageData: .constant(nil), size:.init(width: 150, height: 150))
 }

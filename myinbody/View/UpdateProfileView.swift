@@ -21,8 +21,32 @@ struct UpdateProfileView: View {
     }
     @State var isAlert:Bool = false
     @State var isEdited:Bool = false
+    @State var photoData:Data? = nil
+    @State var needDeletePhoto:Bool = false
+    
+    func updateProfile() {
+        
+    }
     var body: some View {
-        List {            
+        List {
+            if photoData == nil {
+                ProfileImageView(profile: profile, size: .init(width: 150, height: 150))
+            }
+            PhotoPickerView(selectedImageData: $photoData, size: .init(width: 150, height: 150))
+            if photoData != nil {
+                Button {
+                    if photoData != nil {
+                        photoData = nil
+                    }
+                } label: {
+                    ImageTextView(image: .init(systemName: "trash.circle"), text: Text("cancel photo upload"))
+                }
+            }
+            else if profile.profileImageURL != nil {
+                Toggle(isOn: $needDeletePhoto) {
+                    Text("delete photo")
+                }
+            }
             TitleTextFieldView(
                 title: .init("name"),
                 placeHolder: .init("input name"),
