@@ -34,3 +34,15 @@
 "Email :" = "이메일 :";
 "name :" = "이름 :";
 "profile image :" = "프로필 이미지 :";
+
+"input inbody data" = "인바디 데이터 입력";
+"inbody input title height" = "신장";
+"inbody input title weight" = "몸무게";
+"inbody input title skeletal muscle mass" = "골격근량";
+"next" = "다음";
+"previous" = "이전";
+"inbody input title measurementDate" = "측정일시";
+"inbody input title body fat mass" = "체지방량";
+"inbody input title total body water" = "체수분";
+"inbody input title protein" = "단백질";
+"inbody input title mineral" = "무기질";

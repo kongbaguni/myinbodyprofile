@@ -42,7 +42,9 @@ struct ProfileImageView: View {
             }
         }
         .onAppear {
+            #if !targetEnvironment(simulator)
             profileImageUrl = profile.profileImageURL
+            #endif
         }
         .onReceive(NotificationCenter.default.publisher(for: .profileImageUpdated, object: nil), perform: { noti in
             if let url = noti.object as? URL {

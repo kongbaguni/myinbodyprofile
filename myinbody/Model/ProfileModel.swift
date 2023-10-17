@@ -8,12 +8,12 @@
 import Foundation
 import RealmSwift
 import FirebaseFirestore
-import SwiftUI
 
 class ProfileModel  : Object, ObjectKeyIdentifiable {
     @Persisted(primaryKey: true) var id:String = ""
     @Persisted var name:String = ""
     @Persisted var regDtTimeIntervalSince1970:Double = 0
+    @Persisted var inbodys: List<InbodyModel>
 }
 
 extension ProfileModel  {

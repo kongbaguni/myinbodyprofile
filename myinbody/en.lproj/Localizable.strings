@@ -11,3 +11,13 @@
 
 "delete profile title" = "Delete this profile.";
 "delete profile message" = "All data saved with this profile will be deleted. This action is irreversible.";
+
+"input inbody data" = "input inbody data";
+"inbody input title height" = "body height";
+"inbody input title weight" = "body weight";
+"inbody input title skeletal muscle mass" = "skeletal muscle mass";
+"inbody input title measurementDate" = "measurement date";
+"inbody input title body fat mass" = "body fat mass";
+"inbody input title total body water" = "total body water";
+"inbody input title protein" = "protein";
+"inbody input title mineral" = "mineral";

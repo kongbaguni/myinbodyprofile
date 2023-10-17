@@ -13,9 +13,15 @@ struct ProfileDetailView: View {
 
     
     var body: some View {
-        VStack {
+        List {
             ProfileImageView(profile: profile, size: .init(width: 150, height: 150))
-            Text(profile.name)
+            
+            NavigationLink {
+                InbodyDataInputView(profile: profile)
+            } label: {
+                ImageTextView(image: .init(systemName: "plus.square"), text: .init("add inbody data"))
+            }
+
         }
         .toolbar {
             NavigationLink {
@@ -29,5 +35,5 @@ struct ProfileDetailView: View {
 }
 
 #Preview {
-    ProfileDetailView(profile: .init(value: ["id":"test","name":"test","profileImageURL":"https://t3.gstatic.com/licensed-image?q=tbn:ANd9GcRoT6NNDUONDQmlthWrqIi_frTjsjQT4UZtsJsuxqxLiaFGNl5s3_pBIVxS6-VsFUP_"]))
+    ProfileDetailView(profile: .init(value: ["id":"test","name":"홍길동"]))
 }
