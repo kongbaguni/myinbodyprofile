@@ -133,14 +133,67 @@ struct SignInView: View {
             }
         }
     }
+    
+    func makeRow(left:String,right:some View)->some View {
+        HStack {
+            Text(left)
+                .foregroundStyle(Color.secondary)
+            right
+        }
+    }
+    
+    func makeText(left:String,right:String)->some View {
+        makeRow(
+            left: left,
+            right: Text(right)
+                .foregroundStyle(Color.primary)
+                .fontWeight(.bold)
+        )
+    }
+    
     var body: some View {
         List {
             Section {
                 if isSignin {
-                    HStack {
-                        Text("ID :").fontWeight(.bold)
-                        Text(AuthManager.shared.userId!)
+                    if let user = AuthManager.shared.auth.currentUser {
+                        makeText(left: "id :", right: user.uid)
+                        if let date = user.metadata.lastSignInDate {
+                            makeText(left: "last signin date :", right: date.formatted(date: .numeric, time: .shortened))
+                        }
+                        if let date = user.metadata.creationDate {
+                            makeText(left: "creation date :", right: date.formatted(date: .numeric, time: .shortened))
+                        }
+                        if let value = user.email {
+                            makeText(left: "Email : ", right: value)
+                        }
+                        if let value = user.displayName {
+                            makeText(left: "name :", right: value)
+                        }
+                        if let value = user.phoneNumber {
+                            makeText(left: "phone :", right: value)
+                        }
+                        if let value = user.photoURL {
+                            makeRow(
+                                left: "profile image :",
+                                right: AsyncImage(url: value) { image in
+                                    image
+                                        .resizable()
+                                        .scaledToFit()
+                                        .frame(width:100,height: 100)
+                                    
+                                } placeholder: {
+                                    Image(systemName: "person")
+                                        .resizable()
+                                        .scaledToFit()
+                                        .frame(width:100,height: 100)
+                                }
+                            )
+                        }
+                            
+                            
+                            
                     }
+                    
                 }
                 signinView
             }
@@ -148,7 +201,7 @@ struct SignInView: View {
 //                ProfileListView()
 //            }
         }.listStyle(.automatic)
-        .navigationTitle(Text("signin"))
+            .navigationTitle(isSignin ? Text("signin info") : Text("signin"))
         .onAppear {
             checkSignin()
         }

@@ -10,6 +10,7 @@
 "confirm" = "확인";
 "signout" = "로그아웃";
 "signin" = "로그인";
+"signin info" = "로그인 정보";
 "signin with Apple" = "Apple로 로그인";
 "signin with Google" = "Google로 로그인";
 "singin anomymouse" = "익명 로그인";
@@ -27,3 +28,9 @@
 "delete profile title" = "프로필을 삭제합니다.";
 "delete profile message" = "이 프로필로 저장된 데이터가 전부 삭제됩니다. 이 행동은 복구할 수 없습니다.";
 "edit profile" = "프로필 편집";
+"id :" = "아이디 :";
+"last signin date :" = "마지막 로그인 일시 :";
+"creation date :" = "계정 생성 일시 :";
+"Email :" = "이메일 :";
+"name :" = "이름 :";
+"profile image :" = "프로필 이미지 :";
