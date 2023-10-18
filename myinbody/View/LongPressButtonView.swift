@@ -21,7 +21,6 @@ struct LongPressButtonView: View {
             image
                 .resizable()
                 .scaledToFit()
-                .frame(width: 50,height: 50)
                 .foregroundStyle(.primary,.orange,.secondary)
         }
         .onLongPressGesture(minimumDuration:50, maximumDistance: 100,perform: {
@@ -33,8 +32,8 @@ struct LongPressButtonView: View {
                 loopCall()
             }
         }
-                    
     }
+    
     func loopCall() {
         let interval = Date().timeIntervalSince1970 - actionInterval
         if interval < 1.0 {

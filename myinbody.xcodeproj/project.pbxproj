@@ -49,6 +49,8 @@
 		1B11B8922AD6884800B0F5DB /* SignInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B11B8912AD6884800B0F5DB /* SignInView.swift */; };
 		1B11B8952AD7BAB800B0F5DB /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 1B11B8972AD7BAB800B0F5DB /* Localizable.strings */; };
 		1B65845C2ADF6F51003C3A6F /* SwiftUICharts in Frameworks */ = {isa = PBXBuildFile; productRef = 1B65845B2ADF6F51003C3A6F /* SwiftUICharts */; };
+		1B65845E2ADF7021003C3A6F /* NumberInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B65845D2ADF7021003C3A6F /* NumberInputView.swift */; };
+		1B6584602ADF739E003C3A6F /* String+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B65845F2ADF739E003C3A6F /* String+Extensions.swift */; };
 		1B97E53A2AD91051007EC45B /* ImageTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B97E5392AD91051007EC45B /* ImageTextView.swift */; };
 		1B97E53C2AD91319007EC45B /* ProfileDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B97E53B2AD91319007EC45B /* ProfileDetailView.swift */; };
 		1B97E53E2AD91937007EC45B /* UpdateProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B97E53D2AD91937007EC45B /* UpdateProfileView.swift */; };
@@ -90,6 +92,8 @@
 		1B11B8912AD6884800B0F5DB /* SignInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInView.swift; sourceTree = "<group>"; };
 		1B11B8962AD7BAB800B0F5DB /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		1B11B8982AD7BAB900B0F5DB /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/Localizable.strings; sourceTree = "<group>"; };
+		1B65845D2ADF7021003C3A6F /* NumberInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberInputView.swift; sourceTree = "<group>"; };
+		1B65845F2ADF739E003C3A6F /* String+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extensions.swift"; sourceTree = "<group>"; };
 		1B97E5392AD91051007EC45B /* ImageTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageTextView.swift; sourceTree = "<group>"; };
 		1B97E53B2AD91319007EC45B /* ProfileDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileDetailView.swift; sourceTree = "<group>"; };
 		1B97E53D2AD91937007EC45B /* UpdateProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateProfileView.swift; sourceTree = "<group>"; };
@@ -205,6 +209,7 @@
 				1BFACFF12AD7D44300AA106C /* Realm.Object+Extensions.swift */,
 				1BFACFEF2AD7D3E700AA106C /* Realm+Extensions.swift */,
 				1B11B88F2AD684FB00B0F5DB /* UIApplication+Extensions.swift */,
+				1B65845F2ADF739E003C3A6F /* String+Extensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -226,6 +231,7 @@
 				1B0273952ADE18F500B46191 /* InbodyDataInputView.swift */,
 				1B0273972ADE198B00B46191 /* DoubleInputView.swift */,
 				1B0273992ADE508800B46191 /* LongPressButtonView.swift */,
+				1B65845D2ADF7021003C3A6F /* NumberInputView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -381,6 +387,7 @@
 				1BFACFF02AD7D3E700AA106C /* Realm+Extensions.swift in Sources */,
 				1BFACFF72AD7D79F00AA106C /* CreateProfileView.swift in Sources */,
 				1B97E5462AD9346E007EC45B /* FirestorageDownloadUrlCacheModel.swift in Sources */,
+				1B6584602ADF739E003C3A6F /* String+Extensions.swift in Sources */,
 				1B02739A2ADE508800B46191 /* LongPressButtonView.swift in Sources */,
 				1B97E5402AD922D3007EC45B /* TitleTextFieldView.swift in Sources */,
 				1B0273982ADE198B00B46191 /* DoubleInputView.swift in Sources */,
@@ -392,6 +399,7 @@
 				1B11B83F2AD66BEF00B0F5DB /* myinbodyApp.swift in Sources */,
 				1BFACFF52AD7D55600AA106C /* FirebaseFirestoreHelper.swift in Sources */,
 				1B97E5422AD92EEB007EC45B /* PhotoPickerView.swift in Sources */,
+				1B65845E2ADF7021003C3A6F /* NumberInputView.swift in Sources */,
 				1B11B8922AD6884800B0F5DB /* SignInView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

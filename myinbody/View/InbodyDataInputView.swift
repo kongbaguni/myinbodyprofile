@@ -94,113 +94,89 @@ struct InbodyDataInputView: View {
         ScrollView {
             switch step {
             case .height:
-                DoubleInputView(
+                NumberInputView(
                     title: .init("inbody input title height"),
+                    format: "%0.0f",
                     unit: .init("cm"),
-                    range: getRange(step: step, defaultRange: 40...400),
-                    min:1,
-                    format:"%0.0f",
-                    value: $height
-                )
+                    value: $height)
+                
             case .weight:
-                DoubleInputView(
+                NumberInputView(
                     title: .init("inbody input title weight"),
-                    unit: .init("kg"),
-                    range: getRange(step: step, defaultRange: 20...300),
-                    min:0.1,
                     format: "%0.1f",
-                    value: $weight
-                )
+                    unit: .init("kg"),
+                    value: $weight)
+                
             case .skeletal_muscle_mass:
-                DoubleInputView(
+                NumberInputView(
                     title: .init("inbody input title skeletal muscle mass"),
+                    format: "%0.1f",
                     unit: .init("kg"),
-                    range: getRange(step: step, defaultRange: 0...200),
-                    min:0.1,
-                    format: "%.1f",
-                    value: $skeletal_muscle_mass
-                )
+                    value: $skeletal_muscle_mass)
+                
             case .body_fat_mass:
-                DoubleInputView(
+                NumberInputView(
                     title: .init("inbody input title body fat mass"),
+                    format: "%0.1f",
                     unit: .init("kg"),
-                    range: getRange(step: step, defaultRange: 0...200),
-                    min: 0.1,
-                    format: "%.1f",
-                    value: $body_fat_mass
-                )
+                    value: $body_fat_mass)
+                
             case .total_body_water:
-                DoubleInputView(
+                NumberInputView(
                     title: .init("inbody input title total body water"),
+                    format: "%0.1f",
                     unit: .init("ℓ"),
-                    range: getRange(step: step, defaultRange: 0...100),
-                    min: 0.1,
-                    format: "%.1f",
-                    value: $total_body_water
-                )
+                    value: $total_body_water)
+
             case .protein:
-                DoubleInputView(
+                NumberInputView(
                     title: .init("inbody input title protein"),
+                    format: "%0.1f",
                     unit: .init("kg"),
-                    range: getRange(step: step, defaultRange: 0...100),
-                    min: 0.1,
-                    format: "%.1f",
-                    value: $protein
-                )
+                    value: $protein)
+
             case .mineral:
-                DoubleInputView(
+                NumberInputView(
                     title: .init("inbody input title mineral"),
+                    format: "%0.1f",
                     unit: .init("kg"),
-                    range: getRange(step: step, defaultRange: 0...100),
-                    min: 0.1,
-                    format: "%.1f",
-                    value: $mineral
-                )
+                    value: $mineral)
+                
             case .bmi:
-                DoubleInputView(
+                NumberInputView(
                     title: .init("inbody input title bmi"),
+                    format: "%0.1f",
                     unit: .init("kg/m2"),
-                    range: getRange(step: step, defaultRange: 0...100),
-                    min: 0.1,
-                    format: "%.1f", 
-                    value: $bmi
-                )
+                    value: $bmi)
             case .percent_body_fat:
-                DoubleInputView(
+                NumberInputView(
                     title: .init("inbody input title percent body fat"),
-                    unit: .init("%"),
-                    range: getRange(step: step, defaultRange: 0...100),
-                    min: 0.1,
-                    format: "%.2f",
-                    value: $percent_body_fat
-                )
+                    format: "%0.2f",
+                    unit: .init(" "),
+                    value: $percent_body_fat)
+
             case .waist_hip_ratio:
-                DoubleInputView(
+                NumberInputView(
                     title: .init("inbody input title waist hip ratio"),
-                    unit: .init(" "),
-                    range: getRange(step: step, defaultRange: 0...1),
-                    min: 0.01, 
-                    format: "%.2f",
-                    value: $waist_hip_ratio
-                )
+                    format: "%0.2f",
+                    unit:nil,
+                    value: $waist_hip_ratio)
+
             case .basal_metabolic_ratio:
-                DoubleInputView(
+                NumberInputView(
                     title: .init("inbody input title basal metabolic ratio"),
+                    format: "%0.0f",
                     unit: .init("kcal"),
-                    range: getRange(step: step, defaultRange: 0...2000),
-                    min: 1,
-                    format: "%.0f",
-                    value: $basal_metabolic_ratio
-                )
+                    value: $basal_metabolic_ratio)
+                
             case .visceral_fat:
-                DoubleInputView(
+                NumberInputView(
                     title: .init("inbody input title visceral fat"),
-                    unit: .init(" "),
-                    range: getRange(step: step, defaultRange: 0...20),
-                    min: 1,
-                    format: "%.0f",
+                    format: "%0.0f",
+                    unit:nil,
                     value: $visceral_fat
                 )
+                
             case .measurementDate:
                 DatePicker(selection: $measurementDate) {
                     Text("inbody input title measurementDate")
