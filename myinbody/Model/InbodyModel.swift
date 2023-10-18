@@ -21,6 +21,7 @@ import Foundation
 import RealmSwift
 import FirebaseFirestore
 
+
 class InbodyModel : Object, ObjectKeyIdentifiable {
     @Persisted(primaryKey: true) var id:String = ""
     /** 체중 kg*/
@@ -57,6 +58,22 @@ class InbodyModel : Object, ObjectKeyIdentifiable {
 }
 
 extension InbodyModel {
+    enum InbodyInputDataType : CaseIterable {
+        case measurementDate
+        case height
+        case weight
+        case skeletal_muscle_mass
+        case body_fat_mass
+        case total_body_water
+        case protein
+        case mineral
+        case bmi
+        case percent_body_fat
+        case waist_hip_ratio
+        case basal_metabolic_ratio
+        case visceral_fat
+    }
+    
     var measurementDateTime : Date {
         .init(timeIntervalSince1970: measurementDateTimeIntervalSince1970)
     }

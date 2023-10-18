@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct NumberInputView: View {
-    let title:Text
     let format:String
     let unit:Text?
     @Binding var value:Double {
@@ -41,8 +40,6 @@ struct NumberInputView: View {
     
     var body: some View {
         VStack {
-            title
-                .font(.title)
             HStack {
                 ForEach(0..<stringArray.count, id:\.self) {idx in
                     let str = stringArray[idx]
@@ -84,5 +81,5 @@ struct NumberInputView: View {
 
 #Preview {
     @State var value:Double = 139.12
-    return NumberInputView(title: .init("test"),format: "%.2f", unit: .init("kg"), value: $value)
+    return NumberInputView(format: "%.2f", unit: .init("kg"), value: $value)
 }

@@ -11,22 +11,6 @@ import RealmSwift
 struct InbodyDataInputView: View {
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
 
-    enum InputStep : CaseIterable {
-        case measurementDate
-        case height
-        case weight
-        case skeletal_muscle_mass
-        case body_fat_mass
-        case total_body_water
-        case protein
-        case mineral
-        case bmi
-        case percent_body_fat
-        case waist_hip_ratio
-        case basal_metabolic_ratio
-        case visceral_fat
-    }
-    
     @ObservedRealmObject var profile:ProfileModel
 
     @State var height:Double = 170.0
@@ -37,7 +21,7 @@ struct InbodyDataInputView: View {
     @State var total_body_water:Double = 40.0
     @State var protein:Double = 10.0
     @State var mineral:Double = 10.0
-    @State var step:InputStep = InputStep.allCases.first!
+    @State var step:InbodyModel.InbodyInputDataType = InbodyModel.InbodyInputDataType.allCases.first!
     @State var bmi:Double = 20.0
     @State var percent_body_fat:Double = 30.0
     @State var waist_hip_ratio:Double = 0.92
@@ -52,10 +36,10 @@ struct InbodyDataInputView: View {
     }
     @State var isAlert:Bool = false
     var stepCount:Int {
-        InputStep.allCases.firstIndex(of: step) ?? 0
+        InbodyModel.InbodyInputDataType.allCases.firstIndex(of: step) ?? 0
     }
     
-    func getRange(step:InputStep,defaultRange:ClosedRange<Double>)->ClosedRange<Double> {
+    func getRange(step:InbodyModel.InbodyInputDataType,defaultRange:ClosedRange<Double>)->ClosedRange<Double> {
         let r:Double = 10
         if let last = profile.inbodys.last {
             switch step {
@@ -89,89 +73,128 @@ struct InbodyDataInputView: View {
         }
         return defaultRange
     }
+    var title : some View {
+        var txt: Text {
+            switch step {
+            case .measurementDate:
+                return .init("inbody input title measurementDate")
+            case .height:
+                return .init("inbody input title height")
+            case .weight:
+                return .init("inbody input title weight")
+            case .skeletal_muscle_mass:
+                return .init("inbody input title skeletal muscle mass")
+            case .body_fat_mass:
+                return .init("inbody input title body fat mass")
+            case .total_body_water:
+                return .init("inbody input title total body water")
+            case .protein:
+                return .init("inbody input title protein")
+            case .mineral:
+                return .init("inbody input title mineral")
+            case .bmi:
+                return .init("inbody input title bmi")
+            case .percent_body_fat:
+                return .init("inbody input title percent body fat")
+            case .waist_hip_ratio:
+                return .init("inbody input title waist hip ratio")
+            case .basal_metabolic_ratio:
+                return .init("inbody input title basal metabolic ratio")
+            case .visceral_fat:
+                return .init("inbody input title visceral fat")
+            }
+        }
+        return HStack {
+            txt.font(.title)
+                .foregroundStyle(.primary)
+            Spacer()
+        }.padding(20)
+
+    }
     
     var body: some View {
-        ScrollView {
+        VStack(alignment:.center) {
+            title
             switch step {
             case .height:
+                InbodyChartView(profile: profile, dataType: step, last:height)
                 NumberInputView(
-                    title: .init("inbody input title height"),
                     format: "%0.0f",
                     unit: .init("cm"),
                     value: $height)
                 
             case .weight:
+                InbodyChartView(profile: profile, dataType: step, last:weight)
                 NumberInputView(
-                    title: .init("inbody input title weight"),
                     format: "%0.1f",
                     unit: .init("kg"),
                     value: $weight)
                 
             case .skeletal_muscle_mass:
+                InbodyChartView(profile: profile, dataType: step, last:skeletal_muscle_mass)
                 NumberInputView(
-                    title: .init("inbody input title skeletal muscle mass"),
                     format: "%0.1f",
                     unit: .init("kg"),
                     value: $skeletal_muscle_mass)
                 
             case .body_fat_mass:
+                InbodyChartView(profile: profile, dataType: step, last:body_fat_mass)
                 NumberInputView(
-                    title: .init("inbody input title body fat mass"),
                     format: "%0.1f",
                     unit: .init("kg"),
                     value: $body_fat_mass)
                 
             case .total_body_water:
+                InbodyChartView(profile: profile, dataType: step, last:total_body_water)
                 NumberInputView(
-                    title: .init("inbody input title total body water"),
                     format: "%0.1f",
                     unit: .init("ℓ"),
                     value: $total_body_water)
 
             case .protein:
+                InbodyChartView(profile: profile, dataType: step, last:protein)
                 NumberInputView(
-                    title: .init("inbody input title protein"),
                     format: "%0.1f",
                     unit: .init("kg"),
                     value: $protein)
 
             case .mineral:
+                InbodyChartView(profile: profile, dataType: step, last:mineral)
                 NumberInputView(
-                    title: .init("inbody input title mineral"),
                     format: "%0.1f",
                     unit: .init("kg"),
                     value: $mineral)
                 
             case .bmi:
+                InbodyChartView(profile: profile, dataType: step, last:bmi)
                 NumberInputView(
-                    title: .init("inbody input title bmi"),
                     format: "%0.1f",
                     unit: .init("kg/m2"),
                     value: $bmi)
             case .percent_body_fat:
+                InbodyChartView(profile: profile, dataType: step, last:percent_body_fat)
                 NumberInputView(
-                    title: .init("inbody input title percent body fat"),
                     format: "%0.2f",
                     unit: .init(" "),
                     value: $percent_body_fat)
 
             case .waist_hip_ratio:
+                InbodyChartView(profile: profile, dataType: step, last:waist_hip_ratio)
                 NumberInputView(
-                    title: .init("inbody input title waist hip ratio"),
                     format: "%0.2f",
                     unit:nil,
                     value: $waist_hip_ratio)
 
             case .basal_metabolic_ratio:
+                InbodyChartView(profile: profile, dataType: step, last:basal_metabolic_ratio)
                 NumberInputView(
-                    title: .init("inbody input title basal metabolic ratio"),
                     format: "%0.0f",
                     unit: .init("kcal"),
                     value: $basal_metabolic_ratio)
                 
             case .visceral_fat:
+                InbodyChartView(profile: profile, dataType: step, last:visceral_fat)
                 NumberInputView(
-                    title: .init("inbody input title visceral fat"),
                     format: "%0.0f",
                     unit:nil,
                     value: $visceral_fat
@@ -190,19 +213,20 @@ struct InbodyDataInputView: View {
                 .padding(20)
                 
             }
+            Spacer()
             HStack {
                 if stepCount > 0 {
                     Button {
                         let prev = stepCount - 1
                         if prev >= 0 {
-                            step = InputStep.allCases[prev]
+                            step = InbodyModel.InbodyInputDataType.allCases[prev]
                         }
                     } label: {
                         Text("previous")
                     }
                 }
                 switch step {
-                case InputStep.allCases.last:
+                case InbodyModel.InbodyInputDataType.allCases.last:
                     Button {
                         save()
                     } label: {
@@ -211,8 +235,8 @@ struct InbodyDataInputView: View {
                 default:
                     Button {
                         let next = stepCount + 1
-                        if InputStep.allCases.count > next {
-                            step = InputStep.allCases[next]
+                        if InbodyModel.InbodyInputDataType.allCases.count > next {
+                            step = InbodyModel.InbodyInputDataType.allCases[next]
                         }
                     } label: {
                         Text("next")
@@ -227,7 +251,17 @@ struct InbodyDataInputView: View {
             }
             height = last.height
             weight = last.weight
-            
+            skeletal_muscle_mass = last.skeletal_muscle_mass
+            body_fat_mass = last.body_fat_mass
+            total_body_water = last.total_body_water
+            protein = last.protein
+            mineral = last.mineral
+            bmi = last.bmi
+            percent_body_fat = last.percent_body_fat
+            waist_hip_ratio = last.waist_hip_ratio
+            basal_metabolic_ratio = last.basal_metabolic_ratio
+            visceral_fat = last.visceral_fat
+
         }
     }
     

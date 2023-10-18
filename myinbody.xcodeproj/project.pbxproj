@@ -51,6 +51,7 @@
 		1B65845C2ADF6F51003C3A6F /* SwiftUICharts in Frameworks */ = {isa = PBXBuildFile; productRef = 1B65845B2ADF6F51003C3A6F /* SwiftUICharts */; };
 		1B65845E2ADF7021003C3A6F /* NumberInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B65845D2ADF7021003C3A6F /* NumberInputView.swift */; };
 		1B6584602ADF739E003C3A6F /* String+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B65845F2ADF739E003C3A6F /* String+Extensions.swift */; };
+		1B6584622ADFB0C0003C3A6F /* InbodyChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B6584612ADFB0C0003C3A6F /* InbodyChartView.swift */; };
 		1B97E53A2AD91051007EC45B /* ImageTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B97E5392AD91051007EC45B /* ImageTextView.swift */; };
 		1B97E53C2AD91319007EC45B /* ProfileDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B97E53B2AD91319007EC45B /* ProfileDetailView.swift */; };
 		1B97E53E2AD91937007EC45B /* UpdateProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B97E53D2AD91937007EC45B /* UpdateProfileView.swift */; };
@@ -94,6 +95,7 @@
 		1B11B8982AD7BAB900B0F5DB /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/Localizable.strings; sourceTree = "<group>"; };
 		1B65845D2ADF7021003C3A6F /* NumberInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberInputView.swift; sourceTree = "<group>"; };
 		1B65845F2ADF739E003C3A6F /* String+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extensions.swift"; sourceTree = "<group>"; };
+		1B6584612ADFB0C0003C3A6F /* InbodyChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InbodyChartView.swift; sourceTree = "<group>"; };
 		1B97E5392AD91051007EC45B /* ImageTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageTextView.swift; sourceTree = "<group>"; };
 		1B97E53B2AD91319007EC45B /* ProfileDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileDetailView.swift; sourceTree = "<group>"; };
 		1B97E53D2AD91937007EC45B /* UpdateProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateProfileView.swift; sourceTree = "<group>"; };
@@ -232,6 +234,7 @@
 				1B0273972ADE198B00B46191 /* DoubleInputView.swift */,
 				1B0273992ADE508800B46191 /* LongPressButtonView.swift */,
 				1B65845D2ADF7021003C3A6F /* NumberInputView.swift */,
+				1B6584612ADFB0C0003C3A6F /* InbodyChartView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -380,6 +383,7 @@
 				1B11B88D2AD6848200B0F5DB /* AuthManager.swift in Sources */,
 				1B11B8902AD684FB00B0F5DB /* UIApplication+Extensions.swift in Sources */,
 				1B97E5442AD9338D007EC45B /* FirebaseStorageHelper.swift in Sources */,
+				1B6584622ADFB0C0003C3A6F /* InbodyChartView.swift in Sources */,
 				1B0273962ADE18F500B46191 /* InbodyDataInputView.swift in Sources */,
 				1BFACFE82AD7D30F00AA106C /* ProfileModel.swift in Sources */,
 				1B97E53E2AD91937007EC45B /* UpdateProfileView.swift in Sources */,
