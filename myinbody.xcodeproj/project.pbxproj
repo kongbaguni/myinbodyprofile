@@ -48,6 +48,7 @@
 		1B11B8902AD684FB00B0F5DB /* UIApplication+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B11B88F2AD684FB00B0F5DB /* UIApplication+Extensions.swift */; };
 		1B11B8922AD6884800B0F5DB /* SignInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B11B8912AD6884800B0F5DB /* SignInView.swift */; };
 		1B11B8952AD7BAB800B0F5DB /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 1B11B8972AD7BAB800B0F5DB /* Localizable.strings */; };
+		1B65845C2ADF6F51003C3A6F /* SwiftUICharts in Frameworks */ = {isa = PBXBuildFile; productRef = 1B65845B2ADF6F51003C3A6F /* SwiftUICharts */; };
 		1B97E53A2AD91051007EC45B /* ImageTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B97E5392AD91051007EC45B /* ImageTextView.swift */; };
 		1B97E53C2AD91319007EC45B /* ProfileDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B97E53B2AD91319007EC45B /* ProfileDetailView.swift */; };
 		1B97E53E2AD91937007EC45B /* UpdateProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B97E53D2AD91937007EC45B /* UpdateProfileView.swift */; };
@@ -142,6 +143,7 @@
 				1B11B8752AD67F7400B0F5DB /* FirebaseInAppMessagingSwift-Beta in Frameworks */,
 				1BFACFEB2AD7D33D00AA106C /* Realm in Frameworks */,
 				1B11B8832AD67F7400B0F5DB /* FirebaseStorage in Frameworks */,
+				1B65845C2ADF6F51003C3A6F /* SwiftUICharts in Frameworks */,
 				1B11B8672AD67F7400B0F5DB /* FirebaseDynamicLinks in Frameworks */,
 				1B11B86B2AD67F7400B0F5DB /* FirebaseFirestoreCombine-Community in Frameworks */,
 				1B11B87B2AD67F7400B0F5DB /* FirebaseMessaging in Frameworks */,
@@ -298,6 +300,7 @@
 				1B97E5482ADCC62B007EC45B /* AlamofireImage */,
 				1B97E54B2ADCD32B007EC45B /* CachedAsyncImage */,
 				1BACDCFD2ADCFC30000E3AFE /* ActivityIndicatorView */,
+				1B65845B2ADF6F51003C3A6F /* SwiftUICharts */,
 			);
 			productName = myinbody;
 			productReference = 1B11B83B2AD66BEF00B0F5DB /* myinbody.app */;
@@ -335,6 +338,7 @@
 				1B97E5472ADCC62B007EC45B /* XCRemoteSwiftPackageReference "AlamofireImage" */,
 				1B97E54A2ADCD32B007EC45B /* XCRemoteSwiftPackageReference "swiftui-cached-async-image" */,
 				1BACDCFC2ADCFC2F000E3AFE /* XCRemoteSwiftPackageReference "ActivityIndicatorView" */,
+				1B65845A2ADF6F51003C3A6F /* XCRemoteSwiftPackageReference "ChartView" */,
 			);
 			productRefGroup = 1B11B83C2AD66BEF00B0F5DB /* Products */;
 			projectDirPath = "";
@@ -628,6 +632,14 @@
 				minimumVersion = 7.0.0;
 			};
 		};
+		1B65845A2ADF6F51003C3A6F /* XCRemoteSwiftPackageReference "ChartView" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/AppPear/ChartView";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.5.5;
+			};
+		};
 		1B97E5472ADCC62B007EC45B /* XCRemoteSwiftPackageReference "AlamofireImage" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/Alamofire/AlamofireImage.git";
@@ -807,6 +819,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 1B11B8862AD682C700B0F5DB /* XCRemoteSwiftPackageReference "GoogleSignIn-ios" */;
 			productName = GoogleSignInSwift;
+		};
+		1B65845B2ADF6F51003C3A6F /* SwiftUICharts */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 1B65845A2ADF6F51003C3A6F /* XCRemoteSwiftPackageReference "ChartView" */;
+			productName = SwiftUICharts;
 		};
 		1B97E5482ADCC62B007EC45B /* AlamofireImage */ = {
 			isa = XCSwiftPackageProductDependency;

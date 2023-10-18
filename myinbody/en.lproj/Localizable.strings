@@ -21,3 +21,8 @@
 "inbody input title total body water" = "total body water";
 "inbody input title protein" = "protein";
 "inbody input title mineral" = "mineral";
+"inbody input title bmi" = "BMI";
+"inbody input title percent body fat" = "percent body fat";
+"inbody input title waist hip ratio" = "waist hip ratio";
+"inbody input title basal metabolic ratio" = "basal metabolic ratio";
+"inbody input title visceral fat" = "visceral fat";

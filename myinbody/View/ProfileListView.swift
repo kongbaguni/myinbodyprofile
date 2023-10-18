@@ -37,7 +37,7 @@ struct ProfileListView: View {
                     text: .init("add people"))                
             }
         }
-        .navigationTitle(Text("profiles"))
+//        .navigationTitle(Text("profiles"))
         .onAppear {
             ProfileModel.sync { error in
                 

@@ -11,7 +11,14 @@ import RealmSwift
 struct ProfileDetailView: View {
     @ObservedRealmObject var profile:ProfileModel
 
-    
+    @State var error:Error? = nil {
+        didSet {
+            if error != nil {
+                isAlert = true
+            }
+        }
+    }
+    @State var isAlert:Bool = false
     var body: some View {
         List {
             ProfileImageView(profile: profile, size: .init(width: 150, height: 150))
@@ -20,6 +27,9 @@ struct ProfileDetailView: View {
                 InbodyDataInputView(profile: profile)
             } label: {
                 ImageTextView(image: .init(systemName: "plus.square"), text: .init("add inbody data"))
+            }
+            ForEach(profile.inbodys, id:\.self) { data in
+                Text(data.measurementDateTime.formatted())
             }
 
         }
@@ -31,6 +41,16 @@ struct ProfileDetailView: View {
             }
         }
         .navigationTitle(Text(profile.name))
+        .onAppear {
+            InbodyModel.sync(profile: profile) { error in
+                self.error = error
+            }
+        }
+        .alert(isPresented: $isAlert) {
+            .init(
+                title: .init("alert"),
+                message: .init(error?.localizedDescription ?? ""))
+        }
     }
 }
 

@@ -121,7 +121,13 @@ extension ProfileModel  {
         }
         var dicValue = dictionmaryValue
         dicValue["id"] = nil
-        collection.document(id).setData(dictionmaryValue) { error in
+        dicValue["inbodys"] = nil 
+        print("updateProfile : \(dicValue.count)")
+        for item in dicValue {
+            print("\(item.key) \(item.value)")
+        }
+        
+        collection.document(id).setData(dicValue) { error in
             complete(error)
         }
     }
