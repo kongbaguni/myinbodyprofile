@@ -19,7 +19,7 @@
 "name input" = "이름 입력";
 "create" = "등록";
 "add people" = "프로필 추가";
-"home" = "홈";
+"home" = "마이 인바디";
 "edit" = "편집";
 "save" = "저장";
 "cancel photo upload" = "사진 업로드 취소";
@@ -53,3 +53,4 @@
 "inbody input title visceral fat" = "내장지방 레벨";
 "add inbody data" = "인바디 데이터 입력";
 "select photo" = "사진 선택";
+"regDt :" = "등록일 :";

@@ -11,7 +11,7 @@
 
 "delete profile title" = "Delete this profile.";
 "delete profile message" = "All data saved with this profile will be deleted. This action is irreversible.";
-
+"home" = "My Inbody";
 "input inbody data" = "input inbody data";
 "inbody input title height" = "body height";
 "inbody input title weight" = "body weight";

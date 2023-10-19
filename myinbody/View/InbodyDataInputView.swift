@@ -87,83 +87,83 @@ struct InbodyDataInputView: View {
             title
             switch step {
             case .height:
-                InbodyChartView(profile: profile, dataType: step, last:height)
+                InbodyChartView(profile: profile, dataType: step ,last:(date:measurementDate,value:height))
                 NumberInputView(
                     format: step.formatString,
                     unit: step.unit,
                     value: $height)
                 
             case .weight:
-                InbodyChartView(profile: profile, dataType: step, last:weight)
+                InbodyChartView(profile: profile, dataType: step, last:(date:measurementDate,value:weight))
                 NumberInputView(
                     format: step.formatString,
                     unit: step.unit,
                     value: $weight)
                 
             case .skeletal_muscle_mass:
-                InbodyChartView(profile: profile, dataType: step, last:skeletal_muscle_mass)
+                InbodyChartView(profile: profile, dataType: step, last:(date:measurementDate, value:skeletal_muscle_mass))
                 NumberInputView(
                     format: step.formatString,
                     unit: step.unit,
                     value: $skeletal_muscle_mass)
                 
             case .body_fat_mass:
-                InbodyChartView(profile: profile, dataType: step, last:body_fat_mass)
+                InbodyChartView(profile: profile, dataType: step, last:(date:measurementDate, value:body_fat_mass))
                 NumberInputView(
                     format: step.formatString,
                     unit: step.unit,
                     value: $body_fat_mass)
                 
             case .total_body_water:
-                InbodyChartView(profile: profile, dataType: step, last:total_body_water)
+                InbodyChartView(profile: profile, dataType: step, last:(date:measurementDate, value:total_body_water))
                 NumberInputView(
                     format: step.formatString,
                     unit: step.unit,
                     value: $total_body_water)
 
             case .protein:
-                InbodyChartView(profile: profile, dataType: step, last:protein)
+                InbodyChartView(profile: profile, dataType: step, last:(date:measurementDate, value:total_body_water))
                 NumberInputView(
                     format: step.formatString,
                     unit: step.unit,
                     value: $protein)
 
             case .mineral:
-                InbodyChartView(profile: profile, dataType: step, last:mineral)
+                InbodyChartView(profile: profile, dataType: step, last:(date:measurementDate, value:mineral))
                 NumberInputView(
                     format: step.formatString,
                     unit: step.unit,
                     value: $mineral)
                 
             case .bmi:
-                InbodyChartView(profile: profile, dataType: step, last:bmi)
+                InbodyChartView(profile: profile, dataType: step, last:(date:measurementDate, value:bmi))
                 NumberInputView(
                     format: step.formatString,
                     unit: step.unit,
                     value: $bmi)
             case .percent_body_fat:
-                InbodyChartView(profile: profile, dataType: step, last:percent_body_fat)
+                InbodyChartView(profile: profile, dataType: step, last:(date:measurementDate, value:percent_body_fat))
                 NumberInputView(
                     format: step.formatString,
                     unit: step.unit,
                     value: $percent_body_fat)
 
             case .waist_hip_ratio:
-                InbodyChartView(profile: profile, dataType: step, last:waist_hip_ratio)
+                InbodyChartView(profile: profile, dataType: step, last:(date:measurementDate, value:waist_hip_ratio))
                 NumberInputView(
                     format: step.formatString,
                     unit: step.unit,
                     value: $waist_hip_ratio)
 
             case .basal_metabolic_ratio:
-                InbodyChartView(profile: profile, dataType: step, last:basal_metabolic_ratio)
+                InbodyChartView(profile: profile, dataType: step, last:(date:measurementDate, value:basal_metabolic_ratio))
                 NumberInputView(
                     format: step.formatString,
                     unit: step.unit,
                     value: $basal_metabolic_ratio)
                 
             case .visceral_fat:
-                InbodyChartView(profile: profile, dataType: step, last:visceral_fat)
+                InbodyChartView(profile: profile, dataType: step, last:(date:measurementDate, value:visceral_fat))
                 NumberInputView(
                     format: step.formatString,
                     unit: step.unit,

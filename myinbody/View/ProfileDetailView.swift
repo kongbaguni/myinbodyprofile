@@ -22,14 +22,24 @@ struct ProfileDetailView: View {
     var body: some View {
         List {
             Section {
-                HStack {
+                HStack(alignment:.top) {
                     ProfileImageView(profile: profile, size: .init(width: 150, height: 150))
                         .frame(height: 150)
-                    VStack {
-                        Text(profile.name)
-                            .font(.system(size: 40))
-                            .bold()
-                            .foregroundStyle(.secondary,.primary,.orange)
+                    VStack(alignment:.leading) {
+                        HStack {
+                            Text("name :")
+                                .foregroundStyle(.secondary)
+                            Text(profile.name)
+                                .font(.system(size: 40))
+                                .bold()
+                                .foregroundStyle(.primary)
+                        }
+                        HStack {
+                            Text("regDt :")
+                                .foregroundStyle(.secondary)
+                            Text(profile.regDt.formatted(date: .complete, time: .shortened))
+                                .foregroundStyle(.secondary)
+                        }
                     }
                 }
             }
@@ -58,7 +68,12 @@ struct ProfileDetailView: View {
                                         
                                     }
                                 }
-                                InbodyChartView(profile: profile, dataType: type, last: nil, maxCount: 8)
+                                InbodyChartView(
+                                    profile: profile,
+                                    dataType: type,
+                                    last: nil,                                
+                                    maxCount: 8)
+                                    .padding(.bottom,10)
                                 
                             }
                         }
