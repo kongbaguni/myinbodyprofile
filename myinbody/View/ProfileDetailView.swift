@@ -47,8 +47,8 @@ struct ProfileDetailView: View {
             if profile.inbodys.count > 0 {
                 Section {
                     LazyVGrid(columns: [
-                        GridItem(.fixed(70)),
-                        GridItem(.flexible(minimum: 100, maximum: 200))
+                        GridItem(.fixed(90)),
+                        GridItem(.flexible(minimum: 100, maximum: .greatestFiniteMagnitude))
                     ], content: {
                         ForEach(InbodyModel.InbodyInputDataType.allCases, id:\.self) { type in
                             if type != .measurementDate {
@@ -71,7 +71,7 @@ struct ProfileDetailView: View {
                                 InbodyChartView(
                                     profile: profile,
                                     dataType: type,
-                                    last: nil,                                
+                                    last: nil,
                                     maxCount: 8)
                                     .padding(.bottom,10)
                                 

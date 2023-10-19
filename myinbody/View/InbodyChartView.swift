@@ -98,9 +98,11 @@ struct ChartView : View {
     let data:[ChartData]
     var body: some View {
         Chart(data) { data in
-            LineMark(x: .value("date", data.date), y: .value("value", data.value))
-                .symbol(.circle)
-            
+            LineMark(
+                x: .value("date", data.date),
+                y: .value("value", data.value)
+            )
+            .symbol(.circle)
         }
         .padding(10)
         .overlay {
@@ -119,5 +121,4 @@ struct ChartView : View {
         .init(date: .init(timeIntervalSince1970: 1234234), value: 40),
         .init(date: .init(timeIntervalSince1970: 1235234), value: 10),
     ])
-//    InbodyChartView(profile: .init(value: ["id":"test","name":"홍길동"]), dataType: .height, last: 20, maxCount: 10)
 }

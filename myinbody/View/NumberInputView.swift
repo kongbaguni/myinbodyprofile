@@ -17,6 +17,7 @@ struct NumberInputView: View {
     }
     
     @State private var stringArray:[String] = []
+    @State private var firstValue:Double? = nil
     
     private var count:Int {
         return String(format: format, value).count
@@ -25,6 +26,16 @@ struct NumberInputView: View {
     private func loadNumber(value:Double) {
         let str = String(format: format, value)
         stringArray = str.arrayValue
+        if firstValue == nil {
+            firstValue = value
+        }
+    }
+    
+    private func resetNumber() {
+        if let number = firstValue {
+            loadNumber(value: number)
+            value = number
+        }
     }
         
     private func getValue(idx:Int)->Double {
@@ -49,8 +60,13 @@ struct NumberInputView: View {
                                 value += getValue(idx: idx)
                             }
                         }
-                        Text("\(str)")
-                            .font(.system(size: 50))
+                        Button {
+                            resetNumber()
+                        } label: {
+                            Text("\(str)")
+                                .font(.system(size: 50))
+                        }
+                        
                         if(str != ".") {
                             LongPressButtonView(image: .init(systemName: "arrow.down.square")) {
                                 let x = getValue(idx: idx)

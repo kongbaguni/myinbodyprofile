@@ -39,40 +39,6 @@ struct InbodyDataInputView: View {
         InbodyModel.InbodyInputDataType.allCases.firstIndex(of: step) ?? 0
     }
     
-    func getRange(step:InbodyModel.InbodyInputDataType,defaultRange:ClosedRange<Double>)->ClosedRange<Double> {
-        let r:Double = 10
-        if let last = profile.inbodys.last {
-            switch step {
-            case .weight:
-                return last.weight-r...last.weight+r
-            case .height:
-                return last.height-r...last.height+r
-            case .skeletal_muscle_mass:
-                return last.skeletal_muscle_mass-r...last.skeletal_muscle_mass+r
-            case .body_fat_mass:
-                return last.body_fat_mass-r...last.body_fat_mass+r
-            case .total_body_water:
-                return last.total_body_water-r...last.total_body_water+r
-            case .protein:
-                return last.protein-r...last.protein+r
-            case .mineral:
-                return last.mineral-r...last.mineral+r
-            case .bmi:
-                return last.bmi-r...last.bmi+r
-            case .percent_body_fat:
-                return last.percent_body_fat-r...last.percent_body_fat+r
-            case .waist_hip_ratio:
-                return last.waist_hip_ratio-r...last.waist_hip_ratio+r
-            case .basal_metabolic_ratio:
-                return last.basal_metabolic_ratio-r...last.basal_metabolic_ratio+r
-            case .visceral_fat:
-                return last.visceral_fat-r...last.visceral_fat+r
-            default:
-                return 0...0
-            }
-        }
-        return defaultRange
-    }
     var title : some View {
         return HStack {
             step.textValue.font(.title)
@@ -122,7 +88,7 @@ struct InbodyDataInputView: View {
                     value: $total_body_water)
 
             case .protein:
-                InbodyChartView(profile: profile, dataType: step, last:(date:measurementDate, value:total_body_water))
+                InbodyChartView(profile: profile, dataType: step, last:(date:measurementDate, value:protein))
                 NumberInputView(
                     format: step.formatString,
                     unit: step.unit,
