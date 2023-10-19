@@ -134,15 +134,15 @@ struct SignInView: View {
         }
     }
     
-    func makeRow(left:String,right:some View)->some View {
+    func makeRow(left:Text,right:some View)->some View {
         HStack {
-            Text(left)
+            left
                 .foregroundStyle(Color.secondary)
             right
         }
     }
     
-    func makeText(left:String,right:String)->some View {
+    func makeText(left:Text,right:String)->some View {
         makeRow(
             left: left,
             right: Text(right)
@@ -156,25 +156,25 @@ struct SignInView: View {
             Section {
                 if isSignin {
                     if let user = AuthManager.shared.auth.currentUser {
-                        makeText(left: "id :", right: user.uid)
+                        makeText(left: .init("id :"), right: user.uid)
                         if let date = user.metadata.lastSignInDate {
-                            makeText(left: "last signin date :", right: date.formatted(date: .numeric, time: .shortened))
+                            makeText(left: .init("last signin date :"), right: date.formatted(date: .numeric, time: .shortened))
                         }
                         if let date = user.metadata.creationDate {
-                            makeText(left: "creation date :", right: date.formatted(date: .numeric, time: .shortened))
+                            makeText(left: .init("creation date :"), right: date.formatted(date: .numeric, time: .shortened))
                         }
                         if let value = user.email {
-                            makeText(left: "Email : ", right: value)
+                            makeText(left: .init("Email :"), right: value)
                         }
                         if let value = user.displayName {
-                            makeText(left: "name :", right: value)
+                            makeText(left: .init("name :"), right: value)
                         }
                         if let value = user.phoneNumber {
-                            makeText(left: "phone :", right: value)
+                            makeText(left: .init("phone :"), right: value)
                         }
                         if let value = user.photoURL {
                             makeRow(
-                                left: "profile image :",
+                                left: .init("profile image :"),
                                 right: AsyncImage(url: value) { image in
                                     image
                                         .resizable()

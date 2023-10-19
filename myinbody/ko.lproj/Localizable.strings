@@ -54,3 +54,7 @@
 "add inbody data" = "인바디 데이터 입력";
 "select photo" = "사진 선택";
 "regDt :" = "등록일 :";
+"last signin date :" = "마지막 로그인 일시 :";
+"creation date :" = "계정 등록 일시 :";
+"name :" = "이름 :";
+"profile image :" = "프로필 이미지 :";
