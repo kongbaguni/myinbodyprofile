@@ -18,6 +18,11 @@ struct ProfileImageView: View {
         Image(systemName: "person")
             .resizable()
             .scaledToFill()
+            .padding(10)
+            .overlay {
+                RoundedRectangle(cornerRadius: 10)
+                    .stroke(.primary, lineWidth: 2)
+            }
             .frame(width:size.width,height: size.height)
     }
     

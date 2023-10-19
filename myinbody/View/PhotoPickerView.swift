@@ -48,8 +48,8 @@ struct PhotoPickerView: View {
             Task {
                 if let data = try? await newValue?.loadTransferable(type: Data.self) {
                     let image:UIImage = .init(data: data)!
-                    let newImage = image.af.imageAspectScaled(toFill: .init(width: 100, height: 100))
-                    selectedImageData = newImage.jpegData(compressionQuality: 7)
+                    let newImage = image.af.imageAspectScaled(toFill: .init(width: 150, height: 150))
+                    selectedImageData = newImage.jpegData(compressionQuality: 5)
                 }
             }
         }

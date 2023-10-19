@@ -21,43 +21,57 @@ struct ProfileDetailView: View {
     @State var isAlert:Bool = false
     var body: some View {
         List {
-            ProfileImageView(profile: profile, size: .init(width: 150, height: 150))
-                .frame(height: 150)
-            
-            NavigationLink {
-                InbodyDataInputView(profile: profile)
-            } label: {
-                ImageTextView(image: .init(systemName: "plus.square"), text: .init("add inbody data"))
-            }
-            if profile.inbodys.count > 0 {
-                LazyVGrid(columns: [
-                    GridItem(.fixed(70)),
-                    GridItem(.flexible(minimum: 100, maximum: 200))
-                ], content: {
-                    ForEach(InbodyModel.InbodyInputDataType.allCases, id:\.self) { type in
-                        if type != .measurementDate {
-                            VStack {
-                                type.textValue
-                                    .font(.subheadline)
-                                    .foregroundStyle(.secondary)
-                                if let value = profile.inbodys.last?.getValueByType(type: type) {
-                                    HStack {
-                                        Text(String(format:type.formatString,value))
-                                            .bold()
-                                        if let unit = type.unit {
-                                            unit.font(.caption)
-                                                .foregroundStyle(.secondary)
-                                        }
-                                    }
-                                    
-                                }
-                            }
-                            InbodyChartView(profile: profile, dataType: type, last: nil, maxCount: 8)
-                            
-                        }
+            Section {
+                HStack {
+                    ProfileImageView(profile: profile, size: .init(width: 150, height: 150))
+                        .frame(height: 150)
+                    VStack {
+                        Text(profile.name)
+                            .font(.system(size: 40))
+                            .bold()
+                            .foregroundStyle(.secondary,.primary,.orange)
                     }
                 }
-                )
+            }
+            
+            if profile.inbodys.count > 0 {
+                Section {
+                    LazyVGrid(columns: [
+                        GridItem(.fixed(70)),
+                        GridItem(.flexible(minimum: 100, maximum: 200))
+                    ], content: {
+                        ForEach(InbodyModel.InbodyInputDataType.allCases, id:\.self) { type in
+                            if type != .measurementDate {
+                                VStack {
+                                    type.textValue
+                                        .font(.subheadline)
+                                        .foregroundStyle(.secondary)
+                                    if let value = profile.inbodys.last?.getValueByType(type: type) {
+                                        HStack {
+                                            Text(String(format:type.formatString,value))
+                                                .bold()
+                                            if let unit = type.unit {
+                                                unit.font(.caption)
+                                                    .foregroundStyle(.secondary)
+                                            }
+                                        }
+                                        
+                                    }
+                                }
+                                InbodyChartView(profile: profile, dataType: type, last: nil, maxCount: 8)
+                                
+                            }
+                        }
+                    }
+                    )
+                }
+            }
+            Section {
+                NavigationLink {
+                    InbodyDataInputView(profile: profile)
+                } label: {
+                    ImageTextView(image: .init(systemName: "plus.square"), text: .init("add inbody data"))
+                }
             }
         }
         .toolbar {
