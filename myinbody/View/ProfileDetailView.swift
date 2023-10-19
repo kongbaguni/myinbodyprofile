@@ -22,16 +22,43 @@ struct ProfileDetailView: View {
     var body: some View {
         List {
             ProfileImageView(profile: profile, size: .init(width: 150, height: 150))
+                .frame(height: 150)
             
             NavigationLink {
                 InbodyDataInputView(profile: profile)
             } label: {
                 ImageTextView(image: .init(systemName: "plus.square"), text: .init("add inbody data"))
             }
-            ForEach(profile.inbodys, id:\.self) { data in
-                Text(data.measurementDateTime.formatted())
+            if profile.inbodys.count > 0 {
+                LazyVGrid(columns: [
+                    GridItem(.fixed(70)),
+                    GridItem(.flexible(minimum: 100, maximum: 200))
+                ], content: {
+                    ForEach(InbodyModel.InbodyInputDataType.allCases, id:\.self) { type in
+                        if type != .measurementDate {
+                            VStack {
+                                type.textValue
+                                    .font(.subheadline)
+                                    .foregroundStyle(.secondary)
+                                if let value = profile.inbodys.last?.getValueByType(type: type) {
+                                    HStack {
+                                        Text(String(format:type.formatString,value))
+                                            .bold()
+                                        if let unit = type.unit {
+                                            unit.font(.caption)
+                                                .foregroundStyle(.secondary)
+                                        }
+                                    }
+                                    
+                                }
+                            }
+                            InbodyChartView(profile: profile, dataType: type, last: nil, maxCount: 8)
+                            
+                        }
+                    }
+                }
+                )
             }
-
         }
         .toolbar {
             NavigationLink {
@@ -42,9 +69,11 @@ struct ProfileDetailView: View {
         }
         .navigationTitle(Text(profile.name))
         .onAppear {
+            #if !targetEnvironment(simulator)
             InbodyModel.sync(profile: profile) { error in
                 self.error = error
             }
+            #endif
         }
         .alert(isPresented: $isAlert) {
             .init(

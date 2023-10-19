@@ -74,38 +74,8 @@ struct InbodyDataInputView: View {
         return defaultRange
     }
     var title : some View {
-        var txt: Text {
-            switch step {
-            case .measurementDate:
-                return .init("inbody input title measurementDate")
-            case .height:
-                return .init("inbody input title height")
-            case .weight:
-                return .init("inbody input title weight")
-            case .skeletal_muscle_mass:
-                return .init("inbody input title skeletal muscle mass")
-            case .body_fat_mass:
-                return .init("inbody input title body fat mass")
-            case .total_body_water:
-                return .init("inbody input title total body water")
-            case .protein:
-                return .init("inbody input title protein")
-            case .mineral:
-                return .init("inbody input title mineral")
-            case .bmi:
-                return .init("inbody input title bmi")
-            case .percent_body_fat:
-                return .init("inbody input title percent body fat")
-            case .waist_hip_ratio:
-                return .init("inbody input title waist hip ratio")
-            case .basal_metabolic_ratio:
-                return .init("inbody input title basal metabolic ratio")
-            case .visceral_fat:
-                return .init("inbody input title visceral fat")
-            }
-        }
         return HStack {
-            txt.font(.title)
+            step.textValue.font(.title)
                 .foregroundStyle(.primary)
             Spacer()
         }.padding(20)
@@ -119,84 +89,84 @@ struct InbodyDataInputView: View {
             case .height:
                 InbodyChartView(profile: profile, dataType: step, last:height)
                 NumberInputView(
-                    format: "%0.0f",
-                    unit: .init("cm"),
+                    format: step.formatString,
+                    unit: step.unit,
                     value: $height)
                 
             case .weight:
                 InbodyChartView(profile: profile, dataType: step, last:weight)
                 NumberInputView(
-                    format: "%0.1f",
-                    unit: .init("kg"),
+                    format: step.formatString,
+                    unit: step.unit,
                     value: $weight)
                 
             case .skeletal_muscle_mass:
                 InbodyChartView(profile: profile, dataType: step, last:skeletal_muscle_mass)
                 NumberInputView(
-                    format: "%0.1f",
-                    unit: .init("kg"),
+                    format: step.formatString,
+                    unit: step.unit,
                     value: $skeletal_muscle_mass)
                 
             case .body_fat_mass:
                 InbodyChartView(profile: profile, dataType: step, last:body_fat_mass)
                 NumberInputView(
-                    format: "%0.1f",
-                    unit: .init("kg"),
+                    format: step.formatString,
+                    unit: step.unit,
                     value: $body_fat_mass)
                 
             case .total_body_water:
                 InbodyChartView(profile: profile, dataType: step, last:total_body_water)
                 NumberInputView(
-                    format: "%0.1f",
-                    unit: .init("ℓ"),
+                    format: step.formatString,
+                    unit: step.unit,
                     value: $total_body_water)
 
             case .protein:
                 InbodyChartView(profile: profile, dataType: step, last:protein)
                 NumberInputView(
-                    format: "%0.1f",
-                    unit: .init("kg"),
+                    format: step.formatString,
+                    unit: step.unit,
                     value: $protein)
 
             case .mineral:
                 InbodyChartView(profile: profile, dataType: step, last:mineral)
                 NumberInputView(
-                    format: "%0.1f",
-                    unit: .init("kg"),
+                    format: step.formatString,
+                    unit: step.unit,
                     value: $mineral)
                 
             case .bmi:
                 InbodyChartView(profile: profile, dataType: step, last:bmi)
                 NumberInputView(
-                    format: "%0.1f",
-                    unit: .init("kg/m2"),
+                    format: step.formatString,
+                    unit: step.unit,
                     value: $bmi)
             case .percent_body_fat:
                 InbodyChartView(profile: profile, dataType: step, last:percent_body_fat)
                 NumberInputView(
-                    format: "%0.2f",
-                    unit: .init(" "),
+                    format: step.formatString,
+                    unit: step.unit,
                     value: $percent_body_fat)
 
             case .waist_hip_ratio:
                 InbodyChartView(profile: profile, dataType: step, last:waist_hip_ratio)
                 NumberInputView(
-                    format: "%0.2f",
-                    unit:nil,
+                    format: step.formatString,
+                    unit: step.unit,
                     value: $waist_hip_ratio)
 
             case .basal_metabolic_ratio:
                 InbodyChartView(profile: profile, dataType: step, last:basal_metabolic_ratio)
                 NumberInputView(
-                    format: "%0.0f",
-                    unit: .init("kcal"),
+                    format: step.formatString,
+                    unit: step.unit,
                     value: $basal_metabolic_ratio)
                 
             case .visceral_fat:
                 InbodyChartView(profile: profile, dataType: step, last:visceral_fat)
                 NumberInputView(
-                    format: "%0.0f",
-                    unit:nil,
+                    format: step.formatString,
+                    unit: step.unit,
                     value: $visceral_fat
                 )
                 
@@ -246,7 +216,11 @@ struct InbodyDataInputView: View {
         }
         .navigationTitle(.init("input inbody data"))
         .onAppear {
-            guard let last = profile.inbodys.last else {
+            #if targetEnvironment(simulator)
+            return 
+            #endif
+        
+            guard let last = profile.inbodys.sorted(byKeyPath: "measurementDateTimeIntervalSince1970").last else {
                 return
             }
             height = last.height

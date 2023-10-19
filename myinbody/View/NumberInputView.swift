@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct NumberInputView: View {
+struct NumberInputView: View {    
     let format:String
     let unit:Text?
     @Binding var value:Double {

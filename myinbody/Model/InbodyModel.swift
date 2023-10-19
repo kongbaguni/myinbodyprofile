@@ -20,7 +20,7 @@
 import Foundation
 import RealmSwift
 import FirebaseFirestore
-
+import SwiftUI
 
 class InbodyModel : Object, ObjectKeyIdentifiable {
     @Persisted(primaryKey: true) var id:String = ""
@@ -72,6 +72,79 @@ extension InbodyModel {
         case waist_hip_ratio
         case basal_metabolic_ratio
         case visceral_fat
+        var textValue: Text {
+            switch self {
+            case .measurementDate:
+                return .init("inbody input title measurementDate")
+            case .height:
+                return .init("inbody input title height")
+            case .weight:
+                return .init("inbody input title weight")
+            case .skeletal_muscle_mass:
+                return .init("inbody input title skeletal muscle mass")
+            case .body_fat_mass:
+                return .init("inbody input title body fat mass")
+            case .total_body_water:
+                return .init("inbody input title total body water")
+            case .protein:
+                return .init("inbody input title protein")
+            case .mineral:
+                return .init("inbody input title mineral")
+            case .bmi:
+                return .init("inbody input title bmi")
+            case .percent_body_fat:
+                return .init("inbody input title percent body fat")
+            case .waist_hip_ratio:
+                return .init("inbody input title waist hip ratio")
+            case .basal_metabolic_ratio:
+                return .init("inbody input title basal metabolic ratio")
+            case .visceral_fat:
+                return .init("inbody input title visceral fat")
+            }
+        }
+        
+        var unit:Text? {
+            switch self {
+            case .measurementDate:
+                return nil
+            case .height:
+                return .init("cm")
+            case .weight:
+                return .init("kg")
+            case .skeletal_muscle_mass:
+                return .init("kg")
+            case .body_fat_mass:
+                return .init("kg")
+            case .total_body_water:
+                return .init("ℓ")
+            case .protein:
+                return .init("kg")
+            case .mineral:
+                return .init("kg")
+            case .bmi:
+                return .init("kg/m2")
+            case .percent_body_fat:
+                return nil
+            case .waist_hip_ratio:
+                return nil
+            case .basal_metabolic_ratio:
+                return .init("kcal")
+            case .visceral_fat:
+                return nil
+            }
+        }
+        var formatString:String {
+            switch self {
+            case .measurementDate:
+                return ""
+            case .percent_body_fat:
+                return "%0.2f"
+            case .basal_metabolic_ratio, .visceral_fat, .height:
+                return "%0.0f"
+            default:
+                return "%0.1f"
+            }
+        }
     }
     
     var measurementDateTime : Date {
@@ -80,6 +153,37 @@ extension InbodyModel {
     
     var regDateTime : Date {
         .init(timeIntervalSince1970: regDtTimeIntervalSince1970)
+    }
+    
+    func getValueByType(type:InbodyModel.InbodyInputDataType)->Double {
+        switch type {
+        case .measurementDate:
+            return measurementDateTimeIntervalSince1970
+        case .height:
+            return height
+        case .weight:
+            return weight
+        case .skeletal_muscle_mass:
+            return skeletal_muscle_mass
+        case .body_fat_mass:
+            return body_fat_mass
+        case .total_body_water:
+            return total_body_water
+        case .protein:
+            return protein
+        case .mineral:
+            return mineral
+        case .bmi:
+            return bmi
+        case .percent_body_fat:
+            return percent_body_fat
+        case .waist_hip_ratio:
+            return waist_hip_ratio
+        case .basal_metabolic_ratio:
+            return basal_metabolic_ratio
+        case .visceral_fat:
+            return visceral_fat
+        }
     }
 }
 
