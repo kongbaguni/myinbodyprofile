@@ -46,39 +46,42 @@ struct ProfileDetailView: View {
             
             if profile.inbodys.count > 0 {
                 Section {
-                    LazyVGrid(columns: [
-                        GridItem(.fixed(90)),
-                        GridItem(.flexible(minimum: 100, maximum: .greatestFiniteMagnitude))
-                    ], content: {
-                        ForEach(InbodyModel.InbodyInputDataType.allCasesForProfileView, id:\.self) { type in
-                            if type != .measurementDate {
-                                VStack {
-                                    type.textValue
-                                        .font(.subheadline)
-                                        .foregroundStyle(.secondary)
-                                    if let value = profile.inbodys.last?.getValueByType(type: type) {
-                                        HStack {
-                                            Text(String(format:type.formatString,value))
-                                                .bold()
-                                            if let unit = type.unit {
-                                                unit.font(.caption)
-                                                    .foregroundStyle(.secondary)
-                                            }
+                    ForEach(InbodyModel.InbodyInputDataType.allCasesForProfileView, id:\.self) { type in
+                        HStack {
+                            VStack {
+                                type.textValue
+                                    .font(.subheadline)
+                                    .foregroundStyle(.secondary)
+                                if let value = profile.inbodys.last?.getValueByType(type: type) {
+                                    HStack {
+                                        Text(String(format:type.formatString,value))
+                                            .bold()
+                                        if let unit = type.unit {
+                                            unit.font(.caption)
+                                                .foregroundStyle(.secondary)
                                         }
-                                        
                                     }
+                                    
                                 }
+                            }
+                            .frame(width:80)
+                            
+                            
+                            NavigationLink {
+                                DataDetailView(profile: profile, dataType: type, rows: 10)
+                            } label: {
                                 InbodyChartView(
                                     profile: profile,
                                     dataType: type,
                                     last: nil,
                                     maxCount: 8)
-                                    .padding(.bottom,10)
-                                
+                                .padding(.bottom,10)
+
                             }
+
                         }
+                        
                     }
-                    )
                 }
             }
             Section {

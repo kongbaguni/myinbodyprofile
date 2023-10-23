@@ -94,6 +94,7 @@ struct ChartData : Identifiable {
     let date:Date
     let value:Double
 }
+
 struct ChartView : View {
     let data:[ChartData]
     var body: some View {
