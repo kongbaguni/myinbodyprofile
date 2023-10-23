@@ -25,7 +25,21 @@ struct ProfileListView: View {
                 } label: {
                     HStack {
                         ProfileImageView(profile: profile, size: .init(width: 50, height: 50))
-                        Text(profile.name)
+                        VStack {
+                            Text(profile.name)
+                            if let inbody = profile.inbodys.last {
+                                HStack {
+                                    Text("weight :")
+                                        .foregroundStyle(.secondary)
+                                    Text(String(format: "%0.0f kg", inbody.weight))
+                                }
+                                HStack {
+                                    Text("BMI :")
+                                        .foregroundStyle(.secondary)
+                                    Text(String(format: "%0.1f", inbody.bmi))
+                                }
+                            }
+                        }
                     }
                 }
             }

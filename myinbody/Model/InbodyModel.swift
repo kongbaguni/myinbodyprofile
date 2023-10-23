@@ -38,8 +38,6 @@ class InbodyModel : Object, ObjectKeyIdentifiable {
     @Persisted var protein:Double = 0.0
     /** 무기질 kg*/
     @Persisted var mineral:Double = 0.0
-    /** BIM kg/m2*/
-    @Persisted var bmi:Double = 0.0
     /** 체지방률 %*/
     @Persisted var percent_body_fat:Double = 0.0
     /** 복부지방률 */
@@ -58,7 +56,7 @@ class InbodyModel : Object, ObjectKeyIdentifiable {
 }
 
 extension InbodyModel {
-    enum InbodyInputDataType : CaseIterable {
+    enum InbodyInputDataType  {
         case measurementDate
         case height
         case weight
@@ -72,6 +70,37 @@ extension InbodyModel {
         case waist_hip_ratio
         case basal_metabolic_ratio
         case visceral_fat
+        static var allCases:[InbodyInputDataType] {
+            [
+                .measurementDate,
+                .height,
+                .weight,
+                .skeletal_muscle_mass,
+                .body_fat_mass,
+                .total_body_water,
+                .protein,
+                .mineral,
+                .percent_body_fat,
+                .waist_hip_ratio,
+                .basal_metabolic_ratio,
+                .visceral_fat
+            ]
+        }
+        static var allCasesForProfileView:[InbodyInputDataType] {
+            [
+                .bmi,
+                .weight,
+                .skeletal_muscle_mass,
+                .body_fat_mass,
+                .total_body_water,
+                .protein,
+                .mineral,
+                .percent_body_fat,
+                .waist_hip_ratio,
+                .basal_metabolic_ratio,
+                .visceral_fat
+            ]
+        }
         var textValue: Text {
             switch self {
             case .measurementDate:
@@ -153,6 +182,12 @@ extension InbodyModel {
     
     var regDateTime : Date {
         .init(timeIntervalSince1970: regDtTimeIntervalSince1970)
+    }
+    
+    var bmi:Double {
+        let result = weight / pow(height / 100, 2)
+        print("getBMI : weight: \(weight) height : \(height) result : \(result)")
+        return result
     }
     
     func getValueByType(type:InbodyModel.InbodyInputDataType)->Double {

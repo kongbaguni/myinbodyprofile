@@ -50,7 +50,7 @@ struct ProfileDetailView: View {
                         GridItem(.fixed(90)),
                         GridItem(.flexible(minimum: 100, maximum: .greatestFiniteMagnitude))
                     ], content: {
-                        ForEach(InbodyModel.InbodyInputDataType.allCases, id:\.self) { type in
+                        ForEach(InbodyModel.InbodyInputDataType.allCasesForProfileView, id:\.self) { type in
                             if type != .measurementDate {
                                 VStack {
                                     type.textValue
