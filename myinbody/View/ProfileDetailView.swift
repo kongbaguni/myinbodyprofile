@@ -9,6 +9,8 @@ import SwiftUI
 import RealmSwift
 
 struct ProfileDetailView: View {
+    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
+
     @ObservedRealmObject var profile:ProfileModel
 
     @State var error:Error? = nil {
@@ -99,9 +101,15 @@ struct ProfileDetailView: View {
                 Text("edit profile")
             }
         }
-        .navigationTitle(Text(profile.name))
+        .navigationTitle(profile.isInvalidated ? Text("deleted profile") : Text(profile.name))
         .onAppear {
             #if !targetEnvironment(simulator)
+            DispatchQueue.main.async {
+                if profile.id.isEmpty {
+                    presentationMode.wrappedValue.dismiss()
+                    return
+                }
+            }
             InbodyModel.sync(profile: profile) { error in
                 self.error = error
             }

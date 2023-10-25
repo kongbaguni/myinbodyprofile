@@ -41,21 +41,23 @@ struct DataDetailView: View {
     var body: some View {
         List {
             ChartView(data: chartData)
-            
-            dataType.textValue
             if from > 0 {
                 Button {
                     setIdx(lastIdx: to - rows)
                 } label: {
-                    Image(systemName: "arrow.up.square")
+                    ImageTextView(image: .init(systemName: "arrow.up.square"),
+                                  text: .init("Before"))
                 }
             }
             ForEach(datas, id:\.self) {data in
                 HStack {
                     Text(data.measurementDateTime.formatted(date: .complete, time: .shortened))
                         .foregroundStyle(.secondary)
+                        .font(.system(size: 10))
                     let value:Double = data.getValueByType(type: dataType)
                     Text(String(format: dataType.formatString, value))
+                        .foregroundStyle(.primary)
+                        .fontWeight(.bold)
                     if let unit = dataType.unit {
                         unit.font(.caption)
                             .foregroundStyle(.secondary)
@@ -66,7 +68,9 @@ struct DataDetailView: View {
                 Button {
                     setIdx(lastIdx: to + rows)
                 } label : {
-                    Image(systemName: "arrow.down.square")
+                    ImageTextView(image: .init(systemName: "arrow.down.square"),
+                                  text: .init("After"))
+
                 }
             }
         }

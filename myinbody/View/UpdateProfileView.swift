@@ -140,7 +140,7 @@ struct UpdateProfileView: View {
                     primaryButton: .cancel(),
                     secondaryButton: .default(.init("confirm"), action: {
                         profile.delete(removeWithLocal: true) { error in
-                            presentationMode.wrappedValue.dismiss()
+                            presentationMode.wrappedValue.dismiss()                            
                         }
                     })
                 )

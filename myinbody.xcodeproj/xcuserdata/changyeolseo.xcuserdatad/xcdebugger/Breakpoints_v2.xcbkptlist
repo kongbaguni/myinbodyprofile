@@ -14,10 +14,105 @@
             filePath = "myinbody/View/InbodyChartView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "76"
-            endingLineNumber = "76"
+            startingLineNumber = "78"
+            endingLineNumber = "78"
             landmarkName = "data"
             landmarkType = "24">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "064F2ED0-E462-4639-B848-5EC66F97B7E7"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "myinbody/Model/ProfileModel.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "172"
+            endingLineNumber = "172"
+            landmarkName = "delete(removeWithLocal:isDeletedProfileImage:isDeletedInbodyData:complete:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "A1A87ADB-E843-4581-804C-7C2C0569E2F4"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "myinbody/View/ProfileDetailView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "109"
+            endingLineNumber = "109"
+            landmarkName = "body"
+            landmarkType = "24">
+            <Locations>
+               <Location
+                  uuid = "A1A87ADB-E843-4581-804C-7C2C0569E2F4 - 2879bb9185665e2a"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #3 () -&gt; () in myinbody.ProfileDetailView.body.getter : some"
+                  moduleName = "myinbody"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/changyeolseo/Documents/iOS/myinbody/myinbody/View/ProfileDetailView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "109"
+                  endingLineNumber = "109"
+                  offsetFromSymbolStart = "580">
+               </Location>
+               <Location
+                  uuid = "A1A87ADB-E843-4581-804C-7C2C0569E2F4 - c6a5e0b431e6348a"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 @Swift.MainActor () -&gt; () in closure #3 () -&gt; () in myinbody.ProfileDetailView.body.getter : some"
+                  moduleName = "myinbody"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/changyeolseo/Documents/iOS/myinbody/myinbody/View/ProfileDetailView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "109"
+                  endingLineNumber = "109"
+                  offsetFromSymbolStart = "424">
+               </Location>
+               <Location
+                  uuid = "A1A87ADB-E843-4581-804C-7C2C0569E2F4 - c6a5e0b431e6348a"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 @Swift.MainActor () -&gt; () in closure #3 () -&gt; () in myinbody.ProfileDetailView.body.getter : some"
+                  moduleName = "myinbody"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/changyeolseo/Documents/iOS/myinbody/myinbody/View/ProfileDetailView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "109"
+                  endingLineNumber = "109"
+                  offsetFromSymbolStart = "468">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "278CDF59-F89C-417D-8ABE-DAB9CB044FC7"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "myinbody/Model/InbodyModel.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "243"
+            endingLineNumber = "243"
+            landmarkName = "sync(profile:complete:)"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

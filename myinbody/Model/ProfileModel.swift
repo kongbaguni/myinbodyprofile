@@ -49,10 +49,7 @@ extension ProfileModel  {
 
 // MARK: - Firebase Firestore
 fileprivate var collection:CollectionReference? {
-    guard let userid = AuthManager.shared.userId else {
-        return nil
-    }
-    return Firestore.firestore().collection("data").document(userid).collection("profile")
+    FirebaseFirestoreHelper.profileCollectiuon
 }
 
 extension ProfileModel  {
@@ -103,6 +100,9 @@ extension ProfileModel  {
             return
         }
         let id = self.id
+        if id.isEmpty {
+            return 
+        }
         collection.document(id).getDocument { snapShot, error in
             if var data = snapShot?.data() {
                 data["id"] = id
@@ -132,11 +132,20 @@ extension ProfileModel  {
         }
     }
     
-    func delete(removeWithLocal:Bool = false ,complete:@escaping (_ error:Error?)->Void) {
-        if profileImageURL != nil  {
+    func delete(removeWithLocal:Bool = false, isDeletedProfileImage:Bool? = nil ,isDeletedInbodyData:Bool? = nil ,complete:@escaping (_ error:Error?)->Void) {
+        
+        let id = self.id
+        if id.isEmpty {
+            return 
+        }
+
+        if profileImageURL != nil && isDeletedProfileImage != true {
             if let id = profileImageId {
                 FirebaseStorageHelper.shared.delete(path: .profileImage, id: id) { error in
-                    self.delete(removeWithLocal: removeWithLocal, complete: complete)
+                    if error == nil {
+                        _ = FirestorageDownloadUrlCacheModel.remove(id: id)
+                    }
+                    self.delete(removeWithLocal: removeWithLocal,isDeletedProfileImage: true ,complete: complete)
                 }
                 return
             }
@@ -146,7 +155,6 @@ extension ProfileModel  {
         }
         
         func deleteself()  {
-            let id = self.id
             DispatchQueue.main.async {
                 if removeWithLocal {
                     let realm = Realm.shared
@@ -160,6 +168,20 @@ extension ProfileModel  {
             }
         }
         
+        if inbodys.count > 0 && isDeletedInbodyData == nil {
+            if let collection = FirebaseFirestoreHelper.inbodyCollection {
+                
+                collection.document(id).delete { error in
+                    if error == nil {
+                        self.delete(removeWithLocal: removeWithLocal, isDeletedProfileImage: isDeletedProfileImage, isDeletedInbodyData: true, complete: complete)
+                    } else {
+                        print(error!.localizedDescription)
+                        abort()
+                    }
+                }
+                return
+            }
+        }
         collection.document(id).delete { error in
             if error == nil {
                 deleteself()

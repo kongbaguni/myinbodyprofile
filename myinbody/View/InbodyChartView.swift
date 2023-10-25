@@ -18,7 +18,9 @@ struct InbodyChartView: View {
     var data:[ChartData] {
         
         var result:[ChartData] = []
-        
+        if profile.id.isEmpty {
+            return []
+        }
         let list = profile.inbodys.sorted(byKeyPath: "measurementDateTimeIntervalSince1970")
         
         func append(inbody:InbodyModel) {

@@ -11,6 +11,17 @@ import RealmSwift
 import SwiftUI
 
 struct FirebaseFirestoreHelper {
-    static let shared = FirebaseFirestoreHelper()
+    static var inbodyCollection:CollectionReference? {
+        guard let userid = AuthManager.shared.userId else {
+            return nil
+        }
+        return Firestore.firestore().collection("data").document(userid).collection("inbody")
+    }
     
+    static var profileCollectiuon:CollectionReference? {
+        guard let userid = AuthManager.shared.userId else {
+            return nil
+        }
+        return Firestore.firestore().collection("data").document(userid).collection("profile")
+    }
 }

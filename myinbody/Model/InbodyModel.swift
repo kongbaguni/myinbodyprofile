@@ -225,21 +225,21 @@ extension InbodyModel {
 
 
 // MARK: - Firebase Firestore
-fileprivate var collection:CollectionReference? {
-    guard let userid = AuthManager.shared.userId else {
-        return nil
-    }
-    return Firestore.firestore().collection("data").document(userid).collection("inbody")
+var inbodyCollection:CollectionReference? {
+    FirebaseFirestoreHelper.inbodyCollection
 }
 
 fileprivate var profileId:String = ""
 
 extension InbodyModel {
     static func sync(profile:ProfileModel, complete:@escaping(_ error:Error?)->Void) {
-        guard let collection = collection else {
+        guard let collection = inbodyCollection else {
             return
         }
-        
+        if profile.isInvalidated || profile.id.isEmpty {
+            complete(nil)       
+            return
+        }
         let query = collection.document(profile.id).collection("data")
             .whereField("regDt", isGreaterThan: profile.inbodys.last?.regDtTimeIntervalSince1970 ?? 0)
             
@@ -254,7 +254,7 @@ extension InbodyModel {
                     let id = document.documentID
                     var data = document.data()
                     data["id"] = id
-                    let model = realm.create(InbodyModel.self, value: data)
+                    let model = realm.create(InbodyModel.self, value: data, update: .all)
                     profile?.inbodys.append(model)
                 }
             }
@@ -264,7 +264,7 @@ extension InbodyModel {
     }
     
     static func append(data:[String:Any], profile:ProfileModel, complete:@escaping(_ error:Error?)->Void) {
-        guard let collection = collection else {
+        guard let collection = inbodyCollection else {
             return
         }
         let documentId = "\(UUID().uuidString)\(Date().timeIntervalSince1970)"
@@ -288,6 +288,29 @@ extension InbodyModel {
                 profile.inbodys.append(obj)
             }
             print(realm.objects(InbodyModel.self).count)
+        }
+    }
+    
+    func delete(complete:@escaping(_ error:Error?)->Void) {
+        guard let collection = inbodyCollection , let owner = self.owner.last else {
+            return
+        }
+        
+        let subCollection = collection.document(owner.id).collection("data")
+        
+        subCollection.document(self.id).delete { error in
+            if error == nil {
+                do {
+                    let realm = Realm.shared
+                    try realm.write {
+                        realm.delete(self)
+                    }
+                } catch {
+                    complete(error)
+                    return
+                }
+            }
+            complete(error)
         }
     }
 }
