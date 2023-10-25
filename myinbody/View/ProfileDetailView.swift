@@ -54,7 +54,7 @@ struct ProfileDetailView: View {
                                 type.textValue
                                     .font(.subheadline)
                                     .foregroundStyle(.secondary)
-                                if let value = profile.inbodys.last?.getValueByType(type: type) {
+                                if let value = profile.lastInbody?.getValueByType(type: type) {
                                     HStack {
                                         Text(String(format:type.formatString,value))
                                             .bold()

@@ -30,8 +30,8 @@
             filePath = "myinbody/Model/ProfileModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "172"
-            endingLineNumber = "172"
+            startingLineNumber = "176"
+            endingLineNumber = "176"
             landmarkName = "delete(removeWithLocal:isDeletedProfileImage:isDeletedInbodyData:complete:)"
             landmarkType = "7">
          </BreakpointContent>

@@ -17,6 +17,10 @@ class ProfileModel  : Object, ObjectKeyIdentifiable {
 }
 
 extension ProfileModel  {
+    var lastInbody:InbodyModel? {
+        inbodys.sorted(byKeyPath: "measurementDateTimeIntervalSince1970", ascending: true).last
+    }
+    
     var regDt:Date {
         .init(timeIntervalSince1970: regDtTimeIntervalSince1970)
     }
