@@ -101,12 +101,9 @@ struct InbodyDataInputView: View {
                     unit: step.unit,
                     value: $mineral)
                 
-            case .bmi:
-                InbodyChartView(profile: profile, dataType: step, last:(date:measurementDate, value:bmi))
-                NumberInputView(
-                    format: step.formatString,
-                    unit: step.unit,
-                    value: $bmi)
+            case .bmi, .inbodyPoint:
+                EmptyView()
+                
             case .percent_body_fat:
                 InbodyChartView(profile: profile, dataType: step, last:(date:measurementDate, value:percent_body_fat))
                 NumberInputView(

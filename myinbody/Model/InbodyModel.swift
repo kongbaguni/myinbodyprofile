@@ -70,6 +70,7 @@ extension InbodyModel {
         case waist_hip_ratio
         case basal_metabolic_ratio
         case visceral_fat
+        case inbodyPoint
         static var allCases:[InbodyInputDataType] {
             [
                 .measurementDate,
@@ -88,6 +89,7 @@ extension InbodyModel {
         }
         static var allCasesForProfileView:[InbodyInputDataType] {
             [
+                .inbodyPoint,
                 .bmi,
                 .weight,
                 .skeletal_muscle_mass,
@@ -103,6 +105,8 @@ extension InbodyModel {
         }
         var textValue: Text {
             switch self {
+            case .inbodyPoint:
+                return .init("inbody point")
             case .measurementDate:
                 return .init("inbody input title measurementDate")
             case .height:
@@ -134,7 +138,7 @@ extension InbodyModel {
         
         var unit:Text? {
             switch self {
-            case .measurementDate:
+            case .measurementDate, .inbodyPoint:
                 return nil
             case .height:
                 return .init("cm")
@@ -168,7 +172,7 @@ extension InbodyModel {
                 return ""
             case .percent_body_fat:
                 return "%0.2f"
-            case .basal_metabolic_ratio, .visceral_fat, .height:
+            case .basal_metabolic_ratio, .visceral_fat, .height, .inbodyPoint:
                 return "%0.0f"
             default:
                 return "%0.1f"
@@ -190,8 +194,14 @@ extension InbodyModel {
         return result
     }
     
+    var inbodyPoint:Double {
+        (skeletal_muscle_mass / body_fat_mass / weight) * 1000
+    }
+    
     func getValueByType(type:InbodyModel.InbodyInputDataType)->Double {
         switch type {
+        case .inbodyPoint:
+            return inbodyPoint
         case .measurementDate:
             return measurementDateTimeIntervalSince1970
         case .height:

@@ -27,6 +27,9 @@ struct InbodyChartView: View {
             let date = inbody.measurementDateTime
             
             switch dataType {
+            case .inbodyPoint:
+                result.append(.init(date: date, value: inbody.inbodyPoint))
+                
             case .measurementDate:
                 result.append(.init(date: date, value: inbody.measurementDateTimeIntervalSince1970))
                 
