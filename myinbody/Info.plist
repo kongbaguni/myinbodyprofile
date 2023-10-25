@@ -15,5 +15,12 @@
 	</array>
 	<key>ITSAppUsesNonExemptEncryption</key>
 	<false/>
+	<key>UILaunchScreen</key>
+	<dict>
+		<key>UIColorName</key>
+		<string>launchbgcolor</string>
+		<key>UIImageName</key>
+		<string>launchIcon</string>
+	</dict>
 </dict>
 </plist>
