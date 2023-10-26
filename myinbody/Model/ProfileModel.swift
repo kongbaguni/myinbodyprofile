@@ -57,6 +57,18 @@ fileprivate var collection:CollectionReference? {
 }
 
 extension ProfileModel  {
+    func isDeleted (complete:@escaping(_ error:Error?)->Void) {
+        guard let collection = collection else {
+            return
+        }
+        if id.isEmpty {
+            return 
+        }
+        collection.document(id).getDocument { snapShot, error in
+            complete(snapShot?.data() == nil ? CustomError.deletedProfile : error)
+        }
+    }
+    
     static func sync(complete:@escaping(_ error:Error?)->Void) {
         guard let collection = collection else {
             return

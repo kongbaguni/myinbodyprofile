@@ -110,15 +110,39 @@ struct ProfileDetailView: View {
                     return
                 }
             }
-            InbodyModel.sync(profile: profile) { error in
-                self.error = error
+            
+            profile.isDeleted { error1 in
+                if error1 == nil {
+                    InbodyModel.sync(profile: profile) { error2 in
+                        self.error = error2
+                    }
+                } else {
+                    self.error = error1
+                }
             }
+
             #endif
         }
         .alert(isPresented: $isAlert) {
             .init(
                 title: .init("alert"),
-                message: .init(error?.localizedDescription ?? ""))
+                message: .init(error!.localizedDescription),
+                dismissButton: .default(.init("confirm"), action: {
+                    switch error! {
+                    case CustomError.deletedProfile:
+                        let id = profile.id
+                        let realm = Realm.shared
+                        if let obj = realm.object(ofType: ProfileModel.self, forPrimaryKey: id) {
+                            realm.beginWrite()
+                            realm.delete(obj)
+                            try! realm.commitWrite()
+                        }
+                        presentationMode.wrappedValue.dismiss()
+                    default:
+                        break
+                    }
+                })
+            )
         }
     }
 }

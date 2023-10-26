@@ -30,8 +30,8 @@
             filePath = "myinbody/Model/ProfileModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "176"
-            endingLineNumber = "176"
+            startingLineNumber = "188"
+            endingLineNumber = "188"
             landmarkName = "delete(removeWithLocal:isDeletedProfileImage:isDeletedInbodyData:complete:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -95,6 +95,54 @@
                   startingLineNumber = "109"
                   endingLineNumber = "109"
                   offsetFromSymbolStart = "468">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "661621F6-222C-456F-96B3-D5F06B140070"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "myinbody/CustomError.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "32"
+            endingLineNumber = "32"
+            landmarkName = "errorDescription"
+            landmarkType = "24">
+            <Locations>
+               <Location
+                  uuid = "661621F6-222C-456F-96B3-D5F06B140070 - d338f0750ae51f02"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "myinbody.CustomError.errorDescription.getter : Swift.Optional&lt;Swift.String&gt;"
+                  moduleName = "myinbody"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/changyeolseo/Documents/iOS/myinbody/myinbody/CustomError.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "33"
+                  endingLineNumber = "33"
+                  offsetFromSymbolStart = "452">
+               </Location>
+               <Location
+                  uuid = "661621F6-222C-456F-96B3-D5F06B140070 - d338f0750ae51f65"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "myinbody.CustomError.errorDescription.getter : Swift.Optional&lt;Swift.String&gt;"
+                  moduleName = "myinbody"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/changyeolseo/Documents/iOS/myinbody/myinbody/CustomError.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "32"
+                  endingLineNumber = "32"
+                  offsetFromSymbolStart = "436">
                </Location>
             </Locations>
          </BreakpointContent>
