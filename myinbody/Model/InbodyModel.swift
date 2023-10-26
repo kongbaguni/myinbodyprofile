@@ -235,15 +235,10 @@ extension InbodyModel {
 
 
 // MARK: - Firebase Firestore
-var inbodyCollection:CollectionReference? {
-    FirebaseFirestoreHelper.inbodyCollection
-}
-
-fileprivate var profileId:String = ""
 
 extension InbodyModel {
     static func sync(profile:ProfileModel, complete:@escaping(_ error:Error?)->Void) {
-        guard let collection = inbodyCollection else {
+        guard let collection = FirebaseFirestoreHelper.getInbodyCollection(profileId: profile.id) else {
             return
         }
         if profile.isInvalidated || profile.id.isEmpty {
@@ -274,7 +269,7 @@ extension InbodyModel {
     }
     
     static func append(data:[String:Any], profile:ProfileModel, complete:@escaping(_ error:Error?)->Void) {
-        guard let collection = inbodyCollection else {
+        guard let collection = FirebaseFirestoreHelper.getInbodyCollection(profileId: profile.id) else {
             return
         }
         let documentId = "\(UUID().uuidString)\(Date().timeIntervalSince1970)"
@@ -286,15 +281,13 @@ extension InbodyModel {
             complete(error)
         }
         
-        profileId = profile.id
-        
         func save() {
             var dbData = data
             dbData["id"] = documentId
             let realm = Realm.shared
             try! realm.write {
                 let obj = realm.create(InbodyModel.self, value: dbData)
-                let profile = realm.object(ofType: ProfileModel.self, forPrimaryKey: profileId)!
+                let profile = realm.object(ofType: ProfileModel.self, forPrimaryKey: profile.id)!
                 profile.inbodys.append(obj)
             }
             print(realm.objects(InbodyModel.self).count)
@@ -302,7 +295,8 @@ extension InbodyModel {
     }
     
     func delete(complete:@escaping(_ error:Error?)->Void) {
-        guard let collection = inbodyCollection , let owner = self.owner.last else {
+        guard let collection = FirebaseFirestoreHelper.getInbodyCollection(profileId: self.id),
+                let owner = self.owner.last else {
             return
         }
         

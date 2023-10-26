@@ -191,7 +191,7 @@ extension ProfileModel  {
         }
         
         if inbodys.count > 0 && isDeletedInbodyData == nil {
-            if let collection = FirebaseFirestoreHelper.inbodyCollection {
+            if let collection = FirebaseFirestoreHelper.getInbodyCollection(profileId: self.id) {
                 
                 collection.document(id).delete { error in
                     if error == nil {
