@@ -25,6 +25,8 @@ class FirebaseStorageHelper {
     
     let storageRef = Storage.storage().reference()
     
+    var documentReferance:DocumentReference? = nil
+    
     enum ContentType:String {
         case png = "image/png"
         case jpeg = "image/jpeg"

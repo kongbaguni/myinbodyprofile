@@ -155,7 +155,8 @@ struct InbodyDataInputView: View {
                             step = InbodyModel.InbodyInputDataType.allCases[prev]
                         }
                     } label: {
-                        Text("previous")
+                        ImageTextView(image: .init(systemName: "arrowshape.backward"),
+                                      text: .init("previous"))
                     }
                 }
                 switch step {
@@ -163,7 +164,8 @@ struct InbodyDataInputView: View {
                     Button {
                         save()
                     } label: {
-                        Text("confirm")
+                        ImageTextView(image: .init(systemName: "return"),
+                                      text: .init("confirm"))
                     }
                 default:
                     Button {
@@ -172,7 +174,8 @@ struct InbodyDataInputView: View {
                             step = InbodyModel.InbodyInputDataType.allCases[next]
                         }
                     } label: {
-                        Text("next")
+                        ImageTextView(image: .init(systemName: "arrowshape.forward"),
+                                      text: .init("next"))
                     }
                 }
             }

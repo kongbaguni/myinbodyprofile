@@ -92,11 +92,12 @@ extension ProfileModel  {
             }
         }
     }
-    static func create(documentId:String ,value:[String:Any], complete:@escaping(_ error:Error?)->Void) {
+    static func create(value:[String:Any], complete:@escaping(_ profileId:String, _ error:Error?)->Void) {
         guard let collection = collection else {
             return
         }
-        collection.document(documentId).setData(value) { error in
+        
+        func process(error:Error?, documentId:String) {
             if error == nil {
                 var dbData = value
                 dbData["id"] = documentId
@@ -106,8 +107,13 @@ extension ProfileModel  {
                     realm.create(ProfileModel .self, value: dbData, update: .all)
                 }
             }
-            
-            complete(error)
+            complete(documentId, error)
+        }
+        
+        FirebaseStorageHelper.shared.documentReferance = collection.addDocument(data: value) { error in
+            if let documentId = FirebaseStorageHelper.shared.documentReferance?.documentID {
+                process(error: error, documentId: documentId)
+            }
         }
     }
     

@@ -24,7 +24,7 @@ struct CreateProfileView: View {
     @State var photoData:Data? = nil
     @State var isLoading:Bool = false
     
-    private func createProfile(profileId:String? = nil) {
+    private func createProfile() {
         if name.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty {
             error = CustomError.emptyName
             return
@@ -36,30 +36,36 @@ struct CreateProfileView: View {
         let value = [
             "name":name
         ]
-        let profileId = profileId ?? "\(UUID().uuidString):\(Date().timeIntervalSince1970)"
-        if let data = photoData {
-            let uploadId = "\(userId)/\(profileId)"
-            FirebaseStorageHelper.shared.uploadData(data: data, contentType: .jpeg, uploadPath: .profileImage, id: uploadId) { downloadURL, error in
-                if let url = downloadURL {
-                    if let err = FirestorageDownloadUrlCacheModel.reg(id: uploadId, url: url.absoluteString) {
+      
+        ProfileModel.create(value: value) { profileId, error1 in
+            
+            if let data = photoData {
+                let uploadId = "\(userId)/\(profileId)"
+                FirebaseStorageHelper.shared.uploadData(data: data, contentType: .jpeg, uploadPath: .profileImage, id: uploadId) { downloadURL, error2 in
+                    if let url = downloadURL {
+                        if let err = FirestorageDownloadUrlCacheModel.reg(id: uploadId, url: url.absoluteString) {
+                            self.error = err
+                            return
+                        }
+                    }
+                    if let err = error {
                         self.error = err
                         return
                     }
+                    photoData = nil
+                    
+                    self.error = error1 ?? error2
+                    if error == nil {
+                        isLoading = false
+                        presentationMode.wrappedValue.dismiss()
+                    }
                 }
-                if let err = error {
-                    self.error = err
-                    return
+            } else {
+                self.error = error1
+                if error == nil {
+                    isLoading = false
+                    presentationMode.wrappedValue.dismiss()
                 }
-                photoData = nil
-                createProfile(profileId: profileId)
-            }
-            return
-        }
-        ProfileModel.create(documentId: profileId, value: value) { error in
-            self.error = error
-            if error == nil {
-                isLoading = false
-                presentationMode.wrappedValue.dismiss()
             }
         }
     }
