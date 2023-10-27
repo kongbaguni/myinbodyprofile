@@ -238,7 +238,7 @@ extension InbodyModel {
 
 extension InbodyModel {
     static func sync(profile:ProfileModel, complete:@escaping(_ error:Error?)->Void) {
-        guard let collection = FirebaseFirestoreHelper.getInbodyCollection(profileId: profile.id) else {
+        guard let collection = FirebaseFirestoreHelper.inbodyCollection else {
             return
         }
         if profile.isInvalidated || profile.id.isEmpty {
@@ -269,46 +269,51 @@ extension InbodyModel {
     }
     
     static func append(data:[String:Any], profile:ProfileModel, complete:@escaping(_ error:Error?)->Void) {
-        guard let collection = FirebaseFirestoreHelper.getInbodyCollection(profileId: profile.id) else {
+        guard let collection = FirebaseFirestoreHelper.inbodyCollection else {
             return
         }
-        let documentId = "\(UUID().uuidString)\(Date().timeIntervalSince1970)"
-        let subCollection = collection.document(profile.id).collection("data")
-        subCollection.document(documentId).setData(data) { error in
+        FirebaseFirestoreHelper.documentReferance = collection.addDocument(data: data) { error in
             if error == nil {
                 save()
             }
             complete(error)
         }
         
+        
         func save() {
+            guard let id = FirebaseFirestoreHelper.documentReferance?.documentID else {
+                return
+            }
             var dbData = data
-            dbData["id"] = documentId
+            dbData["id"] = id
             let realm = Realm.shared
             try! realm.write {
                 let obj = realm.create(InbodyModel.self, value: dbData)
                 let profile = realm.object(ofType: ProfileModel.self, forPrimaryKey: profile.id)!
                 profile.inbodys.append(obj)
             }
+            FirebaseFirestoreHelper.documentReferance = nil
             print(realm.objects(InbodyModel.self).count)
         }
     }
     
     func delete(complete:@escaping(_ error:Error?)->Void) {
-        guard let collection = FirebaseFirestoreHelper.getInbodyCollection(profileId: self.id),
-                let owner = self.owner.last else {
+        guard let collection = FirebaseFirestoreHelper.inbodyCollection else {
             return
         }
         
-        let subCollection = collection.document(owner.id).collection("data")
         
-        subCollection.document(self.id).delete { error in
+        let id = self.id
+        collection.document(id).delete { error in
             if error == nil {
                 do {
                     let realm = Realm.shared
-                    try realm.write {
-                        realm.delete(self)
+                    if let obj = realm.object(ofType: InbodyModel.self, forPrimaryKey: id) {
+                        try realm.write {
+                            realm.delete(obj)
+                        }
                     }
+
                 } catch {
                     complete(error)
                     return

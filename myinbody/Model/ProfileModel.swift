@@ -110,9 +110,10 @@ extension ProfileModel  {
             complete(documentId, error)
         }
         
-        FirebaseStorageHelper.shared.documentReferance = collection.addDocument(data: value) { error in
-            if let documentId = FirebaseStorageHelper.shared.documentReferance?.documentID {
+        FirebaseFirestoreHelper.documentReferance = collection.addDocument(data: value) { error in
+            if let documentId = FirebaseFirestoreHelper.documentReferance?.documentID {
                 process(error: error, documentId: documentId)
+                FirebaseFirestoreHelper.documentReferance = nil 
             }
         }
     }
@@ -190,25 +191,39 @@ extension ProfileModel  {
             }
         }
         
-        if inbodys.count > 0 && isDeletedInbodyData == nil {
-            if let collection = FirebaseFirestoreHelper.getInbodyCollection(profileId: self.id) {
-                
-                collection.document(id).delete { error in
-                    if error == nil {
-                        self.delete(removeWithLocal: removeWithLocal, isDeletedProfileImage: isDeletedProfileImage, isDeletedInbodyData: true, complete: complete)
-                    } else {
-                        print(error!.localizedDescription)
-                        abort()
-                    }
-                }
+        func deleteInbodys(complete:@escaping(_ error:Error?)->Void) {
+            let inbodyCount = inbodys.count
+            var deleteCount = 0
+            if inbodyCount == 0 {
+                complete(nil)
                 return
             }
-        }
-        collection.document(id).delete { error in
-            if error == nil {
-                deleteself()
+            var err:Error? = nil
+            for inbody in inbodys {
+                inbody.delete { error in
+                    deleteCount += 1
+                    if error != nil && err == nil {
+                        err = error
+                    }
+                    if deleteCount == inbodyCount {
+                        complete(err)
+                    }
+                }
             }
-            complete(error)
+        }
+        
+        
+        deleteInbodys { errorA in
+            if errorA != nil {
+                complete(errorA)
+                return
+            }
+            collection.document(id).delete { errorB in
+                if errorB == nil {
+                    deleteself()
+                }
+                complete(errorB)
+            }
         }
     }
 }
