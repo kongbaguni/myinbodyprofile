@@ -11,6 +11,9 @@ struct HomeView: View {
     @State var isSignin = false
     var body: some View {
         VStack {
+            Button("Crash") {
+              fatalError("Crash was triggered")
+            }
             if isSignin {
                 ProfileListView()                
             } else {
