@@ -1,7 +1,7 @@
 {
   "images" : [
     {
-      "filename" : "launchIcon.png",
+      "filename" : "PNG 이미지-CD1EBFDAD6AA-1.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
@@ -12,12 +12,12 @@
           "value" : "dark"
         }
       ],
-      "filename" : "launchIcon2.png",
+      "filename" : "PNG 이미지-EF9E5F33ACAA-1 1.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "launchIcon@2x.png",
+      "filename" : "PNG 이미지-CD1EBFDAD6AA-2.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
@@ -28,12 +28,12 @@
           "value" : "dark"
         }
       ],
-      "filename" : "launchIcon2@2x.png",
+      "filename" : "PNG 이미지-EF9E5F33ACAA-2 1.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "launchIcon@3x.png",
+      "filename" : "PNG 이미지-CD1EBFDAD6AA-3.png",
       "idiom" : "universal",
       "scale" : "3x"
     },
@@ -44,7 +44,7 @@
           "value" : "dark"
         }
       ],
-      "filename" : "launchIcon2@3x.png",
+      "filename" : "PNG 이미지-EF9E5F33ACAA-3 1.png",
       "idiom" : "universal",
       "scale" : "3x"
     }
