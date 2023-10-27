@@ -56,7 +56,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="launchIcon" width="72" height="72"/>
+        <image name="launchIcon" width="64" height="64"/>
         <namedColor name="launchbgcolor">
             <color red="0.84799998998641968" green="0.87599998712539673" blue="0.83700001239776611" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
