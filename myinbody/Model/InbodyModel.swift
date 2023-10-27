@@ -238,14 +238,14 @@ extension InbodyModel {
 
 extension InbodyModel {
     static func sync(profile:ProfileModel, complete:@escaping(_ error:Error?)->Void) {
-        guard let collection = FirebaseFirestoreHelper.inbodyCollection else {
+        guard let collection = FirebaseFirestoreHelper.makeInbodyCollection(profileId: profile.id) else {
             return
         }
         if profile.isInvalidated || profile.id.isEmpty {
             complete(nil)       
             return
         }
-        let query = collection.document(profile.id).collection("data")
+        let query = collection
             .whereField("regDt", isGreaterThan: profile.inbodys.last?.regDtTimeIntervalSince1970 ?? 0)
             
         let id = profile.id
@@ -269,7 +269,7 @@ extension InbodyModel {
     }
     
     static func append(data:[String:Any], profile:ProfileModel, complete:@escaping(_ error:Error?)->Void) {
-        guard let collection = FirebaseFirestoreHelper.inbodyCollection else {
+        guard let collection = FirebaseFirestoreHelper.makeInbodyCollection(profileId: profile.id) else {
             return
         }
         FirebaseFirestoreHelper.documentReferance = collection.addDocument(data: data) { error in
@@ -298,7 +298,11 @@ extension InbodyModel {
     }
     
     func delete(complete:@escaping(_ error:Error?)->Void) {
-        guard let collection = FirebaseFirestoreHelper.inbodyCollection else {
+        guard let ownerId = owner.first?.id else {
+            return
+        }
+        
+        guard let collection = FirebaseFirestoreHelper.makeInbodyCollection(profileId: ownerId) else {
             return
         }
         

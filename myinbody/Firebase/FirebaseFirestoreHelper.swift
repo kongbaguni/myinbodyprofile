@@ -20,11 +20,14 @@ struct FirebaseFirestoreHelper {
         return Firestore.firestore().collection(userid).document("profile").collection("data")
     }
     
-    static var inbodyCollection:CollectionReference? {
+    static func makeInbodyCollection(profileId:String)->CollectionReference? {
+        guard profileId.isEmpty == false else {
+            return nil
+        }
         guard let userid = AuthManager.shared.userId else {
             return nil
         }
-        return Firestore.firestore().collection(userid).document("inbody").collection("data")
+        return Firestore.firestore().collection(userid).document("inbody").collection(profileId)
     }
 
 }
