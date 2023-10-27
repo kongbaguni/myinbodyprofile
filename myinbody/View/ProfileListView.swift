@@ -19,6 +19,11 @@ struct ProfileListView: View {
 
     var body: some View {
         List {
+            Image("launchIcon")
+                .resizable()
+                .scaledToFit()
+                .padding(20)
+            
             ForEach(profiles, id:\.self) { profile in
                 NavigationLink {
                     ProfileDetailView(profile: profile)
