@@ -68,8 +68,15 @@ struct UpdateProfileView: View {
             self.error = error
         }
     }
+    var deletedView : some View {
+        Text("")
+            .onAppear {
+                presentationMode.wrappedValue.dismiss()
+            }
+            .navigationTitle("")
+    }
     
-    var body: some View {
+    var normalView : some View {
         VStack(alignment:.center) {
             if isEdited {
                 ActivityIndicatorView(isVisible: $isEdited, type: .default(count: 10))
@@ -104,14 +111,14 @@ struct UpdateProfileView: View {
                             placeHolder: .init("input name"),
                             value: $profile.name)
                     }
-                                    
+                    
                     Section {
-                        Button {
-                            deleteAlert = true
-                            isAlert = true
+                        NavigationLink {
+                            DeleteProfileConfirmView(profile:profile)
                         } label: {
-                            ImageTextView(image: .init(systemName: "trash.square"), text: .init("delete"))
+                            ImageTextView(image: .init(systemName: "trash.square"), text: .init("delete profile"))
                         }
+                        
                     }
                 }
             }
@@ -140,14 +147,21 @@ struct UpdateProfileView: View {
                     primaryButton: .cancel(),
                     secondaryButton: .default(.init("confirm"), action: {
                         profile.delete(removeWithLocal: true) { error in
-                            presentationMode.wrappedValue.dismiss()                            
+                            presentationMode.wrappedValue.dismiss()
                         }
                     })
                 )
             } else {
                 return .init(title: .init("alert"),
-                      message: Text(error!.localizedDescription))
+                             message: Text(error!.localizedDescription))
             }
+        }
+    }
+    var body: some View {
+        if profile.id.isEmpty {
+            deletedView
+        } else {
+            normalView
         }
     }
 }

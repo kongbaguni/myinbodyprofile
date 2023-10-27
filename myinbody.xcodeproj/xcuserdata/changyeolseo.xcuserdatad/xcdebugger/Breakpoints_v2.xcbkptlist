@@ -23,69 +23,6 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "A1A87ADB-E843-4581-804C-7C2C0569E2F4"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "myinbody/View/ProfileDetailView.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "109"
-            endingLineNumber = "109"
-            landmarkName = "body"
-            landmarkType = "24">
-            <Locations>
-               <Location
-                  uuid = "A1A87ADB-E843-4581-804C-7C2C0569E2F4 - 2879bb9185665e2a"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #3 () -&gt; () in myinbody.ProfileDetailView.body.getter : some"
-                  moduleName = "myinbody"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/changyeolseo/Documents/iOS/myinbody/myinbody/View/ProfileDetailView.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "109"
-                  endingLineNumber = "109"
-                  offsetFromSymbolStart = "580">
-               </Location>
-               <Location
-                  uuid = "A1A87ADB-E843-4581-804C-7C2C0569E2F4 - c6a5e0b431e6348a"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 @Swift.MainActor () -&gt; () in closure #3 () -&gt; () in myinbody.ProfileDetailView.body.getter : some"
-                  moduleName = "myinbody"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/changyeolseo/Documents/iOS/myinbody/myinbody/View/ProfileDetailView.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "109"
-                  endingLineNumber = "109"
-                  offsetFromSymbolStart = "424">
-               </Location>
-               <Location
-                  uuid = "A1A87ADB-E843-4581-804C-7C2C0569E2F4 - c6a5e0b431e6348a"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 @Swift.MainActor () -&gt; () in closure #3 () -&gt; () in myinbody.ProfileDetailView.body.getter : some"
-                  moduleName = "myinbody"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/changyeolseo/Documents/iOS/myinbody/myinbody/View/ProfileDetailView.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "109"
-                  endingLineNumber = "109"
-                  offsetFromSymbolStart = "468">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
             uuid = "661621F6-222C-456F-96B3-D5F06B140070"
             shouldBeEnabled = "No"
             ignoreCount = "0"
@@ -93,8 +30,8 @@
             filePath = "myinbody/CustomError.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "32"
-            endingLineNumber = "32"
+            startingLineNumber = "36"
+            endingLineNumber = "36"
             landmarkName = "errorDescription"
             landmarkType = "24">
             <Locations>

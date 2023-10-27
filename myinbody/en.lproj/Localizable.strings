@@ -11,6 +11,10 @@
 
 "delete profile title" = "Delete this profile.";
 "delete profile message" = "All data saved with this profile will be deleted. This action is irreversible.";
+"delete profile message2" = "If you agree to deletion, please fill out the text field below.";
+"incorrect name input error" = "The name was not entered correctly.";
+
+
 "home" = "My Inbody";
 "input inbody data" = "input inbody data";
 "inbody input title height" = "body height";

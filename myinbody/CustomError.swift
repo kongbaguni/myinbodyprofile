@@ -8,12 +8,15 @@
 import Foundation
 enum CustomError : Error {
     case emptyName
+    case incorrectName
     case deletedProfile
 }
 
 extension CustomError {
     public var description : String {
         switch self {
+        case .incorrectName:
+            return "incorrect name input error"
         case .emptyName:
             return "empty name err"
         case .deletedProfile :
@@ -24,8 +27,9 @@ extension CustomError {
 
 extension CustomError : LocalizedError {
     public var errorDescription:String? {
-        print(self)
         switch self {
+        case .incorrectName:
+            return NSLocalizedString("incorrect name input error", comment: "incorrect name input error")
         case .emptyName:
             return NSLocalizedString("empty name error", comment: "empty name")
         case .deletedProfile:

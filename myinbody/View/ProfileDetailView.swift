@@ -21,7 +21,16 @@ struct ProfileDetailView: View {
         }
     }
     @State var isAlert:Bool = false
-    var body: some View {
+    
+    var deletedView : some View {
+        Text("")
+            .onAppear {
+                presentationMode.wrappedValue.dismiss()
+            }
+            .navigationTitle("")
+    }
+    
+    var normalView : some View {
         List {
             Section {
                 HStack(alignment:.top) {
@@ -78,9 +87,9 @@ struct ProfileDetailView: View {
                                     last: nil,
                                     maxCount: 8)
                                 .padding(.bottom,10)
-
+                                
                             }
-
+                            
                         }
                         
                     }
@@ -103,13 +112,7 @@ struct ProfileDetailView: View {
         }
         .navigationTitle(profile.isInvalidated ? Text("deleted profile") : Text(profile.name))
         .onAppear {
-            #if !targetEnvironment(simulator)
-            DispatchQueue.main.async {
-                if profile.id.isEmpty {
-                    presentationMode.wrappedValue.dismiss()
-                    return
-                }
-            }
+#if !targetEnvironment(simulator)
             
             profile.isDeleted { error1 in
                 if error1 == nil {
@@ -120,8 +123,7 @@ struct ProfileDetailView: View {
                     self.error = error1
                 }
             }
-
-            #endif
+#endif
         }
         .alert(isPresented: $isAlert) {
             .init(
@@ -143,6 +145,14 @@ struct ProfileDetailView: View {
                     }
                 })
             )
+        }
+    }
+    
+    var body: some View {
+        if profile.id.isEmpty {
+            deletedView
+        } else {
+            normalView
         }
     }
 }
