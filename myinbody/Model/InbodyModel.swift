@@ -170,7 +170,7 @@ extension InbodyModel {
             switch self {
             case .measurementDate:
                 return ""
-            case .percent_body_fat:
+            case .mineral, .waist_hip_ratio:
                 return "%0.2f"
             case .basal_metabolic_ratio, .visceral_fat, .height, .inbodyPoint:
                 return "%0.0f"

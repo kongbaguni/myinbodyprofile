@@ -34,8 +34,8 @@ struct DataDetailView: View {
         }
     }
     
-    var datas:Slice<RealmSwift.List<InbodyModel>> {
-        return profile.inbodys[from..<to]
+    var datas:Slice<Results<InbodyModel>> {
+        return profile.inbodys.sorted(byKeyPath: "measurementDateTimeIntervalSince1970")[from..<to]
     }
 
     var body: some View {

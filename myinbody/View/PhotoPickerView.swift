@@ -14,6 +14,8 @@ struct PhotoPickerView: View {
     
     @Binding var selectedImageData:Data?
     let size:CGSize
+    let placeHolder:SwiftUI.Image?
+
     var selectedImage:SwiftUI.Image? {
         if let data = selectedImageData {
             return .init(uiImage: .init(data: data)!)
@@ -24,6 +26,15 @@ struct PhotoPickerView: View {
     var body: some View {
         PhotosPicker(selection: $selectedItem) {
             VStack {
+                if selectedItem == nil {
+                    if let placeHolder = placeHolder {
+                        placeHolder
+                            .resizable()
+                            .padding(20)
+                            .scaledToFit()
+                            .frame(width:size.width, height:size.height)
+                    }
+                }
                 if let image = selectedImage {
                     image
                         .resizable()
@@ -69,5 +80,5 @@ struct PhotoPickerView: View {
 }
 
 #Preview {
-    PhotoPickerView(selectedImageData: .constant(nil), size:.init(width: 150, height: 150))
+    PhotoPickerView(selectedImageData: .constant(nil), size:.init(width: 150, height: 150), placeHolder: .init(systemName: "person"))
 }
