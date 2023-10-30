@@ -23,7 +23,7 @@ struct PhotoPickerView: View {
     
     var body: some View {
         PhotosPicker(selection: $selectedItem) {
-            Group {
+            VStack {
                 if let image = selectedImage {
                     image
                         .resizable()
@@ -31,10 +31,22 @@ struct PhotoPickerView: View {
                         .frame(width:size.width,height:size.height)
                         .cornerRadius(10)
                         .clipped()
-                } else {
+                } 
+                else {
                     Text("select photo")
                         .padding(10)
                 }
+                if selectedItem != nil {
+                    Button {
+                        selectedItem = nil
+                        selectedImageData = nil
+                    } label: {
+                        ImageTextView(image: .init(systemName: "trash.square"),
+                                      text: .init("cancel"))
+                    }.padding(10)
+                }
+
+                
             }
             .foregroundColor(.primary)
             .overlay {
@@ -48,7 +60,7 @@ struct PhotoPickerView: View {
             Task {
                 if let data = try? await newValue?.loadTransferable(type: Data.self),
                    let image:UIImage = .init(data: data) {
-                    let newImage = image.af.imageAspectScaled(toFill: .init(width: 150, height: 150))
+                    let newImage = image.af.imageAspectScaled(toFill: .init(width: size.width, height: size.height))
                     selectedImageData = newImage.jpegData(compressionQuality: 5)
                 }
             }

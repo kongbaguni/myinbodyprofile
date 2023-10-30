@@ -80,14 +80,7 @@ struct CreateProfileView: View {
                 }
             } else {
                 List {
-                    PhotoPickerView(selectedImageData: $photoData, size:.init(width: 150, height: 150))
-                    if photoData != nil {
-                        Button {
-                            photoData = nil
-                        } label: {
-                            ImageTextView(image: .init(systemName: "trash.circle"), text: Text("cancel photo upload"))
-                        }
-                    }
+                    PhotoPickerView(selectedImageData: $photoData, size:.init(width: 150, height: 150))                 
                     
                     TitleTextFieldView(title: .init("name"),
                                        placeHolder: .init("name input"), value: $name)
