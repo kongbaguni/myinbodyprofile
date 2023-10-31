@@ -45,14 +45,23 @@ struct ProfileDetailView: View {
                                 .bold()
                                 .foregroundStyle(.primary)
                         }
-                        HStack {
-                            Text("regDt :")
-                                .foregroundStyle(.secondary)
-                            Text(profile.regDt.formatted(date: .complete, time: .shortened))
-                                .foregroundStyle(.secondary)
-                        }
                     }
                 }
+                HStack {
+                    Text("regDt :")
+                        .foregroundStyle(.secondary)
+                    Text(profile.regDt.formatted(date: .complete, time: .shortened))
+                        .foregroundStyle(.secondary)
+                }
+                if let value = profile.lastInbody?.measurementDateTime.formatted(date: .complete, time: .shortened) {
+                    HStack {
+                        Text("lastLogDt :")
+                            .foregroundStyle(.secondary)
+                        Text(value)
+                            .foregroundStyle(.primary)
+                    }
+                }
+                
             }
             
             if profile.inbodys.count > 0 {
