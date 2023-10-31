@@ -110,6 +110,7 @@ struct UpdateProfileView: View {
                         TitleTextFieldView(
                             title: .init("name"),
                             placeHolder: .init("input name"),
+                            focusWhenAppear: false,
                             value: $profile.name)
                     }
                     

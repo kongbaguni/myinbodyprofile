@@ -83,7 +83,10 @@ struct CreateProfileView: View {
                     PhotoPickerView(selectedImageData: $photoData, size:.init(width: 150, height: 150), placeHolder: .init(systemName: "person"))                 
                     
                     TitleTextFieldView(title: .init("name"),
-                                       placeHolder: .init("name input"), value: $name)
+                                       placeHolder: .init("name input"),
+                                       focusWhenAppear: true,
+                                       value: $name)
+                    
                     
                     Button {
                         createProfile()
