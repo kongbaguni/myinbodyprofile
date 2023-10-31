@@ -19,6 +19,7 @@ struct ProfileImageView: View {
             .resizable()
             .scaledToFill()
             .padding(10)
+            .backgroundStyle(.gray)
             .overlay {
                 RoundedRectangle(cornerRadius: 10)
                     .stroke(.primary, lineWidth: 2)

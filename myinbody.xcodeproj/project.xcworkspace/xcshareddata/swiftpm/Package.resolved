@@ -23,8 +23,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/Alamofire/Alamofire.git",
       "state" : {
-        "revision" : "b2fa556e4e48cbf06cf8c63def138c98f4b811fa",
-        "version" : "5.8.0"
+        "revision" : "3dc6a42c7727c49bf26508e29b0a0b35f9c7e1ad",
+        "version" : "5.8.1"
       }
     },
     {
@@ -50,8 +50,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/firebase/firebase-ios-sdk",
       "state" : {
-        "revision" : "837d4af6ead57cec1fc38007892500d3139c7556",
-        "version" : "10.16.0"
+        "revision" : "8872dbd7d947acf757abab933da10e83c1842280",
+        "version" : "10.17.0"
       }
     },
     {
@@ -59,8 +59,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/google/GoogleAppMeasurement.git",
       "state" : {
-        "revision" : "56f681586ff006a7982b53dc94082eea31971acf",
-        "version" : "10.16.0"
+        "revision" : "6b332152355c372ace9966d8ee76ed191f97025e",
+        "version" : "10.17.0"
       }
     },
     {
@@ -158,8 +158,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/realm/realm-core.git",
       "state" : {
-        "revision" : "f8604b9fd3d2982008a1d3f5ff35e52ee9098d5b",
-        "version" : "13.23.0"
+        "revision" : "c569bec4d04da84030d94f376437bc4efda3686b",
+        "version" : "13.23.1"
       }
     },
     {
@@ -168,7 +168,7 @@
       "location" : "https://github.com/realm/realm-swift.git",
       "state" : {
         "branch" : "master",
-        "revision" : "becc93324f6a6a5ccc7a2ea3f3f40f94fa57ce49"
+        "revision" : "6b992e508b1fab07d47775f2fd7485fd5f110893"
       }
     },
     {

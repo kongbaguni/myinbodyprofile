@@ -90,7 +90,7 @@ struct InbodyChartView: View {
         }
     }
     var body: some View {
-        ChartView(data: data)
+        ChartView(data: data, selectData: nil)
     }
 }
 
@@ -102,13 +102,16 @@ struct ChartData : Identifiable {
 
 struct ChartView : View {
     let data:[ChartData]
+    let selectData:ChartData?
     var body: some View {
         Chart(data) { data in
             LineMark(
                 x: .value("date", data.date),
                 y: .value("value", data.value)
             )
-            .symbol(.circle)
+            .symbol(selectData?.id == data.id ? .square : .circle)
+            .symbolSize(selectData?.id == data.id ? 100 : 25)
+            .foregroundStyle(Color("chartLineColor"))            
         }
         .padding(10)
         .overlay {
@@ -126,5 +129,5 @@ struct ChartView : View {
         .init(date: .init(timeIntervalSince1970: 1233234), value: 21),
         .init(date: .init(timeIntervalSince1970: 1234234), value: 40),
         .init(date: .init(timeIntervalSince1970: 1235234), value: 10),
-    ])
+    ],selectData: nil)
 }
