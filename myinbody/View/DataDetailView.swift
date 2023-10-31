@@ -56,7 +56,11 @@ struct DataDetailView: View {
             ForEach(datas, id:\.self) { data in
                 let cdata = ChartData(date: data.measurementDateTime, value: data.getValueByType(type: dataType))
                 Button {
-                    selectedChartData = cdata
+                    if selectedChartData?.id == cdata.id {
+                        selectedChartData = nil
+                    } else {
+                        selectedChartData = cdata
+                    }
                 } label: {
                     HStack {                        
                         if cdata.id == selectedChartData?.id {
