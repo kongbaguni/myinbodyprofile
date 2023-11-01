@@ -65,6 +65,7 @@
 "Before" = "이전";
 "After" = "다음";
 "inbody point" = "인바디 점수";
+"inbody point :" = "인바디 점수 :";
 
 "deleted profile error" = "삭제된 프로필입니다.";
 "delete" = "삭제";

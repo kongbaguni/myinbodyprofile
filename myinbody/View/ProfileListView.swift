@@ -17,6 +17,16 @@ struct ProfileListView: View {
         )
     ) var profiles
 
+    @State var error:Error? = nil {
+        didSet {
+            if error != nil {
+                isAlert = true
+            }
+        }
+    }
+    
+    @State var isAlert:Bool = false
+    
     var body: some View {
         List {
             if profiles.count == 0 {
@@ -33,12 +43,14 @@ struct ProfileListView: View {
                     ProfileDetailView(profile: profile)
                 } label: {
                     HStack {
-                        ProfileImageView(profile: profile, size: .init(width: 50, height: 50))
+                        ProfileImageView(profile: profile, size: .init(width: 150, height: 150))
                         VStack(alignment: .leading) {
                             Text(profile.name)
                                 .font(.system(size: 18))
                                 .bold()
                             if let inbody = profile.inbodys.last {
+                                Divider()
+
                                 HStack {
                                     Text("weight :")
                                         .foregroundStyle(.secondary)
@@ -49,6 +61,15 @@ struct ProfileListView: View {
                                         .foregroundStyle(.secondary)
                                         .font(.system(size: 12))
                                 }
+                                
+                                HStack {
+                                    Text("inbody point :")
+                                        .foregroundStyle(.secondary)
+                                        .font(.system(size: 12))
+                                    Text(String(format: "%0.0f", inbody.inbodyPoint))
+                                        .font(.system(size: 18, weight: .heavy))
+                                }
+                                
                                 HStack {
                                     Text("BMI :")
                                         .foregroundStyle(.secondary)
@@ -69,11 +90,13 @@ struct ProfileListView: View {
                     text: .init("add people"))                
             }
         }
-//        .navigationTitle(Text("profiles"))
         .onAppear {
             ProfileModel.sync { error in
                 
             }
+        }
+        .alert(isPresented: $isAlert) {
+            .init(title: .init("alert"), message: .init(error?.localizedDescription ?? ""))
         }
     }
 }
