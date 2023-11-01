@@ -108,9 +108,9 @@ struct UpdateProfileView: View {
                     }
                     Section {
                         TitleTextFieldView(
+                            id:"name",
                             title: .init("name"),
                             placeHolder: .init("input name"),
-                            focusWhenAppear: false,
                             value: $profile.name)
                     }
                     
@@ -155,7 +155,16 @@ struct UpdateProfileView: View {
                 )
             } else {
                 return .init(title: .init("alert"),
-                             message: Text(error!.localizedDescription))
+                             message: .init(error!.localizedDescription),
+                             dismissButton: .default(.init("confirm"), action: {
+                    switch error as? CustomError {
+                    case .emptyName:
+                        NotificationCenter.default.post(name: .textfieldSetFocus, object: "name")
+                    default:
+                        break
+                    }
+                })
+                )
             }
         }
     }

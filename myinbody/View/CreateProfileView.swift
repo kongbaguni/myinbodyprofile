@@ -23,7 +23,6 @@ struct CreateProfileView: View {
     @State var isAlert:Bool = false
     @State var photoData:Data? = nil
     @State var isLoading:Bool = false
-    
     private func createProfile() {
         if name.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty {
             error = CustomError.emptyName
@@ -82,10 +81,11 @@ struct CreateProfileView: View {
                 List {
                     PhotoPickerView(selectedImageData: $photoData, size:.init(width: 150, height: 150), placeHolder: .init(systemName: "person"))                 
                     
-                    TitleTextFieldView(title: .init("name"),
-                                       placeHolder: .init("name input"),
-                                       focusWhenAppear: true,
-                                       value: $name)
+                    TitleTextFieldView(
+                        id:"name",
+                        title: .init("name"),
+                        placeHolder: .init("input name"),
+                        value: $name)
                     
                     
                     Button {
@@ -97,10 +97,22 @@ struct CreateProfileView: View {
                 }
             }
         }
+        .onAppear {
+            NotificationCenter.default.post(name: .textfieldSetFocus, object: "name")
+        }
         .navigationTitle(Text("add people"))
         .alert(isPresented:$isAlert) {
-            return .init(title: Text("alert"),
-                  message: Text(error!.localizedDescription))
+            return .init(title: .init("alert"),
+                         message: .init(error!.localizedDescription),
+                         dismissButton: .default(.init("confirm"), action: {
+                switch error as? CustomError {
+                case .emptyName:
+                    NotificationCenter.default.post(name: .textfieldSetFocus, object: "name")
+                default:
+                    break
+                }
+            })
+            )
 
         }
          

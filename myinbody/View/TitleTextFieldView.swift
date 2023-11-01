@@ -6,13 +6,17 @@
 //
 
 import SwiftUI
+extension Notification.Name {
+    static let textfieldSetFocus = Notification.Name("textfieldSetFocus_observer")
+}
 
 struct TitleTextFieldView: View {
+    let id:String
     let title:Text
     let placeHolder:Text?
-    let focusWhenAppear:Bool
     @Binding var value:String
     @FocusState var focused:Bool
+    
     var body: some View {
         HStack {
             title
@@ -22,8 +26,8 @@ struct TitleTextFieldView: View {
             .textFieldStyle(.roundedBorder)
             .focused($focused)
         }
-        .onAppear {
-            if focusWhenAppear {
+        .onReceive(NotificationCenter.default.publisher(for: .textfieldSetFocus)) { noti in
+            if id == noti.object as? String {
                 focused = true
             }
         }
@@ -31,8 +35,9 @@ struct TitleTextFieldView: View {
 }
 
 #Preview {
-    TitleTextFieldView(title: .init("name"),
-                       placeHolder: Text("name input"),
-                       focusWhenAppear: true,
-                       value: .constant(""))
+    TitleTextFieldView(
+        id:"name",
+        title: .init("name"),
+        placeHolder: Text("input name"),
+        value: .constant(""))
 }

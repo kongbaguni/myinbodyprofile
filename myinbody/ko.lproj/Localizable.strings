@@ -16,7 +16,7 @@
 "singin anomymouse" = "익명 로그인";
 "alert" = "알림";
 "name" = "이름";
-"name input" = "이름 입력";
+"input name" = "이름 입력";
 "create" = "등록";
 "add people" = "프로필 추가";
 "home" = "마이 인바디";
