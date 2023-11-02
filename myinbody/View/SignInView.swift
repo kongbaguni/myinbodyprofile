@@ -216,6 +216,7 @@ struct SignInView: View {
                 makeWebviewLink(fileName: "openSourceLicense", title:.init("OpenSource License"))
                 
                 makeWebviewLink(fileName: "term", title: .init("term"))
+                makeWebviewLink(fileName: "privacyPolicy", title: .init("privacy policy"))
             }
             
             if !isAnomymouse && isSignin {
