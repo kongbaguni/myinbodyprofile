@@ -55,10 +55,12 @@ struct SignInView: View {
         
     }
     
-    func checkSignin() {        
+    func checkSignin() {
+        currentUser = AuthManager.shared.auth.currentUser
         isSignin = AuthManager.shared.isSignined
         isAnomymouse = isSignin ? AuthManager.shared.auth.currentUser?.isAnonymous ?? false : false
     }
+    
     var signinView : some View {
         Section {
             if isSignin {
@@ -85,7 +87,7 @@ struct SignInView: View {
                         }
                     } label: {
                         makeImage(image: .init(systemName: "apple.logo"),
-                                  text: .init("signin with Apple"))
+                                  text: .init("continue with Apple"))
                     }
                     Button {
                         AuthManager.shared.upgradeAnonymousWithGoogleId { isSucess, error in
@@ -96,7 +98,7 @@ struct SignInView: View {
                         }
                     } label: {
                         makeImage(image: .init("btn_google_normal"),
-                                  text: .init("signin with Google"))
+                                  text: .init("continue with Google"))
                     }
                                         
                 }

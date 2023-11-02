@@ -37,3 +37,4 @@
 
 "delete account desc2" = "Please complete the text field below to continue.";
 "wrongAccountSigninWhenLeave msg" = "Account deletion was canceled because you logged in with a different ID.";
+
