@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import FirebaseAuth
 
 struct SignInView: View {
     enum AlertType {
@@ -31,6 +32,7 @@ struct SignInView: View {
     }
     @State var isSignin = false
     @State var isAnomymouse = false
+    @State var currentUser:User? = nil
     
     private func makeImage(image:Image, text:Text)-> some View {
         HStack {
@@ -53,7 +55,7 @@ struct SignInView: View {
         
     }
     
-    func checkSignin() {
+    func checkSignin() {        
         isSignin = AuthManager.shared.isSignined
         isAnomymouse = isSignin ? AuthManager.shared.auth.currentUser?.isAnonymous ?? false : false
     }
@@ -155,7 +157,7 @@ struct SignInView: View {
         List {
             Section {
                 if isSignin {
-                    if let user = AuthManager.shared.auth.currentUser {
+                    if let user = currentUser {
                         makeText(left: .init("id :"), right: user.uid)
                         if let date = user.metadata.lastSignInDate {
                             makeText(left: .init("last signin date :"), right: date.formatted(date: .numeric, time: .shortened))
@@ -189,8 +191,13 @@ struct SignInView: View {
                                 }
                             )
                         }
-                            
-                            
+                        if AuthManager.shared.auth.currentUser?.isAnonymous != true {
+                            NavigationLink {
+                                DeleteAccountConfirmView()
+                            } label: {
+                                ImageTextView(image: .init(systemName:"person.slash.fill"), text: .init("delete account"))
+                            }
+                        }
                             
                     }
                     
@@ -203,6 +210,7 @@ struct SignInView: View {
         }.listStyle(.automatic)
             .navigationTitle(isSignin ? Text("signin info") : Text("signin"))
         .onAppear {
+            currentUser = AuthManager.shared.auth.currentUser
             checkSignin()
         }
         .alert(isPresented: $isAlert) {

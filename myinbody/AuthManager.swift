@@ -174,46 +174,112 @@ class AuthManager : NSObject {
 
     //MARK: - 탈퇴하기
     func leave(progress:@escaping(_ progress:(title:Text,completed:Int,total:Int))->Void, complete:@escaping(_ error:Error?)->Void) {
-//        guard let uid = userId else {
-//            return
-//        }
         
-        
-//        // Prompt the user to re-provide their sign-in credentials
-//        user.reauthenticate(with: credential) { error,arg   in
-//          if let error = error {
-//            // An error happened.
-//          } else {
-//            // User re-authenticated.
-//          }
-//        }
-        
-        print(auth.currentUser?.providerID ?? "")
-        print(auth.currentUser?.providerData.first?.providerID ?? "")
-        func reauth(complete:@escaping(_ isSucess:Bool, _ error:Error?)->Void) {
+        let leaveUserID = AuthManager.shared.userId
+        func reauth(complete:@escaping(_ error:Error?)->Void) {
             switch auth.currentUser?.providerData.first?.providerID {
             case "google.com":
                 print("구글 이다")
                 startSignInWithGoogleId { loginSucess , error in
-                    complete(loginSucess, error)
+                    let err = AuthManager.shared.userId != leaveUserID ? CustomError.wrongAccountSigninWhenLeave : error
+                    complete(err)
                 }
             case "apple.com":
                 appleReAuth = true
                 startSignInWithAppleFlow { loginSucess, error  in
                     self.appleReAuth = false
-                    complete(loginSucess, error)
+                    let err = AuthManager.shared.userId != leaveUserID ? CustomError.wrongAccountSigninWhenLeave : error
+                    complete(err)
                 }
                 print("애플 이다")
             default:
                 print("모르겠다")
             }
         }
-        reauth { isSucess , errorA in
-            if isSucess {
-                
-                //TODO 탈퇴후 데이터 정리
+        
+        func deleteAccount(complete:@escaping(_ error:Error?)-> Void) {
+            auth.currentUser?.delete(completion: { error in
+                complete(error)
+            })
+        }
+        
+        func deleteInbodyData(complete:@escaping(_ error:Error?)-> Void) {
+            let inbodyDatas = Realm.shared.objects(InbodyModel.self)
+            let dataCount = inbodyDatas.count
+            var count = 0
+            if dataCount == 0 {
+                complete(nil)
+                return
+            }
+            for inbody in inbodyDatas {
+                inbody.delete { error in
+                    if error == nil {
+                        count += 1
+                        DispatchQueue.main.async {
+                            progress((title:.init("delete inbody data..."),completed:count,total:dataCount))
+                        }
+                        if count == dataCount {
+                            complete(nil)
+                        }
+                    }
+                    else {
+                        complete(error)
+                    }
+                }
+            }
+        }
+        
+        func deleteProfileData(complete:@escaping(_ error:Error?)-> Void) {
+            let profileDatas = Realm.shared.objects(ProfileModel.self)
+            let profileCount = profileDatas.count
+            if profileCount == 0 {
+                complete(nil)
+                return
             }
 
+            var count = 0
+            for profile in profileDatas {
+                profile.delete { error in
+                    if error == nil {
+                        count += 1
+                        DispatchQueue.main.async {
+                            progress((title:.init("delete inbody data..."),completed:count,total:profileCount))
+                        }
+                        if count == profileCount {
+                            complete(nil)
+                        }
+                            
+                    }
+                    else {
+                        complete(error)
+                    }
+                }
+            }
+            
+        }
+        reauth { error in
+            if error == nil {
+                deleteInbodyData { errorB in
+                    deleteProfileData { errorC in
+                        if errorB == nil && errorC == nil {
+                            deleteAccount { error in
+                                if error == nil {
+                                    let realm = Realm.shared
+                                    realm.beginWrite()
+                                    realm.deleteAll()
+                                    try! realm.commitWrite()
+                                }
+                                complete(error)
+                            }
+                            return
+                        }
+                        complete(errorB ?? errorC)
+                    }
+                }
+            }
+            else {
+                complete(error)
+            }
         }
     }
 

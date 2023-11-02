@@ -33,3 +33,7 @@
 
 "deleted profile error" = "This profile has been deleted.";
 "lastLogDt :" = "Last measurement datetime :";
+"delete account desc" = "Delete the currently connected account. All data saved with the current account will be deleted and cannot be recovered.";
+
+"delete account desc2" = "Please complete the text field below to continue.";
+"wrongAccountSigninWhenLeave msg" = "Account deletion was canceled because you logged in with a different ID.";
