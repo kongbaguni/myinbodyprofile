@@ -1,0 +1,51 @@
+body {
+ background : #fff;
+ color:#000;
+}
+
+a.toTop {
+  display:inline-block;
+  width:15px;
+  height:15px;
+  background-image:url("toTop_light.png");
+  text-indent:-10000em;
+  overflow:hidden;
+  margin-left:10px;
+}
+
+article header a.toTop {
+    background-image:url("toTop_black.png");
+}
+
+a {
+    color:blue;
+}
+
+q:before, q:after  {
+    color:#396;
+}
+q {
+    color:#999;
+}
+em {
+    color:#48f;
+}
+
+/* 다크 모드에 적용할 스타일 정의 */
+@media (prefers-color-scheme: dark) {
+    body {
+     background : #000;
+     color:#fff;
+    }
+    a {
+        color:yellow;
+    }
+    a.toTop {
+      background-image:url("toTop_dark.png");
+    }
+    article header a.toTop {
+      background-image:url("toTop_white.png");
+
+    }
+}
+

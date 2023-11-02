@@ -74,8 +74,8 @@ struct SignInView: View {
                     checkSignin()
                     
                 } label: {
-                    makeImage(image: .init(systemName: "rectangle.portrait.and.arrow.forward"),
-                              text: Text("signout"))
+                    ImageTextView(image: .init(systemName: "rectangle.portrait.and.arrow.forward"),
+                                  text: .init("signout"))
                 }
                 if isAnomymouse {
                     Button {
@@ -155,6 +155,18 @@ struct SignInView: View {
         )
     }
     
+    func makeWebviewLink(fileName:String, title:Text) -> some View {
+        Group {
+            if let url = Bundle.main.url(forResource: "HTML/\(fileName)", withExtension: "html") {
+                NavigationLink {
+                    WebView(url: url, title: title)
+                } label: {
+                    title
+                }
+            }
+        }
+    }
+    
     var body: some View {
         List {
             Section {
@@ -193,19 +205,29 @@ struct SignInView: View {
                                 }
                             )
                         }
-                        if AuthManager.shared.auth.currentUser?.isAnonymous != true {
-                            NavigationLink {
-                                DeleteAccountConfirmView()
-                            } label: {
-                                ImageTextView(image: .init(systemName:"person.slash.fill"), text: .init("delete account"))
-                            }
-                        }
                             
                     }
                     
                 }
                 signinView
             }
+            
+            Section {
+                makeWebviewLink(fileName: "openSourceLicense", title:.init("OpenSource License"))
+                
+                makeWebviewLink(fileName: "term", title: .init("term"))
+            }
+            
+            if !isAnomymouse && isSignin {
+                Section {
+                    NavigationLink {
+                        DeleteAccountConfirmView()
+                    } label: {
+                        ImageTextView(image: .init(systemName:"person.slash.fill"), text: .init("delete account"))
+                    }
+                }
+            }
+
 //            if isSignin {
 //                ProfileListView()
 //            }
