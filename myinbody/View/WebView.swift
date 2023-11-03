@@ -36,6 +36,9 @@ fileprivate struct _WebView: UIViewRepresentable {
     
     func updateUIView(_ uiView: WKWebView, context: Context) {
         uiView.allowsBackForwardNavigationGestures = allowBackForwardNavigationGesture
+        uiView.isOpaque = false
+        uiView.backgroundColor = .clear
+        uiView.scrollView.backgroundColor = .clear
     }
 }
 
