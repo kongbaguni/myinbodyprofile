@@ -79,7 +79,7 @@ struct CreateProfileView: View {
                 }
             } else {
                 List {
-                    PhotoPickerView(selectedImageData: $photoData, size:.init(width: 150, height: 150), placeHolder: .init(systemName: "person"))                 
+                    PhotoPickerView(selectedImageData: $photoData, size:.init(width: 150, height: 150), placeHolder: .init(systemName: "person"), profileImageView: nil)                 
                     
                     TitleTextFieldView(
                         id:"name",

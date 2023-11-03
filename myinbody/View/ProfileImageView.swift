@@ -12,6 +12,8 @@ import CachedAsyncImage
 struct ProfileImageView: View {
     @ObservedRealmObject var profile:ProfileModel
     let size:CGSize
+    let drawRound:Bool
+
     @State var profileImageUrl:String? = nil
     
     var placeholder : some View {
@@ -21,8 +23,8 @@ struct ProfileImageView: View {
             .padding(10)
             .backgroundStyle(.gray)
             .overlay {
-                RoundedRectangle(cornerRadius: 10)
-                    .stroke(.primary, lineWidth: 2)
+                RoundedRectangle(cornerRadius: drawRound ? 10 : 0)
+                    .stroke(.primary, lineWidth: drawRound ? 2 : 0)
             }
             .frame(width:size.width,height: size.height)
     }
@@ -32,10 +34,10 @@ struct ProfileImageView: View {
             if let url = profileImageUrl {
                 CachedAsyncImage(url: .init(string:url)) { image in
                     image.resizable()
-                        .cornerRadius(10)
+                        .cornerRadius(drawRound ? 10 : 0)
                         .overlay {
-                            RoundedRectangle(cornerRadius: 10)
-                                .stroke(Color.primary, lineWidth: 2)
+                            RoundedRectangle(cornerRadius: drawRound ? 10 : 0)
+                                .stroke(Color.primary, lineWidth: drawRound ? 2 : 0)
                         }
                         .scaledToFill()
                         .frame(width:size.width,height: size.height)
@@ -67,5 +69,5 @@ struct ProfileImageView: View {
 }
 
 #Preview {
-    ProfileImageView(profile: .init(value: ["id":"test","name":"홍길동"]), size: .init(width: 100, height: 100))
+    ProfileImageView(profile: .init(value: ["id":"test","name":"홍길동"]), size: .init(width: 100, height: 100),drawRound: true)
 }

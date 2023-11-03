@@ -43,7 +43,7 @@ struct ProfileListView: View {
                     ProfileDetailView(profile: profile)
                 } label: {
                     HStack {
-                        ProfileImageView(profile: profile, size: .init(width: 150, height: 150))
+                        ProfileImageView(profile: profile, size: .init(width: 150, height: 150), drawRound: true)
                         VStack(alignment: .leading) {
                             Text(profile.name)
                                 .font(.system(size: 18))

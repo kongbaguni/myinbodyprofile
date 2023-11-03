@@ -15,6 +15,7 @@ struct PhotoPickerView: View {
     @Binding var selectedImageData:Data?
     let size:CGSize
     let placeHolder:SwiftUI.Image?
+    let profileImageView:ProfileImageView?
 
     var selectedImage:SwiftUI.Image? {
         if let data = selectedImageData {
@@ -34,6 +35,9 @@ struct PhotoPickerView: View {
                             .scaledToFit()
                             .frame(width:size.width, height:size.height)
                     }
+                    if let view = profileImageView {
+                        view
+                    }
                 }
                 if let image = selectedImage {
                     image
@@ -42,7 +46,7 @@ struct PhotoPickerView: View {
                         .frame(width:size.width,height:size.height)
                         .cornerRadius(10)
                         .clipped()
-                } 
+                }
                 else {
                     Text("select photo")
                         .padding(10)
@@ -80,5 +84,5 @@ struct PhotoPickerView: View {
 }
 
 #Preview {
-    PhotoPickerView(selectedImageData: .constant(nil), size:.init(width: 150, height: 150), placeHolder: .init(systemName: "person"))
+    PhotoPickerView(selectedImageData: .constant(nil), size:.init(width: 150, height: 150), placeHolder: .init(systemName: "person"), profileImageView: nil)
 }

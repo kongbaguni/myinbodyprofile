@@ -85,11 +85,7 @@ struct UpdateProfileView: View {
             } else {
                 List {
                     Section {
-                        if photoData == nil {
-                            ProfileImageView(profile: profile, size: .init(width: 150, height: 150))
-                        }
-                        
-                        PhotoPickerView(selectedImageData: $photoData, size: .init(width: 150, height: 150), placeHolder: nil)
+                        PhotoPickerView(selectedImageData: $photoData, size: .init(width: 150, height: 150), placeHolder: nil, profileImageView: ProfileImageView(profile: profile, size: .init(width: 150, height: 150), drawRound: false))
                         
                         if photoData != nil {
                             Button {

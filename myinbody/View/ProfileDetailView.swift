@@ -34,7 +34,7 @@ struct ProfileDetailView: View {
         List {
             Section {
                 HStack(alignment:.top) {
-                    ProfileImageView(profile: profile, size: .init(width: 150, height: 150))
+                    ProfileImageView(profile: profile, size: .init(width: 150, height: 150), drawRound: true)
                         .frame(height: 150)
                     VStack(alignment:.leading) {
                         HStack {
