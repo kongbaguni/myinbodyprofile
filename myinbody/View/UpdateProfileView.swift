@@ -87,16 +87,7 @@ struct UpdateProfileView: View {
                     Section {
                         PhotoPickerView(selectedImageData: $photoData, size: .init(width: 150, height: 150), placeHolder: nil, profileImageView: ProfileImageView(profile: profile, size: .init(width: 150, height: 150), drawRound: false))
                         
-                        if photoData != nil {
-                            Button {
-                                if photoData != nil {
-                                    photoData = nil
-                                }
-                            } label: {
-                                ImageTextView(image: .init(systemName: "trash.circle"), text: Text("cancel photo upload"))
-                            }
-                        }
-                        else if profile.profileImageURL != nil {
+                        if profile.profileImageURL != nil  && photoData == nil {
                             Toggle(isOn: $needDeletePhoto) {
                                 Text("delete photo")
                             }
