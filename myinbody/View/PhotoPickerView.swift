@@ -27,7 +27,7 @@ struct PhotoPickerView: View {
     var body: some View {
         PhotosPicker(selection: $selectedItem) {
             VStack {
-                if selectedItem == nil {
+                if selectedImage == nil {
                     if let placeHolder = placeHolder {
                         placeHolder
                             .resizable()
@@ -48,10 +48,18 @@ struct PhotoPickerView: View {
                         .clipped()
                 }
                 else {
-                    Text("select photo")
-                        .padding(10)
+                    if selectedItem == nil {
+                        Text("select photo")
+                            .padding(10)
+                            .frame(width:size.width)
+                    }
+                    else {
+                        Text("This format is not supported.")
+                            .padding(10)
+                            .frame(width:size.width)
+                    }
                 }
-                if selectedItem != nil {
+                if selectedItem != nil && selectedImage != nil {
                     Button {
                         selectedItem = nil
                         selectedImageData = nil
@@ -72,6 +80,7 @@ struct PhotoPickerView: View {
 
         }
         .onChange(of: selectedItem) { oldValue, newValue in
+            selectedImageData = nil
             Task {
                 if let data = try? await newValue?.loadTransferable(type: Data.self),
                    let image:UIImage = .init(data: data) {
