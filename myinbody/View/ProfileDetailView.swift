@@ -120,19 +120,11 @@ struct ProfileDetailView: View {
             }
         }
         .navigationTitle(profile.isInvalidated ? Text("deleted profile") : Text(profile.name))
+        .refreshable {
+            reload()
+        }
         .onAppear {
-#if !targetEnvironment(simulator)
-            
-            profile.isDeleted { error1 in
-                if error1 == nil {
-                    InbodyModel.sync(profile: profile) { error2 in
-                        self.error = error2
-                    }
-                } else {
-                    self.error = error1
-                }
-            }
-#endif
+            reload()
         }
         .alert(isPresented: $isAlert) {
             .init(
@@ -157,6 +149,17 @@ struct ProfileDetailView: View {
         }
     }
     
+    func reload() {
+        profile.isDeleted { error1 in
+            if error1 == nil {
+                InbodyModel.sync(profile: profile) { error2 in
+                    self.error = error2
+                }
+            } else {
+                self.error = error1
+            }
+        }
+    }
     var body: some View {
         if profile.id.isEmpty {
             deletedView
