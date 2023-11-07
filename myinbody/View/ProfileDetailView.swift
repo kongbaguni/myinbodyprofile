@@ -102,7 +102,14 @@ struct ProfileDetailView: View {
                         }
                         
                     }
+                    
+                    NavigationLink {
+                        InbodyListView(profile: profile)
+                    } label: {
+                        ImageTextView(image: .init(systemName: "list.bullet"), text: .init("inbody list"))
+                    }
                 }
+                
             }
             Section {
                 NavigationLink {

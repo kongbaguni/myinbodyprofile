@@ -226,7 +226,13 @@ struct SignInView: View {
                     }
                 }
             }
-            
+            Section {
+                NavigationLink {
+                    CacheClearView()
+                } label: {
+                    ImageTextView(image: .init(systemName: "eraser.line.dashed"), text: .init("clear cache"))
+                }
+            }
             if !isAnomymouse && isSignin {
                 Section {
                     NavigationLink {
