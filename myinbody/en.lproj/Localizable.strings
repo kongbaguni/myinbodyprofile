@@ -38,3 +38,7 @@
 "delete account desc2" = "Please complete the text field below to continue.";
 "wrongAccountSigninWhenLeave msg" = "Account deletion was canceled because you logged in with a different ID.";
 
+"clear cache" = "Clear cache";
+"clear cache description" = "Clear the cache.";
+"clear chech finish msg" = "Cache clearing is complete.";
+
