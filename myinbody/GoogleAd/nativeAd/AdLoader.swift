@@ -7,11 +7,6 @@
 
 import Foundation
 import GoogleMobileAds
-#if DEBUG
-fileprivate let adId = "ca-app-pub-3940256099942544/3986624511"
-#else
-fileprivate let adId = "ca-app-pub-7714069006629518/1614251100"
-#endif
 
 class AdLoader : NSObject {
     static let shared = AdLoader()
@@ -43,7 +38,7 @@ class AdLoader : NSObject {
     override init() {
         let option = GADMultipleAdsAdLoaderOptions()
         option.numberOfAds = 4
-        adLoader = GADAdLoader(adUnitID: adId,
+        adLoader = GADAdLoader(adUnitID: AdIDs.nativeAd,
                                     rootViewController: UIApplication.shared.lastViewController,
                                     adTypes: [.native], options: [option])
         super.init()

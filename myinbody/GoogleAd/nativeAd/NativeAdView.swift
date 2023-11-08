@@ -9,11 +9,6 @@ import SwiftUI
 import ActivityIndicatorView
 import GoogleMobileAds
 
-#if DEBUG
-fileprivate let adId = "ca-app-pub-3940256099942544/3986624511"
-#else
-fileprivate let adId = "ca-app-pub-7714069006629518/9996550187"
-#endif
 
 extension Notification.Name {
     static let googleAdNativeAdClick = Notification.Name("googleAdNativeAdClick_observer")

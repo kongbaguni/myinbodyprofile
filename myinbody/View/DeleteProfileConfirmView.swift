@@ -12,6 +12,9 @@ struct DeleteProfileConfirmView: View {
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     @ObservedRealmObject var profile:ProfileModel
 
+    let ad = GoogleAd()
+    @State var point:Int = 0
+    
     @State var test:String = ""
     @State var error:Error? = nil {
         didSet {
@@ -44,31 +47,69 @@ struct DeleteProfileConfirmView: View {
                 .textFieldStyle(.roundedBorder)
                 .foregroundStyle(isTestEnable ? .blue : .red)
                 
+                HStack {
+                    Text("points needed :").foregroundStyle(.secondary)
+                    Text("\(PointModel.PointUseCase.deleteProfile.rawValue)").bold()
+                }
+                HStack {
+                    Text("Current Point :").foregroundStyle(.secondary)
+                    Text("\(point)").bold()
+                }
                 Button {
-                    if profile.name != test {
-                        error = CustomError.incorrectName
-                        return
-                    }
-                    profile.delete(removeWithLocal: true) { error in
-                        presentationMode.wrappedValue.dismiss()
-                    }
+                    confirm()
                 } label: {
                     ImageTextView(image: .init(systemName: "return"),
                                   text: .init("confirm"))
                 }
                 .disabled(!isTestEnable)
             }
-            
-            
+                        
         }
-        .navigationTitle("delete profile title")
-        .alert(isPresented: $isAlert) {
-            .init(
-                title: .init("alert"),
-                message: .init(error?.localizedDescription ?? "")
-            )
+        .onAppear {
+            PointModel.sync { error in
+                point = PointModel.sum
+            }
         }
         
+        .navigationTitle("delete profile title")
+        .alert(isPresented: $isAlert) {
+            switch error as? CustomError {
+            case .notEnoughPoint:
+                return .init(
+                    title: .init("alert"),
+                    message: .init(error?.localizedDescription ?? ""),
+                    primaryButton: .cancel(),
+                    secondaryButton: .default(.init("ad watch"), action: {
+                        ad.showAd { isSucess in
+                            if isSucess {
+                                confirm()
+                            }
+                        }
+                    }))
+                
+            default:
+                return .init(
+                    title: .init("alert"),
+                    message: .init(error?.localizedDescription ?? "")
+                )
+            }
+        }
+        
+    }
+    
+    func confirm() {
+        if profile.name != test {
+            error = CustomError.incorrectName
+            return
+        }
+        profile.delete(removeWithLocal: true) { error in
+            if error == nil {
+                presentationMode.wrappedValue.dismiss()
+            }
+            else {
+                self.error = error
+            }
+        }
     }
 }
 

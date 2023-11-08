@@ -29,5 +29,12 @@ struct FirebaseFirestoreHelper {
         }
         return Firestore.firestore().collection(userid).document("inbody").collection(profileId)
     }
+    
+    static var pointCollection:CollectionReference? {
+        guard let userid = AuthManager.shared.userId else {
+            return nil
+        }
+        return Firestore.firestore().collection(userid).document("point").collection("data")
+    }
 
 }

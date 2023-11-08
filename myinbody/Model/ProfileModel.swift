@@ -17,6 +17,7 @@ class ProfileModel  : Object, ObjectKeyIdentifiable {
 }
 
 extension ProfileModel  {
+    
     var lastInbody:InbodyModel? {
         inbodys.sorted(byKeyPath: "measurementDateTimeIntervalSince1970", ascending: true).last
     }
@@ -92,30 +93,40 @@ extension ProfileModel  {
             }
         }
     }
+    
     static func create(value:[String:Any], complete:@escaping(_ profileId:String, _ error:Error?)->Void) {
-        guard let collection = collection else {
-            return
-        }
-        
-        func process(error:Error?, documentId:String) {
-            if error == nil {
-                var dbData = value
-                dbData["id"] = documentId
-                
-                let realm = Realm.shared
-                try! realm.write {
-                    realm.create(ProfileModel .self, value: dbData, update: .all)
+        PointModel.use(useCase: .createProfile) { error in
+            if let error = error {
+                complete("",error)
+                return
+            }
+            
+            guard let collection = collection else {
+                return
+            }
+            
+            func process(error:Error?, documentId:String) {
+                if error == nil {
+                    var dbData = value
+                    dbData["id"] = documentId
+                    
+                    let realm = Realm.shared
+                    try! realm.write {
+                        realm.create(ProfileModel .self, value: dbData, update: .all)
+                    }
+                }
+                complete(documentId, error)
+            }
+            
+            FirebaseFirestoreHelper.documentReferance = collection.addDocument(data: value) { error in
+                if let documentId = FirebaseFirestoreHelper.documentReferance?.documentID {
+                    process(error: error, documentId: documentId)
+                    FirebaseFirestoreHelper.documentReferance = nil
                 }
             }
-            complete(documentId, error)
+
         }
         
-        FirebaseFirestoreHelper.documentReferance = collection.addDocument(data: value) { error in
-            if let documentId = FirebaseFirestoreHelper.documentReferance?.documentID {
-                process(error: error, documentId: documentId)
-                FirebaseFirestoreHelper.documentReferance = nil 
-            }
-        }
     }
     
     func downloadFirestore(complete:@escaping(_ error:Error?)->Void) {
@@ -212,19 +223,26 @@ extension ProfileModel  {
             }
         }
         
-        
-        deleteInbodys { errorA in
-            if errorA != nil {
-                complete(errorA)
+        PointModel.use(useCase: .deleteProfile) { error in
+            if let error = error {
+                complete(error)
                 return
             }
-            collection.document(id).delete { errorB in
-                if errorB == nil {
-                    deleteself()
+            
+            deleteInbodys { errorA in
+                if errorA != nil {
+                    complete(errorA)
+                    return
                 }
-                complete(errorB)
+                collection.document(id).delete { errorB in
+                    if errorB == nil {
+                        deleteself()
+                    }
+                    complete(errorB)
+                }
             }
         }
+
     }
 }
 

@@ -11,11 +11,6 @@ import SwiftUI
 import GoogleMobileAds
 import AppTrackingTransparency
 
-//fileprivate let gaid = "ca-app-pub-3940256099942544/6978759866" // test ga id
-fileprivate let gaid = "ca-app-pub-7714069006629518/5985835565" // real ga id
-
-//fileprivate let bannerGaId = "ca-app-pub-3940256099942544/2934735716" // test ga id
-fileprivate let bannerGaId = "ca-app-pub-7714069006629518/3753098473" // real ga id
 
 class GoogleAd : NSObject {
     
@@ -26,7 +21,7 @@ class GoogleAd : NSObject {
         
         ATTrackingManager.requestTrackingAuthorization { status in
             print("google ad tracking status : \(status)")
-            GADRewardedInterstitialAd.load(withAdUnitID: gaid, request: request) { [weak self] ad, error in
+            GADRewardedInterstitialAd.load(withAdUnitID: AdIDs.rewardAd, request: request) { [weak self] ad, error in
                 if let err = error {
                     print("google ad load error : \(err.localizedDescription)")
                 }
@@ -86,7 +81,9 @@ extension GoogleAd : GADFullScreenContentDelegate {
     func adDidDismissFullScreenContent(_ ad: GADFullScreenPresentingAd) {
         print("google ad \(#function)")
         DispatchQueue.main.async {
-            self.callback(true)
+            PointModel.add(value: 10, desc: "show ad") { error in
+                self.callback(true)
+            }
         }
     }
 }
@@ -94,7 +91,7 @@ extension GoogleAd : GADFullScreenContentDelegate {
 struct GoogleAdBannerView: UIViewRepresentable {
     let bannerView:GADBannerView
     func makeUIView(context: Context) -> GADBannerView {
-        bannerView.adUnitID = bannerGaId
+        bannerView.adUnitID = AdIDs.bannerAd
         bannerView.rootViewController = UIApplication.shared.keyWindow?.rootViewController        
         return bannerView
     }

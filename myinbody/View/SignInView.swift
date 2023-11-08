@@ -13,7 +13,9 @@ struct SignInView: View {
         case alertError
         case signoutAnomymouse
     }
-
+    let ad = GoogleAd()
+    
+    @State var point:Int = 0
     @State var isAlert:Bool = false
     @State var errorMsg:Text? = nil {
         didSet {
@@ -59,11 +61,34 @@ struct SignInView: View {
         currentUser = AuthManager.shared.auth.currentUser
         isSignin = AuthManager.shared.isSignined
         isAnomymouse = isSignin ? AuthManager.shared.auth.currentUser?.isAnonymous ?? false : false
+        if isSignin {
+            PointModel.initPoint { error in
+                if let err = error {
+                    self.errorMsg = .init(err.localizedDescription)
+                }
+                point = PointModel.sum
+            }
+        }
     }
     
     var signinView : some View {
         Section {
             if isSignin {
+                HStack {
+                    Text("Point :").foregroundStyle(.secondary)
+                    Text("\(point)").bold()
+                }
+                Button {
+                    ad.showAd { isSucess in
+                        if isSucess {
+                            self.point = PointModel.sum
+                        }
+                    }
+                } label : {
+                    ImageTextView(
+                        image: .init(systemName: "sparkles.tv"),
+                        text: .init("ad watch"))
+                }
                 Button {
                     if AuthManager.shared.auth.currentUser?.isAnonymous == true {
                         alertType = .signoutAnomymouse

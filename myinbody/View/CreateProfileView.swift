@@ -10,7 +10,9 @@ import RealmSwift
 import ActivityIndicatorView
 
 struct CreateProfileView: View {
-    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>    
+    let ad = GoogleAd()
+    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
+    @State var point:Int = 0
     @State var name:String = ""
     @State var error:Error? = nil {
         didSet {
@@ -70,7 +72,7 @@ struct CreateProfileView: View {
     }
     
     var body: some View {
-        Group {
+        ZStack {
             if isLoading {
                 VStack(alignment:.center) {
                     ActivityIndicatorView(isVisible: $isLoading, type: .default(count: 10))
@@ -88,6 +90,15 @@ struct CreateProfileView: View {
                         value: $name)
                     
                     
+                    HStack {
+                        Text("points needed :").foregroundStyle(.secondary)
+                        Text("\(PointModel.PointUseCase.createProfile.rawValue)").bold()
+                    }
+                    HStack {
+                        Text("Current Point :").foregroundStyle(.secondary)
+                        Text("\(point)").bold()
+                    }
+                    
                     Button {
                         createProfile()
                         
@@ -98,22 +109,42 @@ struct CreateProfileView: View {
             }
         }
         .onAppear {
+            PointModel.sync { error in
+                point = PointModel.sum
+            }            
             NotificationCenter.default.post(name: .textfieldSetFocus, object: "name")
         }
         .navigationTitle(Text("add people"))
         .alert(isPresented:$isAlert) {
-            return .init(title: .init("alert"),
-                         message: .init(error!.localizedDescription),
-                         dismissButton: .default(.init("confirm"), action: {
-                switch error as? CustomError {
-                case .emptyName:
-                    NotificationCenter.default.post(name: .textfieldSetFocus, object: "name")
-                default:
-                    break
-                }
-            })
-            )
-
+            switch error as? CustomError {
+            case .notEnoughPoint:
+                return .init(
+                    title: .init("alert"),
+                    message: .init(error?.localizedDescription ?? ""),
+                    primaryButton: .cancel({
+                       isLoading = false
+                    }),
+                    secondaryButton: .default(.init("ad watch"), action: {
+                        ad.showAd { isSucess in
+                            if isSucess {
+                                createProfile()
+                            }
+                            else {
+                                isLoading = false
+                            }
+                        }
+                    }))
+                
+            case .emptyName:
+                return .init(title: .init("alert"),
+                             message: .init(error!.localizedDescription),
+                             dismissButton: .default(.init("confirm"), action: {
+                        NotificationCenter.default.post(name: .textfieldSetFocus, object: "name")
+                }))
+            default:
+                return .init(title: .init("alert"),
+                             message: .init(error!.localizedDescription))
+            }
         }
          
     }
