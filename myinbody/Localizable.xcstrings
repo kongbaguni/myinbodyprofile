@@ -2,22 +2,74 @@
   "sourceLanguage" : "en",
   "strings" : {
     "" : {
-
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : ""
+          }
+        }
+      }
     },
     "!!" : {
-
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "!!"
+          }
+        }
+      }
     },
     "%@" : {
-
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@"
+          }
+        }
+      }
     },
     "%lf" : {
-
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%lf"
+          }
+        }
+      }
     },
     "%lf kg" : {
-
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%lf kg"
+          }
+        }
+      }
+    },
+    "ad" : {
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "광고"
+          }
+        }
+      }
     },
     "Ad" : {
-
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "광고"
+          }
+        }
+      }
     },
     "add inbody data" : {
       "extractionState" : "manual",
@@ -120,7 +172,14 @@
       }
     },
     "BMI :" : {
-
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "BMI :"
+          }
+        }
+      }
     },
     "cancel" : {
       "extractionState" : "manual",
@@ -196,7 +255,14 @@
       }
     },
     "cm" : {
-
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "cm"
+          }
+        }
+      }
     },
     "confirm" : {
       "extractionState" : "manual",
@@ -260,7 +326,14 @@
       }
     },
     "date" : {
-
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "날자"
+          }
+        }
+      }
     },
     "delete" : {
       "extractionState" : "manual",
@@ -319,7 +392,14 @@
       }
     },
     "delete inbody data..." : {
-
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "인바디 데이터 삭제하는 중..."
+          }
+        }
+      }
     },
     "delete photo" : {
       "extractionState" : "manual",
@@ -395,7 +475,14 @@
       }
     },
     "deleted profile" : {
-
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "삭제된 프로필"
+          }
+        }
+      }
     },
     "deleted profile error" : {
       "extractionState" : "manual",
@@ -714,7 +801,14 @@
       }
     },
     "inbody list" : {
-
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "인바이 목록"
+          }
+        }
+      }
     },
     "inbody point" : {
       "extractionState" : "manual",
@@ -784,16 +878,44 @@
       }
     },
     "kcal" : {
-
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "kcal"
+          }
+        }
+      }
     },
     "kg" : {
-
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "kg"
+          }
+        }
+      }
     },
     "kg/m2" : {
-
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "kg/m2"
+          }
+        }
+      }
     },
     "ℓ" : {
-
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ℓ"
+          }
+        }
+      }
     },
     "last signin date :" : {
       "extractionState" : "manual",
@@ -868,7 +990,14 @@
       }
     },
     "phone :" : {
-
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "전화번호 :"
+          }
+        }
+      }
     },
     "previous" : {
       "extractionState" : "manual",
@@ -1025,13 +1154,34 @@
       }
     },
     "update profile..." : {
-
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "프로필 갱신중..."
+          }
+        }
+      }
     },
     "uploading" : {
-
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "업로드하는중"
+          }
+        }
+      }
     },
     "value" : {
-
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "값"
+          }
+        }
+      }
     },
     "weight :" : {
       "extractionState" : "manual",

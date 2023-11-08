@@ -40,7 +40,7 @@ struct InbodyListView: View {
                     }
                 }
             }
-            Section {
+            Section("ad"){
                 NativeAdView()
             }
         }

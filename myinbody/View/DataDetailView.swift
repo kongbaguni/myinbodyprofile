@@ -92,7 +92,7 @@ struct DataDetailView: View {
                     
                 }
             }
-            Section {
+            Section("ad") {
                 NativeAdView()
             }
         }

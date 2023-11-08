@@ -118,7 +118,7 @@ struct ProfileDetailView: View {
                     ImageTextView(image: .init(systemName: "plus.square"), text: .init("add inbody data"))
                 }
             }
-            Section {
+            Section("ad") {
                 NativeAdView()
             }
         }
