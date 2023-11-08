@@ -83,10 +83,16 @@
     },
     "ad watch" : {
       "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Earn points by watching ads"
+          }
+        },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "광고 보기"
+            "value" : "광고 보고 포인트 얻기"
           }
         }
       }
@@ -1052,6 +1058,17 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "포인트 :"
+          }
+        }
+      }
+    },
+    "points history" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "포인트 이력"
           }
         }
       }

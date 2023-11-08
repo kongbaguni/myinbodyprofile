@@ -9,7 +9,7 @@ import Foundation
 import RealmSwift
 import FirebaseFirestore
 
-class PointModel : Object {
+class PointModel : Object, ObjectKeyIdentifiable {
     @Persisted(primaryKey: true) var id:String = ""
     @Persisted var regTimeIntervalSince1970:Double = 0
     @Persisted var value:Int = 0

@@ -74,10 +74,15 @@ struct SignInView: View {
     var signinView : some View {
         Section {
             if isSignin {
-                HStack {
-                    Text("Point :").foregroundStyle(.secondary)
-                    Text("\(point)").bold()
+                NavigationLink {
+                    PointHistoryView()
+                } label: {
+                    HStack {
+                        Text("Point :").foregroundStyle(.secondary)
+                        Text("\(point)").bold()
+                    }
                 }
+
                 Button {
                     ad.showAd { isSucess in
                         if isSucess {

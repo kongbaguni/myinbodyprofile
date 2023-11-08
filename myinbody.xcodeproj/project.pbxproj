@@ -51,6 +51,7 @@
 		1B1BF50B2AEB6F2E003E2F74 /* MyAppCheckProviderFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B1BF50A2AEB6F2E003E2F74 /* MyAppCheckProviderFactory.swift */; };
 		1B1BF50D2AEB79DD003E2F74 /* DeleteProfileConfirmView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B1BF50C2AEB79DD003E2F74 /* DeleteProfileConfirmView.swift */; };
 		1B56C7A02AF23732003913E5 /* DeleteAccountConfirmView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B56C79F2AF23732003913E5 /* DeleteAccountConfirmView.swift */; };
+		1B598B1B2AFB80670098CF2D /* PointHistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B598B1A2AFB80670098CF2D /* PointHistoryView.swift */; };
 		1B65845E2ADF7021003C3A6F /* NumberInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B65845D2ADF7021003C3A6F /* NumberInputView.swift */; };
 		1B6584602ADF739E003C3A6F /* String+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B65845F2ADF739E003C3A6F /* String+Extensions.swift */; };
 		1B6584622ADFB0C0003C3A6F /* InbodyChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B6584612ADFB0C0003C3A6F /* InbodyChartView.swift */; };
@@ -119,6 +120,7 @@
 		1B1BF50A2AEB6F2E003E2F74 /* MyAppCheckProviderFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyAppCheckProviderFactory.swift; sourceTree = "<group>"; };
 		1B1BF50C2AEB79DD003E2F74 /* DeleteProfileConfirmView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteProfileConfirmView.swift; sourceTree = "<group>"; };
 		1B56C79F2AF23732003913E5 /* DeleteAccountConfirmView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteAccountConfirmView.swift; sourceTree = "<group>"; };
+		1B598B1A2AFB80670098CF2D /* PointHistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PointHistoryView.swift; sourceTree = "<group>"; };
 		1B65845D2ADF7021003C3A6F /* NumberInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberInputView.swift; sourceTree = "<group>"; };
 		1B65845F2ADF739E003C3A6F /* String+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extensions.swift"; sourceTree = "<group>"; };
 		1B6584612ADFB0C0003C3A6F /* InbodyChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InbodyChartView.swift; sourceTree = "<group>"; };
@@ -322,6 +324,7 @@
 				1BC31E5C2AF36A690076320B /* WebView.swift */,
 				1BD993452AF9F4EA0061E466 /* InbodyListView.swift */,
 				1BD993472AFA1F6D0061E466 /* CacheClearView.swift */,
+				1B598B1A2AFB80670098CF2D /* PointHistoryView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -529,6 +532,7 @@
 				1BD9936B2AFB5D5B0061E466 /* AdIDs.swift in Sources */,
 				1BD993612AFB194D0061E466 /* MultiColorAnimeTextView.swift in Sources */,
 				1BACDD022ADD14AC000E3AFE /* CustomError.swift in Sources */,
+				1B598B1B2AFB80670098CF2D /* PointHistoryView.swift in Sources */,
 				1BD9935A2AFB17C10061E466 /* GoogleAdPrompt.swift in Sources */,
 				1BFACFF92AD7E09900AA106C /* ProfileListView.swift in Sources */,
 				1BFACFF22AD7D44300AA106C /* Realm.Object+Extensions.swift in Sources */,
