@@ -12,6 +12,7 @@ import AppTrackingTransparency
 fileprivate func requestTrackingAuthorization(complete:@escaping()->Void) {
     ATTrackingManager.requestTrackingAuthorization { status in
         print("google ad tracking status : \(status)")
+        complete()
     }
 }
 

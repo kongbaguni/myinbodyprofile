@@ -25,15 +25,12 @@ struct myinbodyApp: App {
         FirebaseApp.configure()
         GADMobileAds.sharedInstance().start { status in
             print("google ad status : \(status.adapterStatusesByClassName)")
+            GoogleAdPrompt.promptWithDelay {
+                
+            }
+
         }
         
-        // Create a UMPRequestParameters object.
-        let parameters = UMPRequestParameters()
-        // Set tag for under age of consent. Here false means users are not under age.
-        parameters.tagForUnderAgeOfConsent = false
-        GoogleAdPrompt.promptWithDelay {
-            
-        }
     }
     
     var body: some Scene {
