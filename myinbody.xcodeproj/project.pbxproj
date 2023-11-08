@@ -74,6 +74,17 @@
 		1BCEFAD02AE639F300C91BD0 /* DataDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BCEFACF2AE639F300C91BD0 /* DataDetailView.swift */; };
 		1BD993462AF9F4EA0061E466 /* InbodyListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BD993452AF9F4EA0061E466 /* InbodyListView.swift */; };
 		1BD993482AFA1F6D0061E466 /* CacheClearView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BD993472AFA1F6D0061E466 /* CacheClearView.swift */; };
+		1BD993552AFB17C10061E466 /* GADNativeAd+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BD9934D2AFB17C10061E466 /* GADNativeAd+Extensions.swift */; };
+		1BD993562AFB17C10061E466 /* NativeAdView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BD9934E2AFB17C10061E466 /* NativeAdView.swift */; };
+		1BD993572AFB17C10061E466 /* UnifiedNativeAdView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BD9934F2AFB17C10061E466 /* UnifiedNativeAdView.swift */; };
+		1BD993582AFB17C10061E466 /* UnifiedNativeAdView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1BD993502AFB17C10061E466 /* UnifiedNativeAdView.xib */; };
+		1BD993592AFB17C10061E466 /* AdLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BD993512AFB17C10061E466 /* AdLoader.swift */; };
+		1BD9935A2AFB17C10061E466 /* GoogleAdPrompt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BD993522AFB17C10061E466 /* GoogleAdPrompt.swift */; };
+		1BD9935B2AFB17C10061E466 /* GoogleAd.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BD993532AFB17C10061E466 /* GoogleAd.swift */; };
+		1BD9935C2AFB17C10061E466 /* BannerAdView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BD993542AFB17C10061E466 /* BannerAdView.swift */; };
+		1BD9935F2AFB18200061E466 /* GoogleMobileAds in Frameworks */ = {isa = PBXBuildFile; productRef = 1BD9935E2AFB18200061E466 /* GoogleMobileAds */; };
+		1BD993612AFB194D0061E466 /* MultiColorAnimeTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BD993602AFB194D0061E466 /* MultiColorAnimeTextView.swift */; };
+		1BD993632AFB19A40061E466 /* Color+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BD993622AFB19A40061E466 /* Color+Extensions.swift */; };
 		1BDF27C42AE0C1D800D32183 /* Date+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BDF27C32AE0C1D800D32183 /* Date+Extensions.swift */; };
 		1BFACFE42AD7C9EB00AA106C /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BFACFE32AD7C9EB00AA106C /* HomeView.swift */; };
 		1BFACFE82AD7D30F00AA106C /* ProfileModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BFACFE72AD7D30F00AA106C /* ProfileModel.swift */; };
@@ -126,6 +137,16 @@
 		1BCEFACF2AE639F300C91BD0 /* DataDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataDetailView.swift; sourceTree = "<group>"; };
 		1BD993452AF9F4EA0061E466 /* InbodyListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InbodyListView.swift; sourceTree = "<group>"; };
 		1BD993472AFA1F6D0061E466 /* CacheClearView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CacheClearView.swift; sourceTree = "<group>"; };
+		1BD9934D2AFB17C10061E466 /* GADNativeAd+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "GADNativeAd+Extensions.swift"; sourceTree = "<group>"; };
+		1BD9934E2AFB17C10061E466 /* NativeAdView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NativeAdView.swift; sourceTree = "<group>"; };
+		1BD9934F2AFB17C10061E466 /* UnifiedNativeAdView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnifiedNativeAdView.swift; sourceTree = "<group>"; };
+		1BD993502AFB17C10061E466 /* UnifiedNativeAdView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UnifiedNativeAdView.xib; sourceTree = "<group>"; };
+		1BD993512AFB17C10061E466 /* AdLoader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdLoader.swift; sourceTree = "<group>"; };
+		1BD993522AFB17C10061E466 /* GoogleAdPrompt.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoogleAdPrompt.swift; sourceTree = "<group>"; };
+		1BD993532AFB17C10061E466 /* GoogleAd.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoogleAd.swift; sourceTree = "<group>"; };
+		1BD993542AFB17C10061E466 /* BannerAdView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BannerAdView.swift; sourceTree = "<group>"; };
+		1BD993602AFB194D0061E466 /* MultiColorAnimeTextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MultiColorAnimeTextView.swift; sourceTree = "<group>"; };
+		1BD993622AFB19A40061E466 /* Color+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Extensions.swift"; sourceTree = "<group>"; };
 		1BDF27C32AE0C1D800D32183 /* Date+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extensions.swift"; sourceTree = "<group>"; };
 		1BFACFE32AD7C9EB00AA106C /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		1BFACFE72AD7D30F00AA106C /* ProfileModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileModel.swift; sourceTree = "<group>"; };
@@ -168,6 +189,7 @@
 				1B11B85F2AD67F7400B0F5DB /* FirebaseAuthCombine-Community in Frameworks */,
 				1B11B87D2AD67F7400B0F5DB /* FirebasePerformance in Frameworks */,
 				1B11B8752AD67F7400B0F5DB /* FirebaseInAppMessagingSwift-Beta in Frameworks */,
+				1BD9935F2AFB18200061E466 /* GoogleMobileAds in Frameworks */,
 				1BFACFEB2AD7D33D00AA106C /* Realm in Frameworks */,
 				1B11B8832AD67F7400B0F5DB /* FirebaseStorage in Frameworks */,
 				1B11B8672AD67F7400B0F5DB /* FirebaseDynamicLinks in Frameworks */,
@@ -207,6 +229,7 @@
 				1B11B84C2AD675FA00B0F5DB /* Info.plist */,
 				1B11B84D2AD67EC500B0F5DB /* GoogleService-Info.plist */,
 				1B11B83E2AD66BEF00B0F5DB /* myinbodyApp.swift */,
+				1BD9934B2AFB17C10061E466 /* GoogleAd */,
 				1B11B88E2AD684DD00B0F5DB /* Extensions */,
 				1BFACFE52AD7C9F700AA106C /* View */,
 				1B11B88C2AD6848200B0F5DB /* AuthManager.swift */,
@@ -236,13 +259,39 @@
 				1B11B88F2AD684FB00B0F5DB /* UIApplication+Extensions.swift */,
 				1B65845F2ADF739E003C3A6F /* String+Extensions.swift */,
 				1BDF27C32AE0C1D800D32183 /* Date+Extensions.swift */,
+				1BD993622AFB19A40061E466 /* Color+Extensions.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		1BD9934B2AFB17C10061E466 /* GoogleAd */ = {
+			isa = PBXGroup;
+			children = (
+				1BD9934C2AFB17C10061E466 /* nativeAd */,
+				1BD993522AFB17C10061E466 /* GoogleAdPrompt.swift */,
+				1BD993532AFB17C10061E466 /* GoogleAd.swift */,
+				1BD993542AFB17C10061E466 /* BannerAdView.swift */,
+			);
+			name = GoogleAd;
+			path = myinbody/GoogleAd;
+			sourceTree = SOURCE_ROOT;
+		};
+		1BD9934C2AFB17C10061E466 /* nativeAd */ = {
+			isa = PBXGroup;
+			children = (
+				1BD9934D2AFB17C10061E466 /* GADNativeAd+Extensions.swift */,
+				1BD9934E2AFB17C10061E466 /* NativeAdView.swift */,
+				1BD9934F2AFB17C10061E466 /* UnifiedNativeAdView.swift */,
+				1BD993502AFB17C10061E466 /* UnifiedNativeAdView.xib */,
+				1BD993512AFB17C10061E466 /* AdLoader.swift */,
+			);
+			path = nativeAd;
 			sourceTree = "<group>";
 		};
 		1BFACFE52AD7C9F700AA106C /* View */ = {
 			isa = PBXGroup;
 			children = (
+				1BD993602AFB194D0061E466 /* MultiColorAnimeTextView.swift */,
 				1B11B8402AD66BEF00B0F5DB /* ContentView.swift */,
 				1B695C932AE8DA8C00A497D7 /* AnimatedImageView.swift */,
 				1BFACFF82AD7E09900AA106C /* ProfileListView.swift */,
@@ -341,6 +390,7 @@
 				1B97E5482ADCC62B007EC45B /* AlamofireImage */,
 				1B97E54B2ADCD32B007EC45B /* CachedAsyncImage */,
 				1BACDCFD2ADCFC30000E3AFE /* ActivityIndicatorView */,
+				1BD9935E2AFB18200061E466 /* GoogleMobileAds */,
 			);
 			productName = myinbody;
 			productReference = 1B11B83B2AD66BEF00B0F5DB /* myinbody.app */;
@@ -378,6 +428,7 @@
 				1B97E5472ADCC62B007EC45B /* XCRemoteSwiftPackageReference "AlamofireImage" */,
 				1B97E54A2ADCD32B007EC45B /* XCRemoteSwiftPackageReference "swiftui-cached-async-image" */,
 				1BACDCFC2ADCFC2F000E3AFE /* XCRemoteSwiftPackageReference "ActivityIndicatorView" */,
+				1BD9935D2AFB18200061E466 /* XCRemoteSwiftPackageReference "swift-package-manager-google-mobile-ads" */,
 			);
 			productRefGroup = 1B11B83C2AD66BEF00B0F5DB /* Products */;
 			projectDirPath = "";
@@ -398,6 +449,7 @@
 				1B11B8952AD7BAB800B0F5DB /* Localizable.strings in Resources */,
 				1B11B8432AD66BF000B0F5DB /* Assets.xcassets in Resources */,
 				1B1BF5082AEA1D37003E2F74 /* Launch Screen.storyboard in Resources */,
+				1BD993582AFB17C10061E466 /* UnifiedNativeAdView.xib in Resources */,
 				1B11B84E2AD67EC500B0F5DB /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -439,11 +491,13 @@
 				1BACDD042ADE12C7000E3AFE /* InbodyModel.swift in Sources */,
 				1B11B88D2AD6848200B0F5DB /* AuthManager.swift in Sources */,
 				1B11B8902AD684FB00B0F5DB /* UIApplication+Extensions.swift in Sources */,
+				1BD993562AFB17C10061E466 /* NativeAdView.swift in Sources */,
 				1B97E5442AD9338D007EC45B /* FirebaseStorageHelper.swift in Sources */,
 				1BC31E5D2AF36A690076320B /* WebView.swift in Sources */,
 				1BD993462AF9F4EA0061E466 /* InbodyListView.swift in Sources */,
 				1BD993482AFA1F6D0061E466 /* CacheClearView.swift in Sources */,
 				1B6584622ADFB0C0003C3A6F /* InbodyChartView.swift in Sources */,
+				1BD993552AFB17C10061E466 /* GADNativeAd+Extensions.swift in Sources */,
 				1B0273962ADE18F500B46191 /* InbodyDataInputView.swift in Sources */,
 				1B56C7A02AF23732003913E5 /* DeleteAccountConfirmView.swift in Sources */,
 				1B695C942AE8DA8C00A497D7 /* AnimatedImageView.swift in Sources */,
@@ -455,18 +509,25 @@
 				1B97E5462AD9346E007EC45B /* FirestorageDownloadUrlCacheModel.swift in Sources */,
 				1B6584602ADF739E003C3A6F /* String+Extensions.swift in Sources */,
 				1B02739A2ADE508800B46191 /* LongPressButtonView.swift in Sources */,
+				1BD9935B2AFB17C10061E466 /* GoogleAd.swift in Sources */,
 				1B97E5402AD922D3007EC45B /* TitleTextFieldView.swift in Sources */,
+				1BD993592AFB17C10061E466 /* AdLoader.swift in Sources */,
 				1B0273982ADE198B00B46191 /* DoubleInputView.swift in Sources */,
+				1BD993632AFB19A40061E466 /* Color+Extensions.swift in Sources */,
 				1B97E54E2ADCD3B1007EC45B /* ProfileImageView.swift in Sources */,
 				1B97E53C2AD91319007EC45B /* ProfileDetailView.swift in Sources */,
+				1BD993612AFB194D0061E466 /* MultiColorAnimeTextView.swift in Sources */,
 				1BACDD022ADD14AC000E3AFE /* CustomError.swift in Sources */,
+				1BD9935A2AFB17C10061E466 /* GoogleAdPrompt.swift in Sources */,
 				1BFACFF92AD7E09900AA106C /* ProfileListView.swift in Sources */,
 				1BFACFF22AD7D44300AA106C /* Realm.Object+Extensions.swift in Sources */,
 				1B11B83F2AD66BEF00B0F5DB /* myinbodyApp.swift in Sources */,
+				1BD993572AFB17C10061E466 /* UnifiedNativeAdView.swift in Sources */,
 				1BDF27C42AE0C1D800D32183 /* Date+Extensions.swift in Sources */,
 				1B1BF50B2AEB6F2E003E2F74 /* MyAppCheckProviderFactory.swift in Sources */,
 				1B1BF50D2AEB79DD003E2F74 /* DeleteProfileConfirmView.swift in Sources */,
 				1BFACFF52AD7D55600AA106C /* FirebaseFirestoreHelper.swift in Sources */,
+				1BD9935C2AFB17C10061E466 /* BannerAdView.swift in Sources */,
 				1B97E5422AD92EEB007EC45B /* PhotoPickerView.swift in Sources */,
 				1BCEFAD02AE639F300C91BD0 /* DataDetailView.swift in Sources */,
 				1B65845E2ADF7021003C3A6F /* NumberInputView.swift in Sources */,
@@ -632,6 +693,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0.1;
+				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = net.kongbaguni.myinbody;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -664,6 +726,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0.1;
+				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = net.kongbaguni.myinbody;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -734,6 +797,14 @@
 			requirement = {
 				kind = upToNextMajorVersion;
 				minimumVersion = 1.1.1;
+			};
+		};
+		1BD9935D2AFB18200061E466 /* XCRemoteSwiftPackageReference "swift-package-manager-google-mobile-ads" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/googleads/swift-package-manager-google-mobile-ads.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 10.13.0;
 			};
 		};
 		1BFACFE92AD7D33D00AA106C /* XCRemoteSwiftPackageReference "realm-swift" */ = {
@@ -906,6 +977,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 1BACDCFC2ADCFC2F000E3AFE /* XCRemoteSwiftPackageReference "ActivityIndicatorView" */;
 			productName = ActivityIndicatorView;
+		};
+		1BD9935E2AFB18200061E466 /* GoogleMobileAds */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 1BD9935D2AFB18200061E466 /* XCRemoteSwiftPackageReference "swift-package-manager-google-mobile-ads" */;
+			productName = GoogleMobileAds;
 		};
 		1BFACFEA2AD7D33D00AA106C /* Realm */ = {
 			isa = XCSwiftPackageProductDependency;

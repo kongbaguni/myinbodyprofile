@@ -83,6 +83,9 @@ struct ProfileListView: View {
                     }
                 }
             }
+            Section {
+                NativeAdView()
+            }
             NavigationLink {
                 CreateProfileView()
             } label: {

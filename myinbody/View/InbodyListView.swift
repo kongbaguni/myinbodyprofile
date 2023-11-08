@@ -40,6 +40,9 @@ struct InbodyListView: View {
                     }
                 }
             }
+            Section {
+                NativeAdView()
+            }
         }
         .toolbar {
             EditButton()

@@ -92,7 +92,9 @@ struct DataDetailView: View {
                     
                 }
             }
-            
+            Section {
+                NativeAdView()
+            }
         }
         .onAppear {
             setIdx(lastIdx: nil)
