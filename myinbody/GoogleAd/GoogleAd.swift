@@ -16,7 +16,7 @@ class GoogleAd : NSObject {
     
     var interstitial:GADRewardedInterstitialAd? = nil
     
-    private func loadAd(complete:@escaping(_ isSucess:Bool)->Void) {
+    private func loadAd(complete:@escaping(_ error:Error?)->Void) {
         let request = GADRequest()
         
         ATTrackingManager.requestTrackingAuthorization { status in
@@ -27,25 +27,25 @@ class GoogleAd : NSObject {
                 }
                 ad?.fullScreenContentDelegate = self
                 self?.interstitial = ad
-                complete(ad != nil)
+                complete(error)
             }
         }
     }
     
-    var callback:(_ isSucess:Bool)->Void = { _ in}
+    var callback:(_ error:Error?)->Void = { _ in}
     
     var requsetAd = false
     
-    func showAd(complete:@escaping(_ isSucess:Bool)->Void) {
+    func showAd(complete:@escaping(_ error:Error?)->Void) {
         if requsetAd {
             return
         }
         requsetAd = true
         callback = complete
-        loadAd { [weak self] isSucess in
-            if isSucess == false {
+        loadAd { [weak self] error in
+            if let err = error {
                 DispatchQueue.main.async {
-                    complete(true)
+                    complete(error)
                 }
                 return
             }
@@ -67,7 +67,7 @@ extension GoogleAd : GADFullScreenContentDelegate {
         print("google ad \(#function)")
         print(error.localizedDescription)
         DispatchQueue.main.async {
-            self.callback(true)
+            self.callback(error)
         }
     }
     func adDidRecordClick(_ ad: GADFullScreenPresentingAd) {
@@ -82,7 +82,7 @@ extension GoogleAd : GADFullScreenContentDelegate {
         print("google ad \(#function)")
         DispatchQueue.main.async {
             PointModel.add(value: 10, desc: "show ad") { error in
-                self.callback(true)
+                self.callback(error)
             }
         }
     }

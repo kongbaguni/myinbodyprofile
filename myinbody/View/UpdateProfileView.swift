@@ -166,9 +166,10 @@ struct UpdateProfileView: View {
                     primaryButton: .cancel(),
                     secondaryButton: .default(.init("ad watch"), action: {
                         ad.showAd { isSucess in
-                            if isSucess {
+                            if error == nil {
                                 saveWithPointUse()
                             }
+                            self.error = error
                         }
                     }))
             default:

@@ -80,10 +80,11 @@ struct DeleteProfileConfirmView: View {
                     message: .init(error?.localizedDescription ?? ""),
                     primaryButton: .cancel(),
                     secondaryButton: .default(.init("ad watch"), action: {
-                        ad.showAd { isSucess in
-                            if isSucess {
+                        ad.showAd { error in
+                            if error == nil {
                                 confirm()
                             }
+                            self.error = error
                         }
                     }))
                 

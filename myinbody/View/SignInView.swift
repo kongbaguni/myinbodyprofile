@@ -14,8 +14,10 @@ struct SignInView: View {
         case signoutAnomymouse
     }
     let ad = GoogleAd()
-    
-    @State var point:Int = 0
+        
+    var point:Int {
+        PointModel.sum
+    }
     @State var isAlert:Bool = false
     @State var errorMsg:Text? = nil {
         didSet {
@@ -66,7 +68,6 @@ struct SignInView: View {
                 if let err = error {
                     self.errorMsg = .init(err.localizedDescription)
                 }
-                point = PointModel.sum
             }
         }
     }
@@ -84,10 +85,11 @@ struct SignInView: View {
                 }
 
                 Button {
-                    ad.showAd { isSucess in
-                        if isSucess {
-                            self.point = PointModel.sum
+                    ad.showAd { error in
+                        if let err = error {
+                            self.errorMsg = .init(err.localizedDescription)
                         }
+                        
                     }
                 } label : {
                     ImageTextView(

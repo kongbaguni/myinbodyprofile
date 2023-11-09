@@ -125,12 +125,13 @@ struct CreateProfileView: View {
                        isLoading = false
                     }),
                     secondaryButton: .default(.init("ad watch"), action: {
-                        ad.showAd { isSucess in
-                            if isSucess {
+                        ad.showAd { error in
+                            if error == nil {
                                 createProfile()
                             }
                             else {
                                 isLoading = false
+                                self.error = error
                             }
                         }
                     }))
