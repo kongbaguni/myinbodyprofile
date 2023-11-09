@@ -81,7 +81,6 @@
 		1BD993592AFB17C10061E466 /* AdLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BD993512AFB17C10061E466 /* AdLoader.swift */; };
 		1BD9935A2AFB17C10061E466 /* GoogleAdPrompt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BD993522AFB17C10061E466 /* GoogleAdPrompt.swift */; };
 		1BD9935B2AFB17C10061E466 /* GoogleAd.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BD993532AFB17C10061E466 /* GoogleAd.swift */; };
-		1BD9935C2AFB17C10061E466 /* BannerAdView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BD993542AFB17C10061E466 /* BannerAdView.swift */; };
 		1BD9935F2AFB18200061E466 /* GoogleMobileAds in Frameworks */ = {isa = PBXBuildFile; productRef = 1BD9935E2AFB18200061E466 /* GoogleMobileAds */; };
 		1BD993612AFB194D0061E466 /* MultiColorAnimeTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BD993602AFB194D0061E466 /* MultiColorAnimeTextView.swift */; };
 		1BD993632AFB19A40061E466 /* Color+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BD993622AFB19A40061E466 /* Color+Extensions.swift */; };
@@ -147,7 +146,6 @@
 		1BD993512AFB17C10061E466 /* AdLoader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdLoader.swift; sourceTree = "<group>"; };
 		1BD993522AFB17C10061E466 /* GoogleAdPrompt.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoogleAdPrompt.swift; sourceTree = "<group>"; };
 		1BD993532AFB17C10061E466 /* GoogleAd.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoogleAd.swift; sourceTree = "<group>"; };
-		1BD993542AFB17C10061E466 /* BannerAdView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BannerAdView.swift; sourceTree = "<group>"; };
 		1BD993602AFB194D0061E466 /* MultiColorAnimeTextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MultiColorAnimeTextView.swift; sourceTree = "<group>"; };
 		1BD993622AFB19A40061E466 /* Color+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Extensions.swift"; sourceTree = "<group>"; };
 		1BD993642AFB45D60061E466 /* InfoPlist.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = InfoPlist.xcstrings; sourceTree = "<group>"; };
@@ -279,7 +277,6 @@
 				1BD9934C2AFB17C10061E466 /* nativeAd */,
 				1BD993522AFB17C10061E466 /* GoogleAdPrompt.swift */,
 				1BD993532AFB17C10061E466 /* GoogleAd.swift */,
-				1BD993542AFB17C10061E466 /* BannerAdView.swift */,
 			);
 			name = GoogleAd;
 			path = myinbody/GoogleAd;
@@ -542,7 +539,6 @@
 				1B1BF50B2AEB6F2E003E2F74 /* MyAppCheckProviderFactory.swift in Sources */,
 				1B1BF50D2AEB79DD003E2F74 /* DeleteProfileConfirmView.swift in Sources */,
 				1BFACFF52AD7D55600AA106C /* FirebaseFirestoreHelper.swift in Sources */,
-				1BD9935C2AFB17C10061E466 /* BannerAdView.swift in Sources */,
 				1B97E5422AD92EEB007EC45B /* PhotoPickerView.swift in Sources */,
 				1BCEFAD02AE639F300C91BD0 /* DataDetailView.swift in Sources */,
 				1B65845E2ADF7021003C3A6F /* NumberInputView.swift in Sources */,

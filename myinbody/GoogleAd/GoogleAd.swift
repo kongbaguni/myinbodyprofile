@@ -22,8 +22,6 @@ class GoogleAd : NSObject {
         ATTrackingManager.requestTrackingAuthorization { status in
             print("google ad tracking status : \(status)")
             GADRewardedAd.load(withAdUnitID: AdIDs.rewardAd, request: request) { [weak self] ad, error in
-//            }
-//            GADRewardedInterstitialAd.load(withAdUnitID: AdIDs.rewardAd, request: request) { [weak self] ad, error in
                 if let err = error {
                     print("google ad load error : \(err.localizedDescription)")
                 }
@@ -47,7 +45,7 @@ class GoogleAd : NSObject {
         loadAd { [weak self] error in
             if let err = error {
                 DispatchQueue.main.async {
-                    complete(error)
+                    complete(err)
                 }
                 return
             }
@@ -88,17 +86,4 @@ extension GoogleAd : GADFullScreenContentDelegate {
             }
         }
     }
-}
-
-struct GoogleAdBannerView: UIViewRepresentable {
-    let bannerView:GADBannerView
-    func makeUIView(context: Context) -> GADBannerView {
-        bannerView.adUnitID = AdIDs.bannerAd
-        bannerView.rootViewController = UIApplication.shared.keyWindow?.rootViewController        
-        return bannerView
-    }
-  
-  func updateUIView(_ uiView: GADBannerView, context: Context) {
-      uiView.load(GADRequest())
-  }
 }
