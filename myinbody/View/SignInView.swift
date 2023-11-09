@@ -16,16 +16,13 @@ struct SignInView: View {
     let ad = GoogleAd()
         
     @State var point:Int = PointModel.sum
-    
-    @State var isAlert:Bool = false
-    @State var errorMsg:Text? = nil {
+    @State var error:Error? = nil {
         didSet {
-            if errorMsg != nil {
-                alertType = .alertError
-                isAlert = true
-            }
+            isAlert = error != nil
         }
     }
+    @State var isAlert:Bool = false
+    
     @State var alertType:AlertType? = nil {
         didSet {
             if alertType != nil {
@@ -64,9 +61,7 @@ struct SignInView: View {
         isAnomymouse = isSignin ? AuthManager.shared.auth.currentUser?.isAnonymous ?? false : false
         if isSignin {
             PointModel.initPoint { error in
-                if let err = error {
-                    self.errorMsg = .init(err.localizedDescription)
-                }
+                self.error = error
             }
         }
     }
@@ -85,10 +80,7 @@ struct SignInView: View {
 
                 Button {
                     ad.showAd { error in
-                        if let err = error {
-                            self.errorMsg = .init(err.localizedDescription)
-                        }
-                        
+                        self.error = error
                     }
                 } label : {
                     ImageTextView(
@@ -100,7 +92,7 @@ struct SignInView: View {
                         alertType = .signoutAnomymouse
                     }
                     else if let err = AuthManager.shared.signout() {
-                        errorMsg = Text(err.localizedDescription)                        
+                        self.error = err
                     }
                     checkSignin()
                     
@@ -111,9 +103,7 @@ struct SignInView: View {
                 if isAnomymouse {
                     Button {
                         AuthManager.shared.upgradeAnonymousWithAppleId { isSucess, error in
-                            if let err = error {
-                                errorMsg = Text(err.localizedDescription)
-                            }
+                            self.error = error
                             checkSignin()
                         }
                     } label: {
@@ -122,9 +112,7 @@ struct SignInView: View {
                     }
                     Button {
                         AuthManager.shared.upgradeAnonymousWithGoogleId { isSucess, error in
-                            if let err = error {
-                                errorMsg = Text(err.localizedDescription)
-                            }
+                            self.error = error
                             checkSignin()
                         }
                     } label: {
@@ -286,7 +274,7 @@ struct SignInView: View {
         .alert(isPresented: $isAlert) {
             switch alertType {
             case .alertError:
-                return .init(title: .init("alert"), message: errorMsg)
+                return .init(title: .init("alert"), message: .init(error?.localizedDescription ?? ""))
             case .signoutAnomymouse:
                 return .init(
                     title: .init("anomymouse signout title"),
@@ -294,13 +282,15 @@ struct SignInView: View {
                     primaryButton: .cancel(),
                     secondaryButton: .default(Text("confirm"), action: {
                         if let err = AuthManager.shared.signout() {
-                            errorMsg = .init(err.localizedDescription)
+                            self.error = err
                         }
                         checkSignin()
                     })
                 )
-            case nil:
-                abort()
+            default:
+                return .init(title: .init("alert"),
+                             message: .init(error?.localizedDescription ?? "")
+                )
             }
             
         }
