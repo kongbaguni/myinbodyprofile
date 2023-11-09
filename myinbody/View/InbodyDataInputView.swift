@@ -10,7 +10,7 @@ import RealmSwift
 
 struct InbodyDataInputView: View {
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
-
+    let ad = GoogleAd()
     @ObservedRealmObject var profile:ProfileModel
 
     @State var height:Double = 170.0
@@ -203,29 +203,54 @@ struct InbodyDataInputView: View {
             visceral_fat = last.visceral_fat
 
         }
+        .alert(isPresented: $isAlert) {
+            switch error as? CustomError {
+            case .notEnoughPoint:
+                return .init(title: .init("alert"),
+                             message: .init(error?.localizedDescription ?? ""),
+                             primaryButton: .cancel(),
+                             secondaryButton: .default(.init("ad watch"), action: {
+                    ad.showAd { isSucess in
+                        if isSucess {
+                            save()
+                        }
+                    }
+                }))
+                                            
+            default:
+                return .init(title: .init("alert"),
+                             message: .init(error?.localizedDescription ?? "")
+                )
+            }
+        }
     }
     
     func save() {
-        InbodyModel.append(data: [
-            "height":height,
-            "weight":weight,
-            "skeletal_muscle_mass":skeletal_muscle_mass,
-            "measurementDateTimeIntervalSince1970":measurementDate.timeIntervalSince1970,
-            "body_fat_mass":body_fat_mass,
-            "total_body_water":total_body_water,
-            "protein":protein,
-            "mineral":mineral,
-            "bmi":bmi,
-            "percent_body_fat":percent_body_fat,
-            "waist_hip_ratio":waist_hip_ratio,
-            "basal_metabolic_ratio":basal_metabolic_ratio,
-            "visceral_fat":visceral_fat,
-            "regDt":Date().timeIntervalSince1970
-        ], profile: profile) { error in
-            self.error = error
+        PointModel.use(useCase: .inbodyDataInput) { error in
             if error == nil {
-                presentationMode.wrappedValue.dismiss()
+                InbodyModel.append(data: [
+                    "height":height,
+                    "weight":weight,
+                    "skeletal_muscle_mass":skeletal_muscle_mass,
+                    "measurementDateTimeIntervalSince1970":measurementDate.timeIntervalSince1970,
+                    "body_fat_mass":body_fat_mass,
+                    "total_body_water":total_body_water,
+                    "protein":protein,
+                    "mineral":mineral,
+                    "bmi":bmi,
+                    "percent_body_fat":percent_body_fat,
+                    "waist_hip_ratio":waist_hip_ratio,
+                    "basal_metabolic_ratio":basal_metabolic_ratio,
+                    "visceral_fat":visceral_fat,
+                    "regDt":Date().timeIntervalSince1970
+                ], profile: profile) { error in
+                    self.error = error
+                    if error == nil {
+                        presentationMode.wrappedValue.dismiss()
+                    }
+                }
             }
+            self.error = error
         }
     }
 }

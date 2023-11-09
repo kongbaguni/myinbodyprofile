@@ -20,6 +20,10 @@ extension PointModel {
     var regDt:Date {
         .init(timeIntervalSince1970: regTimeIntervalSince1970)
     }
+    
+    var localizedDesc : String {
+        NSLocalizedString(desc, comment: desc)
+    }
 }
 
 

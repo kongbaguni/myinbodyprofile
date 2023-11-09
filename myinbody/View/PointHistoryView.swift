@@ -25,13 +25,12 @@ struct PointHistoryView: View {
             Section {
                 ForEach(points, id:\.self) { point in
                     HStack {
-                        Text("\(point.value)")
+                        Text("\(point.value > 0 ? "+" : "")\(point.value)")
                             .bold()
                             .foregroundStyle(point.value < 0 ? .red : .primary)
-                        
-                        Text(point.desc)
+                        Text(point.regDt.simpleString)
                             .foregroundStyle(.secondary)
-                        Text(point.regDt.formatted(date: .complete, time: .shortened))
+                        Text(point.localizedDesc)
                             .foregroundStyle(.secondary)
                     }
                 }

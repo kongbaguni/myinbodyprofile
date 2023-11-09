@@ -31,6 +31,22 @@
         }
       }
     },
+    "%@%lld" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "%1$@%2$lld"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : ""
+          }
+        }
+      }
+    },
     "%lf" : {
       "localizations" : {
         "ko" : {
@@ -334,6 +350,17 @@
         }
       }
     },
+    "create profile" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "프로필 등록"
+          }
+        }
+      }
+    },
     "creation date :" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -587,6 +614,17 @@
         }
       }
     },
+    "first point" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "최초 포인트 지급"
+          }
+        }
+      }
+    },
     "home" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -604,6 +642,17 @@
         }
       }
     },
+    "hours ago" : {
+      "comment" : "time",
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "시간 전"
+          }
+        }
+      }
+    },
     "id :" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -611,6 +660,17 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "아이디 :"
+          }
+        }
+      }
+    },
+    "inbody data input" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "인바디 데이터 입력"
           }
         }
       }
@@ -838,10 +898,16 @@
     },
     "inbody list" : {
       "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "inbody data list"
+          }
+        },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "인바디 목록"
+            "value" : "인바디 데이터 목록"
           }
         }
       }
@@ -913,12 +979,34 @@
         }
       }
     },
+    "Just before" : {
+      "comment" : "time",
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "방금전"
+          }
+        }
+      }
+    },
     "kcal" : {
       "localizations" : {
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "kcal"
+          }
+        }
+      }
+    },
+    "Key" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "키"
           }
         }
       }
@@ -977,6 +1065,17 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "마지막 측정 일시 :"
+          }
+        }
+      }
+    },
+    "minute ago" : {
+      "comment" : "time",
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "분 전"
           }
         }
       }
@@ -1145,6 +1244,17 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "사진 선택"
+          }
+        }
+      }
+    },
+    "show ad" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "광고 보기"
           }
         }
       }
