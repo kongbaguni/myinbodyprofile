@@ -8,7 +8,9 @@
 import Foundation
 import RealmSwift
 import FirebaseFirestore
-
+extension Notification.Name {
+    static let pointDidChanged = Notification.Name("pointDidChanged_observer")
+}
 class PointModel : Object, ObjectKeyIdentifiable {
     @Persisted(primaryKey: true) var id:String = ""
     @Persisted var regTimeIntervalSince1970:Double = 0
@@ -78,6 +80,7 @@ extension PointModel {
                 }
                 try! realm.commitWrite()
             }
+            NotificationCenter.default.post(name: .pointDidChanged, object: PointModel.sum)
             complete(error)
         }
     }
@@ -109,6 +112,7 @@ extension PointModel {
                         try! realm.commitWrite()
                     }
                     pointRegRefId = nil
+                    NotificationCenter.default.post(name: .pointDidChanged, object: PointModel.sum)
                     complete(error)
                 }
             }.documentID

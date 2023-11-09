@@ -15,9 +15,8 @@ struct SignInView: View {
     }
     let ad = GoogleAd()
         
-    var point:Int {
-        PointModel.sum
-    }
+    @State var point:Int = PointModel.sum
+    
     @State var isAlert:Bool = false
     @State var errorMsg:Text? = nil {
         didSet {
@@ -274,16 +273,16 @@ struct SignInView: View {
                     }
                 }
             }
-
-//            if isSignin {
-//                ProfileListView()
-//            }
-        }.listStyle(.automatic)
-            .navigationTitle(isSignin ? Text("signin info") : Text("signin"))
+        }
+        .listStyle(.automatic)
+        .navigationTitle(isSignin ? Text("signin info") : Text("signin"))
         .onAppear {
             currentUser = AuthManager.shared.auth.currentUser
             checkSignin()
         }
+        .onReceive(NotificationCenter.default.publisher(for: .pointDidChanged), perform: { noti in
+            point = noti.object as? Int ?? PointModel.sum
+        })
         .alert(isPresented: $isAlert) {
             switch alertType {
             case .alertError:
