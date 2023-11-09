@@ -10,8 +10,17 @@ import RealmSwift
 
 struct PointHistoryView: View {
     @ObservedResults(PointModel.self,sortDescriptor: .init(keyPath: "regTimeIntervalSince1970", ascending: false)) var points
-    @State var point:Int = 0
     
+    var point:Int {
+        PointModel.sum
+    }
+    
+    @State var error:Error? = nil {
+        didSet {
+            isAlert = error != nil
+        }
+    }
+    @State var isAlert:Bool = false
     var body: some View {
         List {
             HStack {
@@ -35,11 +44,22 @@ struct PointHistoryView: View {
                     }
                 }
             }
-            
+        }
+        .refreshable {
+            sync()
+        }
+        .alert(isPresented: $isAlert) {
+            .init(title: .init("alert"), message: .init(error?.localizedDescription ?? ""))
         }
         .navigationTitle(.init("points history"))
         .onAppear {
-            point = PointModel.sum
+            sync()
+        }
+    }
+    
+    func sync() {
+        PointModel.sync { error in
+            self.error = error
         }
     }
 }
