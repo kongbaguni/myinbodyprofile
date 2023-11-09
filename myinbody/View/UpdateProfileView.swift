@@ -12,7 +12,7 @@ import ActivityIndicatorView
 
 struct UpdateProfileView: View {
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
-    
+    let ad = GoogleAd()
     @ObservedRealmObject var profile:ProfileModel
     @State var error:Error? = nil {
         didSet {
@@ -26,6 +26,15 @@ struct UpdateProfileView: View {
     @State var photoData:Data? = nil
     @State var needDeletePhoto:Bool = false
     @State var deleteAlert:Bool = false
+    
+    func saveWithPointUse() {
+        PointModel.use(useCase: .editProfile) { error in
+            if error == nil {
+                updateProfile()
+            }
+            self.error = error
+        }
+    }
     
     func updateProfile() {
         if profile.name.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty {
@@ -114,7 +123,7 @@ struct UpdateProfileView: View {
         }
         .toolbar {
             Button {
-                updateProfile()
+                saveWithPointUse()
             } label: {
                 Text("save")
             }
@@ -140,19 +149,33 @@ struct UpdateProfileView: View {
                         }
                     })
                 )
-            } else {
+            }
+        
+            switch error as? CustomError {
+            case .emptyName:
                 return .init(title: .init("alert"),
                              message: .init(error!.localizedDescription),
                              dismissButton: .default(.init("confirm"), action: {
-                    switch error as? CustomError {
-                    case .emptyName:
                         NotificationCenter.default.post(name: .textfieldSetFocus, object: "name")
-                    default:
-                        break
-                    }
                 })
                 )
+            case .notEnoughPoint:
+                return .init(
+                    title: .init("alert"),
+                    message: .init(error?.localizedDescription ?? ""),
+                    primaryButton: .cancel(),
+                    secondaryButton: .default(.init("ad watch"), action: {
+                        ad.showAd { isSucess in
+                            if isSucess {
+                                saveWithPointUse()
+                            }
+                        }
+                    }))
+            default:
+                return .init(title: .init("alert"),
+                             message: .init(error!.localizedDescription))
             }
+            
         }
     }
     var body: some View {

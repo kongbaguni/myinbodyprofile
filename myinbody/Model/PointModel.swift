@@ -34,6 +34,7 @@ extension PointModel {
     enum PointUseCase : Int {
         case createProfile = 5
         case deleteProfile = 10
+        case editProfile = 2
         case inbodyDataInput = 1
     }
     
@@ -121,6 +122,8 @@ extension PointModel {
                 return "create profile"
             case .deleteProfile:
                 return "delete profile"
+            case .editProfile:
+                return "edit profile"
             case .inbodyDataInput:
                 return "inbody data input"
             }
