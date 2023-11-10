@@ -50,7 +50,8 @@ class InbodyModel : Object, ObjectKeyIdentifiable {
     @Persisted var measurementDateTimeIntervalSince1970:Double = Date().timeIntervalSince1970
     /** 등록일시**/
     @Persisted var regDtTimeIntervalSince1970:Double = Date().timeIntervalSince1970
-    
+    /** 갱신 일시*/
+    @Persisted var updateDtTimeIntervalSince1970:Double = Date().timeIntervalSince1970
     @Persisted(originProperty: "inbodys") var owner : LinkingObjects<ProfileModel>
     
 }
@@ -71,6 +72,7 @@ extension InbodyModel {
         case basal_metabolic_ratio
         case visceral_fat
         case inbodyPoint
+        /** 입력을 위한 케이스 묶음*/
         static var allCases:[InbodyInputDataType] {
             [
                 .measurementDate,
@@ -87,6 +89,7 @@ extension InbodyModel {
                 .visceral_fat
             ]
         }
+        /** 프로필에 표시할 케이스 묶음*/
         static var allCasesForProfileView:[InbodyInputDataType] {
             [
                 .inbodyPoint,
@@ -103,6 +106,23 @@ extension InbodyModel {
                 .visceral_fat
             ]
         }
+        /** 수정을 위한 케이스 묶음*/
+        static var allCasesForEditInbody:[InbodyInputDataType] {
+            [
+                .height,
+                .weight,
+                .skeletal_muscle_mass,
+                .body_fat_mass,
+                .total_body_water,
+                .protein,
+                .mineral,
+                .percent_body_fat,
+                .waist_hip_ratio,
+                .basal_metabolic_ratio,
+                .visceral_fat
+            ]
+        }
+        
         var textValue: Text {
             switch self {
             case .inbodyPoint:
@@ -184,6 +204,10 @@ extension InbodyModel {
         .init(timeIntervalSince1970: measurementDateTimeIntervalSince1970)
     }
     
+    var updateDateTime : Date {
+        .init(timeIntervalSince1970: updateDtTimeIntervalSince1970)
+    }
+    
     var regDateTime : Date {
         .init(timeIntervalSince1970: regDtTimeIntervalSince1970)
     }
@@ -245,8 +269,9 @@ extension InbodyModel {
             complete(nil)       
             return
         }
+        let last = profile.inbodys.sorted(byKeyPath: "updateDtTimeIntervalSince1970").last
         let query = collection
-            .whereField("regDt", isGreaterThan: profile.inbodys.last?.regDtTimeIntervalSince1970 ?? 0)
+            .whereField("updateDtTimeIntervalSince1970", isGreaterThan: last?.updateDtTimeIntervalSince1970 ?? 0)
             
         let id = profile.id
         
@@ -325,5 +350,35 @@ extension InbodyModel {
             }
             complete(error)
         }
+    }
+    
+    func update(complete:@escaping(_ error:Error?)->Void) {
+        guard let profileId = owner.first?.id,
+              let collection = FirebaseFirestoreHelper.makeInbodyCollection(profileId: profileId) else {
+            return
+        }
+        var value = dictionmaryValue
+        value["id"] = nil
+        collection.document(id).updateData(value) { error in
+            complete(error)
+        }
+    }
+    
+    func download(complete:@escaping(_ error:Error?)->Void) {
+        guard let profileId = owner.first?.id,
+              let collection = FirebaseFirestoreHelper.makeInbodyCollection(profileId: profileId) else {
+            return
+        }
+        collection.document(id).getDocument { snapshot, error in
+            if let documentID = snapshot?.documentID, var data = snapshot?.data() {
+                data["id"] = documentID
+                let realm = Realm.shared
+                realm.beginWrite()
+                realm.create(InbodyModel.self, value: data, update: .all)
+                try! realm.commitWrite()
+            }
+            complete(error)
+        }
+
     }
 }

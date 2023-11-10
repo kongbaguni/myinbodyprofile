@@ -20,16 +20,20 @@ struct InbodyListView: View {
     var body: some View {
         List {
             ForEach(profile.inbodys, id:\.self) { inbody in
-                VStack(alignment: .leading) {
-                    Text(inbody.measurementDateTime.formatted(date: .complete, time: .shortened))
-                        .bold()
-                    HStack {
-                        Text("weight :").foregroundStyle(.secondary)
-                        Text("\(inbody.weight) kg")
-                        Text("BMI :").foregroundStyle(.secondary)
-                        Text("\(inbody.bmi)")
-                        Text("inbody point :").foregroundStyle(.secondary)
-                        Text("\(inbody.inbodyPoint)")
+                NavigationLink {
+                    InbodyDataDetailView(inbodyModel: inbody)
+                } label: {
+                    VStack(alignment: .leading) {
+                        Text(inbody.measurementDateTime.formatted(date: .complete, time: .shortened))
+                            .bold()
+                        HStack {
+                            Text("weight :").foregroundStyle(.secondary)
+                            Text("\(inbody.weight) kg")
+                            Text("BMI :").foregroundStyle(.secondary)
+                            Text("\(inbody.bmi)")
+                            Text("inbody point :").foregroundStyle(.secondary)
+                            Text("\(inbody.inbodyPoint)")
+                        }
                     }
                 }
             }.onDelete { indexSet in
@@ -42,6 +46,11 @@ struct InbodyListView: View {
             }
             Section("ad"){
                 NativeAdView()
+            }
+        }
+        .refreshable {
+            InbodyModel.sync(profile: profile) { error in
+                self.error = error
             }
         }
         .toolbar {

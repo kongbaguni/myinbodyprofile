@@ -38,6 +38,7 @@ extension PointModel {
         case deleteProfile = 10
         case editProfile = 2
         case inbodyDataInput = 1
+        case inbodyDataEdit = 3
     }
     
     static func initPoint(complete:@escaping(_ error:Error?)->Void) {
@@ -130,6 +131,8 @@ extension PointModel {
                 return "edit profile"
             case .inbodyDataInput:
                 return "inbody data input"
+            case .inbodyDataEdit:
+                return "inbody data edit"
             }
         }
         use(value: useCase.rawValue, desc: desc, complete: complete)

@@ -50,6 +50,8 @@
 		1B1BF5082AEA1D37003E2F74 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1B1BF5072AEA1D37003E2F74 /* Launch Screen.storyboard */; };
 		1B1BF50B2AEB6F2E003E2F74 /* MyAppCheckProviderFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B1BF50A2AEB6F2E003E2F74 /* MyAppCheckProviderFactory.swift */; };
 		1B1BF50D2AEB79DD003E2F74 /* DeleteProfileConfirmView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B1BF50C2AEB79DD003E2F74 /* DeleteProfileConfirmView.swift */; };
+		1B2D307C2AFCCA82004C55F4 /* InbodyDataDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B2D307B2AFCCA82004C55F4 /* InbodyDataDetailView.swift */; };
+		1B2D307E2AFDBD0F004C55F4 /* InbodyDataEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B2D307D2AFDBD0F004C55F4 /* InbodyDataEditView.swift */; };
 		1B56C7A02AF23732003913E5 /* DeleteAccountConfirmView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B56C79F2AF23732003913E5 /* DeleteAccountConfirmView.swift */; };
 		1B598B1B2AFB80670098CF2D /* PointHistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B598B1A2AFB80670098CF2D /* PointHistoryView.swift */; };
 		1B65845E2ADF7021003C3A6F /* NumberInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B65845D2ADF7021003C3A6F /* NumberInputView.swift */; };
@@ -118,6 +120,8 @@
 		1B1BF5072AEA1D37003E2F74 /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		1B1BF50A2AEB6F2E003E2F74 /* MyAppCheckProviderFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyAppCheckProviderFactory.swift; sourceTree = "<group>"; };
 		1B1BF50C2AEB79DD003E2F74 /* DeleteProfileConfirmView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteProfileConfirmView.swift; sourceTree = "<group>"; };
+		1B2D307B2AFCCA82004C55F4 /* InbodyDataDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InbodyDataDetailView.swift; sourceTree = "<group>"; };
+		1B2D307D2AFDBD0F004C55F4 /* InbodyDataEditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InbodyDataEditView.swift; sourceTree = "<group>"; };
 		1B56C79F2AF23732003913E5 /* DeleteAccountConfirmView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteAccountConfirmView.swift; sourceTree = "<group>"; };
 		1B598B1A2AFB80670098CF2D /* PointHistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PointHistoryView.swift; sourceTree = "<group>"; };
 		1B65845D2ADF7021003C3A6F /* NumberInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberInputView.swift; sourceTree = "<group>"; };
@@ -322,6 +326,8 @@
 				1BD993452AF9F4EA0061E466 /* InbodyListView.swift */,
 				1BD993472AFA1F6D0061E466 /* CacheClearView.swift */,
 				1B598B1A2AFB80670098CF2D /* PointHistoryView.swift */,
+				1B2D307B2AFCCA82004C55F4 /* InbodyDataDetailView.swift */,
+				1B2D307D2AFDBD0F004C55F4 /* InbodyDataEditView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -497,6 +503,7 @@
 			files = (
 				1B97E53A2AD91051007EC45B /* ImageTextView.swift in Sources */,
 				1B11B8412AD66BEF00B0F5DB /* ContentView.swift in Sources */,
+				1B2D307C2AFCCA82004C55F4 /* InbodyDataDetailView.swift in Sources */,
 				1BACDD042ADE12C7000E3AFE /* InbodyModel.swift in Sources */,
 				1B11B88D2AD6848200B0F5DB /* AuthManager.swift in Sources */,
 				1B11B8902AD684FB00B0F5DB /* UIApplication+Extensions.swift in Sources */,
@@ -537,6 +544,7 @@
 				1BD993572AFB17C10061E466 /* UnifiedNativeAdView.swift in Sources */,
 				1BDF27C42AE0C1D800D32183 /* Date+Extensions.swift in Sources */,
 				1B1BF50B2AEB6F2E003E2F74 /* MyAppCheckProviderFactory.swift in Sources */,
+				1B2D307E2AFDBD0F004C55F4 /* InbodyDataEditView.swift in Sources */,
 				1B1BF50D2AEB79DD003E2F74 /* DeleteProfileConfirmView.swift in Sources */,
 				1BFACFF52AD7D55600AA106C /* FirebaseFirestoreHelper.swift in Sources */,
 				1B97E5422AD92EEB007EC45B /* PhotoPickerView.swift in Sources */,

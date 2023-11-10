@@ -10,6 +10,7 @@ import RealmSwift
 
 struct InbodyDataInputView: View {
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
+    
     let ad = GoogleAd()
     @ObservedRealmObject var profile:ProfileModel
 
@@ -229,6 +230,7 @@ struct InbodyDataInputView: View {
     func save() {
         PointModel.use(useCase: .inbodyDataInput) { error in
             if error == nil {
+                let now = Date().timeIntervalSince1970
                 InbodyModel.append(data: [
                     "height":height,
                     "weight":weight,
@@ -238,12 +240,13 @@ struct InbodyDataInputView: View {
                     "total_body_water":total_body_water,
                     "protein":protein,
                     "mineral":mineral,
-                    "bmi":bmi,
                     "percent_body_fat":percent_body_fat,
                     "waist_hip_ratio":waist_hip_ratio,
                     "basal_metabolic_ratio":basal_metabolic_ratio,
                     "visceral_fat":visceral_fat,
-                    "regDt":Date().timeIntervalSince1970
+                    "regDtTimeIntervalSince1970":now,
+                    "updateDtTimeIntervalSince1970":now
+                    
                 ], profile: profile) { error in
                     self.error = error
                     if error == nil {

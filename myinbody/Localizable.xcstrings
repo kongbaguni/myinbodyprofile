@@ -87,17 +87,6 @@
         }
       }
     },
-    "Ad" : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "광고"
-          }
-        }
-      }
-    },
     "ad watch" : {
       "localizations" : {
         "en" : {
@@ -665,6 +654,17 @@
         }
       }
     },
+    "inbody data edit" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "인바디 데이터 수정"
+          }
+        }
+      }
+    },
     "inbody data input" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -1216,13 +1216,23 @@
         }
       }
     },
+    "reg dt :" : {
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "등록일 :"
+          }
+        }
+      }
+    },
     "regDt :" : {
       "extractionState" : "manual",
       "localizations" : {
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "등록일"
+            "value" : "등록일 :"
           }
         }
       }
