@@ -48,7 +48,7 @@ struct ProfileListView: View {
                                 Text(profile.name)
                                     .font(.system(size: 18))
                                     .bold()
-                                if let inbody = profile.inbodys.last {
+                                if let inbody = profile.inbodys.filter("deleted = %@", false).last {
                                     Divider()
                                     
                                     HStack {

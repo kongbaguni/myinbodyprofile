@@ -19,28 +19,26 @@ struct InbodyListView: View {
     @State var isAlert:Bool = false
     var body: some View {
         List {
-            ForEach(profile.inbodys, id:\.self) { inbody in
-                NavigationLink {
-                    InbodyDataDetailView(inbodyModel: inbody)
-                } label: {
-                    VStack(alignment: .leading) {
-                        Text(inbody.measurementDateTime.formatted(date: .complete, time: .shortened))
-                            .bold()
-                        HStack {
-                            Text("weight :").foregroundStyle(.secondary)
-                            Text("\(inbody.weight) kg")
-                            Text("BMI :").foregroundStyle(.secondary)
-                            Text("\(inbody.bmi)")
-                            Text("inbody point :").foregroundStyle(.secondary)
-                            Text("\(inbody.inbodyPoint)")
+            ForEach(profile.inbodys.filter("deleted = %@", false), id:\.self) { inbody in
+                if inbody.deleted {
+                    Text("deleted")
+                } else {
+                    NavigationLink {
+                        InbodyDataDetailView(inbodyModel: inbody)
+                    } label: {                 
+                        VStack(alignment: .leading) {
+                            Text(inbody.measurementDateTime.formatted(date: .complete, time: .shortened))
+                                .bold()
+                            HStack {
+                                Text("weight :").foregroundStyle(.secondary)
+                                
+                                Text(String(format:"%0.1f",inbody.weight))
+                                Text("kg")
+                                
+                                Text("BMI :").foregroundStyle(.secondary)
+                                Text(String(format:"%0.0f",inbody.bmi))
+                            }
                         }
-                    }
-                }
-            }.onDelete { indexSet in
-                for index in indexSet {
-                    let inbody = profile.inbodys[index]
-                    inbody.delete { error in
-                        self.error = error
                     }
                 }
             }
@@ -52,9 +50,6 @@ struct InbodyListView: View {
             InbodyModel.sync(profile: profile) { error in
                 self.error = error
             }
-        }
-        .toolbar {
-            EditButton()
         }
         .alert(isPresented: $isAlert, content: {
             .init(title: .init("alert"), message: .init(error!.localizedDescription))

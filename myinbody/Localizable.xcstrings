@@ -57,26 +57,6 @@
         }
       }
     },
-    "%lf" : {
-      "localizations" : {
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : ""
-          }
-        }
-      }
-    },
-    "%lf kg" : {
-      "localizations" : {
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : ""
-          }
-        }
-      }
-    },
     "%lld" : {
       "localizations" : {
         "ko" : {
@@ -537,6 +517,16 @@
         }
       }
     },
+    "deleted" : {
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "삭제됨"
+          }
+        }
+      }
+    },
     "deleted profile" : {
       "localizations" : {
         "ko" : {
@@ -660,6 +650,33 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "아이디 :"
+          }
+        }
+      }
+    },
+    "inbody data delete" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "인바디 데이터 삭제"
+          }
+        }
+      }
+    },
+    "inbody data delete confirm msg" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Delete InBody data."
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "인바디 데이터를 삭제합니다."
           }
         }
       }

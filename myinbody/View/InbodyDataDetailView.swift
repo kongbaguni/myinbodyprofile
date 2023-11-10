@@ -24,7 +24,7 @@ struct InbodyDataDetailView: View {
     let ad = GoogleAd()
     @State var data:[InbodyModel.InbodyInputDataType:String] = [:]
     @State var isUpdateSucess:Bool = false 
-    var body: some View {
+    var list: some View {
         List {
             Section {
                 PointNeedView(pointCase: .inbodyDataEdit)
@@ -102,6 +102,19 @@ struct InbodyDataDetailView: View {
                 Text(inbodyModel.regDateTime.formatting(format: "yyyy.MM.dd hh:mm:ss")).foregroundStyle(.primary)
             }
             
+            Section("ad"){
+                NativeAdView()
+            }
+            
+            Section {
+                NavigationLink {
+                    InbodyDataDeleteConfirmView(inbodyModel: inbodyModel)
+                    
+                } label: {
+                    ImageTextView(image: .init(systemName: "trash.circle"), text: .init("delete"))
+                }
+
+            }
         }
         .toolbar {
             Button {
@@ -149,6 +162,14 @@ struct InbodyDataDetailView: View {
                     
                 }
             }
+        }
+    }
+    
+    var body: some View {
+        if inbodyModel.deleted {
+            Text("deleted")
+        } else {
+            list
         }
     }
     

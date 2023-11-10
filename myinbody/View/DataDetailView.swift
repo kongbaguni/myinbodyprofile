@@ -25,10 +25,11 @@ struct DataDetailView: View {
     }
     
     func setIdx(lastIdx:Int?) {
-        to = lastIdx ?? profile.inbodys.count
-        if  profile.inbodys.count > 0 &&
-                to > profile.inbodys.count {
-            to = profile.inbodys.count
+        let list = profile.inbodys.filter("deleted = %@",false)
+        to = lastIdx ?? list.count
+        if  list.count > 0 &&
+                to > list.count {
+            to = list.count
         }
         from = to - rows
         if from < 0 {
@@ -37,7 +38,7 @@ struct DataDetailView: View {
     }
     
     var datas:Slice<Results<InbodyModel>> {
-        return profile.inbodys.sorted(byKeyPath: "measurementDateTimeIntervalSince1970")[from..<to]
+        return profile.inbodys.filter("deleted = %@", false).sorted(byKeyPath: "measurementDateTimeIntervalSince1970")[from..<to]
     }
 
     var body: some View {

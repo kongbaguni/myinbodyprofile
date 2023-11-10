@@ -53,6 +53,7 @@
 		1B2D307C2AFCCA82004C55F4 /* InbodyDataDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B2D307B2AFCCA82004C55F4 /* InbodyDataDetailView.swift */; };
 		1B2D307E2AFDBD0F004C55F4 /* InbodyDataEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B2D307D2AFDBD0F004C55F4 /* InbodyDataEditView.swift */; };
 		1B2D30802AFDE72A004C55F4 /* PointNeedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B2D307F2AFDE72A004C55F4 /* PointNeedView.swift */; };
+		1B2D30822AFDFF05004C55F4 /* InbodyDataDeleteConfirmView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B2D30812AFDFF05004C55F4 /* InbodyDataDeleteConfirmView.swift */; };
 		1B56C7A02AF23732003913E5 /* DeleteAccountConfirmView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B56C79F2AF23732003913E5 /* DeleteAccountConfirmView.swift */; };
 		1B598B1B2AFB80670098CF2D /* PointHistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B598B1A2AFB80670098CF2D /* PointHistoryView.swift */; };
 		1B65845E2ADF7021003C3A6F /* NumberInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B65845D2ADF7021003C3A6F /* NumberInputView.swift */; };
@@ -124,6 +125,7 @@
 		1B2D307B2AFCCA82004C55F4 /* InbodyDataDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InbodyDataDetailView.swift; sourceTree = "<group>"; };
 		1B2D307D2AFDBD0F004C55F4 /* InbodyDataEditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InbodyDataEditView.swift; sourceTree = "<group>"; };
 		1B2D307F2AFDE72A004C55F4 /* PointNeedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PointNeedView.swift; sourceTree = "<group>"; };
+		1B2D30812AFDFF05004C55F4 /* InbodyDataDeleteConfirmView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InbodyDataDeleteConfirmView.swift; sourceTree = "<group>"; };
 		1B56C79F2AF23732003913E5 /* DeleteAccountConfirmView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteAccountConfirmView.swift; sourceTree = "<group>"; };
 		1B598B1A2AFB80670098CF2D /* PointHistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PointHistoryView.swift; sourceTree = "<group>"; };
 		1B65845D2ADF7021003C3A6F /* NumberInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberInputView.swift; sourceTree = "<group>"; };
@@ -331,6 +333,7 @@
 				1B2D307B2AFCCA82004C55F4 /* InbodyDataDetailView.swift */,
 				1B2D307D2AFDBD0F004C55F4 /* InbodyDataEditView.swift */,
 				1B2D307F2AFDE72A004C55F4 /* PointNeedView.swift */,
+				1B2D30812AFDFF05004C55F4 /* InbodyDataDeleteConfirmView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -545,6 +548,7 @@
 				1BFACFF92AD7E09900AA106C /* ProfileListView.swift in Sources */,
 				1BFACFF22AD7D44300AA106C /* Realm.Object+Extensions.swift in Sources */,
 				1B11B83F2AD66BEF00B0F5DB /* myinbodyApp.swift in Sources */,
+				1B2D30822AFDFF05004C55F4 /* InbodyDataDeleteConfirmView.swift in Sources */,
 				1BD993572AFB17C10061E466 /* UnifiedNativeAdView.swift in Sources */,
 				1BDF27C42AE0C1D800D32183 /* Date+Extensions.swift in Sources */,
 				1B1BF50B2AEB6F2E003E2F74 /* MyAppCheckProviderFactory.swift in Sources */,

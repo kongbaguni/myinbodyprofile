@@ -21,7 +21,7 @@ struct InbodyChartView: View {
         if profile.id.isEmpty {
             return []
         }
-        let list = profile.inbodys.sorted(byKeyPath: "measurementDateTimeIntervalSince1970")
+        let list = profile.inbodys.filter("deleted = %@", false).sorted(byKeyPath: "measurementDateTimeIntervalSince1970")
         
         func append(inbody:InbodyModel) {
             let date = inbody.measurementDateTime

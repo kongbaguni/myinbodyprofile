@@ -305,7 +305,7 @@ struct InbodyDataInputView: View {
             return 
             #endif
                                 
-            guard let last = profile.inbodys.sorted(byKeyPath: "measurementDateTimeIntervalSince1970").last else {
+            guard let last = profile.inbodys.filter("deleted = %@",false).sorted(byKeyPath: "measurementDateTimeIntervalSince1970").last else {
                 return
             }
             if isFirstLoaded {

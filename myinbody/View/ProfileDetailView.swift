@@ -64,7 +64,7 @@ struct ProfileDetailView: View {
                 
             }
             
-            if profile.inbodys.count > 0 {
+            if profile.inbodys.filter("deleted = %@", false).count > 0 {
                 Section {
                     ForEach(InbodyModel.InbodyInputDataType.allCasesForProfileView, id:\.self) { type in
                         HStack {

@@ -52,6 +52,8 @@ class InbodyModel : Object, ObjectKeyIdentifiable {
     @Persisted var regDtTimeIntervalSince1970:Double = Date().timeIntervalSince1970
     /** 갱신 일시*/
     @Persisted var updateDtTimeIntervalSince1970:Double = Date().timeIntervalSince1970
+    /** 삭제됨*/
+    @Persisted var deleted:Bool = false
     @Persisted(originProperty: "inbodys") var owner : LinkingObjects<ProfileModel>
     
 }
@@ -333,24 +335,21 @@ extension InbodyModel {
         
         
         let id = self.id
-        collection.document(id).delete { error in
-            if error == nil {
-                do {
-                    let realm = Realm.shared
-                    if let obj = realm.object(ofType: InbodyModel.self, forPrimaryKey: id) {
-                        try realm.write {
-                            realm.delete(obj)
-                        }
-                    }
 
-                } catch {
-                    complete(error)
-                    return
-                }
+        var data:[String:AnyHashable] = ["deleted":true, "updateDtTimeIntervalSince1970":Date().timeIntervalSince1970]
+        
+        collection.document(id).updateData(data) { error in
+            if error == nil {
+                data["id"] = id
+                let realm = Realm.shared
+                realm.beginWrite()
+                realm.create(InbodyModel.self, value: data, update: .modified)
+                try! realm.commitWrite()
             }
             complete(error)
         }
     }
+    
     
     func save(complete:@escaping(_ error:Error?)->Void) {
         guard let profileId = owner.first?.id,
