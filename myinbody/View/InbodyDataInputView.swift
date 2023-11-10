@@ -217,19 +217,12 @@ struct InbodyDataInputView: View {
     func makeDataView(type:InbodyModel.InbodyInputDataType)-> some View {
         HStack {
             type.textValue
-            switch type {
-            case .measurementDate:
-                DatePicker(selection: $measurementDate) {
-                    Text("inbody input title measurementDate")
-                }
-            default:
-                Text(String(format:type.formatString, getValue(type: type)))
-                    .bold()
-                    .foregroundStyle(.primary)
-                if let unit = type.unit {
-                    unit
-                        .foregroundStyle(.secondary)
-                }
+            Text(String(format:type.formatString, getValue(type: type)))
+                .bold()
+                .foregroundStyle(.primary)
+            if let unit = type.unit {
+                unit
+                    .foregroundStyle(.secondary)
             }
         }
     }
@@ -238,7 +231,9 @@ struct InbodyDataInputView: View {
         Group {
             switch type {
             case .measurementDate:
-                makeDataView(type: type)
+                DatePicker(selection: $measurementDate) {
+                    Text("inbody input title measurementDate")
+                }
             default:
                 NavigationLink {
                     switch type {
