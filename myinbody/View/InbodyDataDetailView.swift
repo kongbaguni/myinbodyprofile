@@ -19,6 +19,8 @@ struct InbodyDataDetailView: View {
     @State var isAlert:Bool = false
     @ObservedRealmObject var inbodyModel:InbodyModel
 
+    @State var tempData:InbodyModel = .init()
+    
     let ad = GoogleAd()
     @State var data:[InbodyModel.InbodyInputDataType:String] = [:]
     @State var isUpdateSucess:Bool = false 
@@ -28,41 +30,63 @@ struct InbodyDataDetailView: View {
                 NavigationLink {
                     switch type {
                     case .height:
-                        InbodyDataEditView(type: type, value: $inbodyModel.height )
+                        InbodyDataEditView(type: type, value: $tempData.height )
                     case .weight:
-                        InbodyDataEditView(type: type, value: $inbodyModel.weight )
+                        InbodyDataEditView(type: type, value: $tempData.weight )
                     case .skeletal_muscle_mass:
-                        InbodyDataEditView(type: type, value: $inbodyModel.skeletal_muscle_mass )
+                        InbodyDataEditView(type: type, value: $tempData.skeletal_muscle_mass )
                     case .body_fat_mass:
-                        InbodyDataEditView(type: type, value: $inbodyModel.body_fat_mass )
+                        InbodyDataEditView(type: type, value: $tempData.body_fat_mass )
                     case .total_body_water:
-                        InbodyDataEditView(type: type, value: $inbodyModel.total_body_water )
+                        InbodyDataEditView(type: type, value: $tempData.total_body_water )
                     case .protein:
-                        InbodyDataEditView(type: type, value: $inbodyModel.protein )
+                        InbodyDataEditView(type: type, value: $tempData.protein )
                     case .mineral:
-                        InbodyDataEditView(type: type, value: $inbodyModel.mineral )
+                        InbodyDataEditView(type: type, value: $tempData.mineral )
                     case .percent_body_fat:
-                        InbodyDataEditView(type: type, value: $inbodyModel.percent_body_fat )
+                        InbodyDataEditView(type: type, value: $tempData.percent_body_fat )
                     case .waist_hip_ratio:
-                        InbodyDataEditView(type: type, value: $inbodyModel.waist_hip_ratio )
+                        InbodyDataEditView(type: type, value: $tempData.waist_hip_ratio )
                     case .basal_metabolic_ratio:
-                        InbodyDataEditView(type: type, value: $inbodyModel.basal_metabolic_ratio )
+                        InbodyDataEditView(type: type, value: $tempData.basal_metabolic_ratio )
                     case .visceral_fat:
-                        InbodyDataEditView(type: type, value: $inbodyModel.visceral_fat )
+                        InbodyDataEditView(type: type, value: $tempData.visceral_fat )
                     default:
-                        InbodyDataEditView(type: type, value: $inbodyModel.height )
+                        InbodyDataEditView(type: type, value: $tempData.height )
                     }
                     
                 } label: {
                     HStack {
                         type.textValue
-                        let value = inbodyModel.getValueByType(type: type)
-                        Text(String(format:type.formatString,value))
-                            .bold()
+                        let oldValue = inbodyModel.getValueByType(type: type)
+                        let value = tempData.getValueByType(type: type)
+                        if oldValue == value {
+                            Text(String(format:type.formatString,oldValue))
+                                .bold()
+                            
+                        } else {
+                            Text(String(format:type.formatString,oldValue))
+                                .foregroundStyle(.secondary)
+                                .strikethrough()
+                            if let unit = type.unit {
+                                unit.font(.caption)
+                                    .foregroundStyle(.secondary)
+                            }
+
+                            Text("->")
+                                .foregroundStyle(.yellow)
+                                .bold()
+                            Text(String(format:type.formatString,value))
+                                .foregroundStyle(.primary)
+                                .bold()
+                        }
+                        
                         if let unit = type.unit {
                             unit.font(.caption)
                                 .foregroundStyle(.secondary)
                         }
+
+                        
                     }
                 }
             }
@@ -77,6 +101,11 @@ struct InbodyDataDetailView: View {
                 saveData()
             } label : {
                 Text("save")
+            }
+        }
+        .onAppear {
+            if tempData.id.isEmpty {
+                tempData = .init(value:inbodyModel.dictionmaryValue)
             }
         }
         .alert(isPresented: $isAlert, content: {
@@ -116,10 +145,13 @@ struct InbodyDataDetailView: View {
     }
     
     func saveData() {
+        if tempData.id.isEmpty {
+            return
+        }
         PointModel.use(useCase: .inbodyDataEdit) { error in
             self.error = error
             if error == nil {
-                inbodyModel.update { error in
+                tempData.update { error in
                     self.error = error
                     if error == nil {
                         isUpdateSucess = true
