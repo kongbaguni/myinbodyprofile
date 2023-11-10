@@ -36,6 +36,8 @@ struct InbodyDataInputView: View {
         }
     }
     @State var isAlert:Bool = false
+    @State var saveConfirm:Bool = false
+    @State var isFirstLoaded:Bool = false
     var stepCount:Int {
         InbodyModel.InbodyInputDataType.allCases.firstIndex(of: step) ?? 0
     }
@@ -49,7 +51,7 @@ struct InbodyDataInputView: View {
 
     }
     
-    var body: some View {
+    var inputView : some View {
         VStack(alignment:.center) {
             title
             switch step {
@@ -163,7 +165,7 @@ struct InbodyDataInputView: View {
                 switch step {
                 case InbodyModel.InbodyInputDataType.allCases.last:
                     Button {
-                        save()
+                        saveConfirm = true
                     } label: {
                         ImageTextView(image: .init(systemName: "return"),
                                       text: .init("confirm"))
@@ -181,15 +183,135 @@ struct InbodyDataInputView: View {
                 }
             }
         }
+    }
+    
+    func getValue(type:InbodyModel.InbodyInputDataType)->Double {
+        switch type {
+        case .height:
+            return height
+        case .weight:
+            return weight
+        case .skeletal_muscle_mass:
+            return skeletal_muscle_mass
+        case .body_fat_mass:
+            return body_fat_mass
+        case .total_body_water:
+            return total_body_water
+        case .protein:
+            return protein
+        case .mineral:
+            return mineral
+        case .percent_body_fat:
+            return percent_body_fat
+        case .waist_hip_ratio:
+            return waist_hip_ratio
+        case .basal_metabolic_ratio:
+            return basal_metabolic_ratio
+        case .visceral_fat:
+            return visceral_fat
+        default:
+            return 0
+        }
+    }
+    
+    func makeDataView(type:InbodyModel.InbodyInputDataType)-> some View {
+        HStack {
+            type.textValue
+            switch type {
+            case .measurementDate:
+                Text(measurementDate.formatted(date: .complete, time: .shortened))
+            default:
+                Text(String(format:type.formatString, getValue(type: type)))
+                    .bold()
+                    .foregroundStyle(.primary)
+                if let unit = type.unit {
+                    unit
+                        .foregroundStyle(.secondary)
+                }
+            }
+        }
+    }
+    
+    func makeEditLinkView(type:InbodyModel.InbodyInputDataType)-> some View {
+        NavigationLink {
+            switch type {
+            case .height:
+                InbodyDataEditView(type: type, value: $height)
+            case .weight:
+                InbodyDataEditView(type: type, value: $weight)
+            case .skeletal_muscle_mass:
+                InbodyDataEditView(type: type, value: $skeletal_muscle_mass)
+            case .body_fat_mass:
+                InbodyDataEditView(type: type, value: $body_fat_mass)
+            case .total_body_water:
+                InbodyDataEditView(type: type, value: $total_body_water)
+            case .protein:
+                InbodyDataEditView(type: type, value: $protein)
+            case .mineral:
+                InbodyDataEditView(type: type, value: $mineral)
+            case .percent_body_fat:
+                InbodyDataEditView(type: type, value: $percent_body_fat)
+            case .waist_hip_ratio:
+                InbodyDataEditView(type: type, value: $waist_hip_ratio)
+            case .basal_metabolic_ratio:
+                InbodyDataEditView(type: type, value: $basal_metabolic_ratio)
+            case .visceral_fat:
+                InbodyDataEditView(type: type, value: $visceral_fat)
+            default:
+                EmptyView()
+            }
+        } label: {
+            makeDataView(type: type)
+        }
+    }
+    
+    var saveConfirmView : some View {
+        List {
+            ForEach(InbodyModel.InbodyInputDataType.allCases, id:\.self) { type in
+                makeEditLinkView(type: type)
+            }
+
+            Section {
+                PointNeedView(pointCase: .inbodyDataInput)
+            }
+            
+            Section {
+                Button {
+                    saveConfirm = false
+                } label: {
+                    ImageTextView(image: .init(systemName: "arrowshape.backward"),
+                                  text: .init("previous"))
+                }
+                Button {
+                    save()
+                } label : {
+                    ImageTextView(image: .init(systemName:"opticaldiscdrive"), text: .init("save"))
+                }
+            }
+        }
+    }
+    var body: some View {
+        GeometryReader { proxy in
+            if saveConfirm {
+                saveConfirmView
+            } else {
+                inputView
+            }
+            
+        }
         .navigationTitle(.init("input inbody data"))
         .onAppear {
             #if targetEnvironment(simulator)
             return 
             #endif
-        
+                                
             guard let last = profile.inbodys.sorted(byKeyPath: "measurementDateTimeIntervalSince1970").last else {
                 return
             }
+            if isFirstLoaded {
+                return
+            }
+            
             height = last.height
             weight = last.weight
             skeletal_muscle_mass = last.skeletal_muscle_mass
@@ -202,7 +324,7 @@ struct InbodyDataInputView: View {
             waist_hip_ratio = last.waist_hip_ratio
             basal_metabolic_ratio = last.basal_metabolic_ratio
             visceral_fat = last.visceral_fat
-
+            isFirstLoaded = true
         }
         .alert(isPresented: $isAlert) {
             switch error as? CustomError {

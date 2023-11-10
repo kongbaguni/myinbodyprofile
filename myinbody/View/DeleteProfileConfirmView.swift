@@ -47,14 +47,8 @@ struct DeleteProfileConfirmView: View {
                 .textFieldStyle(.roundedBorder)
                 .foregroundStyle(isTestEnable ? .blue : .red)
                 
-                HStack {
-                    Text("points needed :").foregroundStyle(.secondary)
-                    Text("\(PointModel.PointUseCase.deleteProfile.rawValue)").bold()
-                }
-                HStack {
-                    Text("Current Point :").foregroundStyle(.secondary)
-                    Text("\(point)").bold()
-                }
+                PointNeedView(pointCase: .deleteProfile)
+                
                 Button {
                     confirm()
                 } label: {

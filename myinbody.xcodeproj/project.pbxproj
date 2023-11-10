@@ -52,6 +52,7 @@
 		1B1BF50D2AEB79DD003E2F74 /* DeleteProfileConfirmView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B1BF50C2AEB79DD003E2F74 /* DeleteProfileConfirmView.swift */; };
 		1B2D307C2AFCCA82004C55F4 /* InbodyDataDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B2D307B2AFCCA82004C55F4 /* InbodyDataDetailView.swift */; };
 		1B2D307E2AFDBD0F004C55F4 /* InbodyDataEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B2D307D2AFDBD0F004C55F4 /* InbodyDataEditView.swift */; };
+		1B2D30802AFDE72A004C55F4 /* PointNeedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B2D307F2AFDE72A004C55F4 /* PointNeedView.swift */; };
 		1B56C7A02AF23732003913E5 /* DeleteAccountConfirmView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B56C79F2AF23732003913E5 /* DeleteAccountConfirmView.swift */; };
 		1B598B1B2AFB80670098CF2D /* PointHistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B598B1A2AFB80670098CF2D /* PointHistoryView.swift */; };
 		1B65845E2ADF7021003C3A6F /* NumberInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B65845D2ADF7021003C3A6F /* NumberInputView.swift */; };
@@ -122,6 +123,7 @@
 		1B1BF50C2AEB79DD003E2F74 /* DeleteProfileConfirmView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteProfileConfirmView.swift; sourceTree = "<group>"; };
 		1B2D307B2AFCCA82004C55F4 /* InbodyDataDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InbodyDataDetailView.swift; sourceTree = "<group>"; };
 		1B2D307D2AFDBD0F004C55F4 /* InbodyDataEditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InbodyDataEditView.swift; sourceTree = "<group>"; };
+		1B2D307F2AFDE72A004C55F4 /* PointNeedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PointNeedView.swift; sourceTree = "<group>"; };
 		1B56C79F2AF23732003913E5 /* DeleteAccountConfirmView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteAccountConfirmView.swift; sourceTree = "<group>"; };
 		1B598B1A2AFB80670098CF2D /* PointHistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PointHistoryView.swift; sourceTree = "<group>"; };
 		1B65845D2ADF7021003C3A6F /* NumberInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberInputView.swift; sourceTree = "<group>"; };
@@ -328,6 +330,7 @@
 				1B598B1A2AFB80670098CF2D /* PointHistoryView.swift */,
 				1B2D307B2AFCCA82004C55F4 /* InbodyDataDetailView.swift */,
 				1B2D307D2AFDBD0F004C55F4 /* InbodyDataEditView.swift */,
+				1B2D307F2AFDE72A004C55F4 /* PointNeedView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -506,6 +509,7 @@
 				1B2D307C2AFCCA82004C55F4 /* InbodyDataDetailView.swift in Sources */,
 				1BACDD042ADE12C7000E3AFE /* InbodyModel.swift in Sources */,
 				1B11B88D2AD6848200B0F5DB /* AuthManager.swift in Sources */,
+				1B2D30802AFDE72A004C55F4 /* PointNeedView.swift in Sources */,
 				1B11B8902AD684FB00B0F5DB /* UIApplication+Extensions.swift in Sources */,
 				1BD993562AFB17C10061E466 /* NativeAdView.swift in Sources */,
 				1B97E5442AD9338D007EC45B /* FirebaseStorageHelper.swift in Sources */,

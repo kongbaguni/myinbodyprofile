@@ -352,14 +352,22 @@ extension InbodyModel {
         }
     }
     
-    func update(complete:@escaping(_ error:Error?)->Void) {
+    func save(complete:@escaping(_ error:Error?)->Void) {
         guard let profileId = owner.first?.id,
               let collection = FirebaseFirestoreHelper.makeInbodyCollection(profileId: profileId) else {
             return
         }
-        var value = dictionmaryValue
-        value["id"] = nil
-        collection.document(id).updateData(value) { error in
+        var dicValue = dictionmaryValue
+        let id = self.id
+        dicValue["id"] = nil
+        collection.document(id).setData(dicValue) { error in
+            if error == nil {
+                dicValue["id"] = id
+                let realm = Realm.shared
+                realm.beginWrite()
+                realm.create(InbodyModel.self, value:dicValue, update: .all)
+                try! realm.commitWrite()
+            }            
             complete(error)
         }
     }

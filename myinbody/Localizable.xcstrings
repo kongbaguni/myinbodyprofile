@@ -12,7 +12,14 @@
       }
     },
     "->" : {
-
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : ""
+          }
+        }
+      }
     },
     "!!" : {
       "localizations" : {

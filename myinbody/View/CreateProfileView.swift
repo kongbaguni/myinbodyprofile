@@ -90,14 +90,7 @@ struct CreateProfileView: View {
                         value: $name)
                     
                     
-                    HStack {
-                        Text("points needed :").foregroundStyle(.secondary)
-                        Text("\(PointModel.PointUseCase.createProfile.rawValue)").bold()
-                    }
-                    HStack {
-                        Text("Current Point :").foregroundStyle(.secondary)
-                        Text("\(point)").bold()
-                    }
+                    PointNeedView(pointCase: .createProfile)
                     
                     Button {
                         createProfile()

@@ -26,6 +26,14 @@ struct InbodyDataDetailView: View {
     @State var isUpdateSucess:Bool = false 
     var body: some View {
         List {
+            Section {
+                PointNeedView(pointCase: .inbodyDataEdit)
+            }
+            HStack {
+                Text("inbody input title measurementDate")
+                Text(inbodyModel.measurementDateTime.formatting(format: "yyyy.MM.dd hh:mm:ss"))
+                    .bold()
+            }
             ForEach(InbodyModel.InbodyInputDataType.allCasesForEditInbody, id:\.self) { type in
                 NavigationLink {
                     switch type {
@@ -85,7 +93,6 @@ struct InbodyDataDetailView: View {
                             unit.font(.caption)
                                 .foregroundStyle(.secondary)
                         }
-
                         
                     }
                 }
@@ -106,6 +113,7 @@ struct InbodyDataDetailView: View {
         .onAppear {
             if tempData.id.isEmpty {
                 tempData = .init(value:inbodyModel.dictionmaryValue)
+                tempData.owner = inbodyModel.owner
             }
         }
         .alert(isPresented: $isAlert, content: {
@@ -133,7 +141,7 @@ struct InbodyDataDetailView: View {
                 
             }
         })
-        .navigationTitle(inbodyModel.measurementDateTime.formatting(format: "yyyy.MM.dd hh:mm:ss"))
+        .navigationTitle(.init("inbody data edit"))
         
         .onDisappear {
             if isUpdateSucess == false {
@@ -151,7 +159,7 @@ struct InbodyDataDetailView: View {
         PointModel.use(useCase: .inbodyDataEdit) { error in
             self.error = error
             if error == nil {
-                tempData.update { error in
+                tempData.save { error in
                     self.error = error
                     if error == nil {
                         isUpdateSucess = true
