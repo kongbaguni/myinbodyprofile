@@ -94,6 +94,9 @@ struct UpdateProfileView: View {
             } else {
                 List {
                     Section {
+                        PointNeedView(pointCase: .editProfile)
+                    }
+                    Section {
                         PhotoPickerView(selectedImageData: $photoData, size: .init(width: 150, height: 150), placeHolder: nil, profileImageView: ProfileImageView(profile: profile, size: .init(width: 150, height: 150), drawRound: false))
                         
                         if profile.profileImageURL != nil  && photoData == nil {
