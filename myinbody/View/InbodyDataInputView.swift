@@ -219,7 +219,9 @@ struct InbodyDataInputView: View {
             type.textValue
             switch type {
             case .measurementDate:
-                Text(measurementDate.formatted(date: .complete, time: .shortened))
+                DatePicker(selection: $measurementDate) {
+                    Text("inbody input title measurementDate")
+                }
             default:
                 Text(String(format:type.formatString, getValue(type: type)))
                     .bold()
@@ -233,35 +235,42 @@ struct InbodyDataInputView: View {
     }
     
     func makeEditLinkView(type:InbodyModel.InbodyInputDataType)-> some View {
-        NavigationLink {
+        Group {
             switch type {
-            case .height:
-                InbodyDataEditView(type: type, value: $height)
-            case .weight:
-                InbodyDataEditView(type: type, value: $weight)
-            case .skeletal_muscle_mass:
-                InbodyDataEditView(type: type, value: $skeletal_muscle_mass)
-            case .body_fat_mass:
-                InbodyDataEditView(type: type, value: $body_fat_mass)
-            case .total_body_water:
-                InbodyDataEditView(type: type, value: $total_body_water)
-            case .protein:
-                InbodyDataEditView(type: type, value: $protein)
-            case .mineral:
-                InbodyDataEditView(type: type, value: $mineral)
-            case .percent_body_fat:
-                InbodyDataEditView(type: type, value: $percent_body_fat)
-            case .waist_hip_ratio:
-                InbodyDataEditView(type: type, value: $waist_hip_ratio)
-            case .basal_metabolic_ratio:
-                InbodyDataEditView(type: type, value: $basal_metabolic_ratio)
-            case .visceral_fat:
-                InbodyDataEditView(type: type, value: $visceral_fat)
+            case .measurementDate:
+                makeDataView(type: type)
             default:
-                EmptyView()
+                NavigationLink {
+                    switch type {
+                    case .height:
+                        InbodyDataEditView(type: type, value: $height)
+                    case .weight:
+                        InbodyDataEditView(type: type, value: $weight)
+                    case .skeletal_muscle_mass:
+                        InbodyDataEditView(type: type, value: $skeletal_muscle_mass)
+                    case .body_fat_mass:
+                        InbodyDataEditView(type: type, value: $body_fat_mass)
+                    case .total_body_water:
+                        InbodyDataEditView(type: type, value: $total_body_water)
+                    case .protein:
+                        InbodyDataEditView(type: type, value: $protein)
+                    case .mineral:
+                        InbodyDataEditView(type: type, value: $mineral)
+                    case .percent_body_fat:
+                        InbodyDataEditView(type: type, value: $percent_body_fat)
+                    case .waist_hip_ratio:
+                        InbodyDataEditView(type: type, value: $waist_hip_ratio)
+                    case .basal_metabolic_ratio:
+                        InbodyDataEditView(type: type, value: $basal_metabolic_ratio)
+                    case .visceral_fat:
+                        InbodyDataEditView(type: type, value: $visceral_fat)
+                    default:
+                        EmptyView()
+                    }
+                } label: {
+                    makeDataView(type: type)
+                }
             }
-        } label: {
-            makeDataView(type: type)
         }
     }
     
