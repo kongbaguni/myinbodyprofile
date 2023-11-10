@@ -168,7 +168,7 @@ struct UpdateProfileView: View {
                     message: .init(error?.localizedDescription ?? ""),
                     primaryButton: .cancel(),
                     secondaryButton: .default(.init("ad watch"), action: {
-                        ad.showAd { isSucess in
+                        ad.showAd { error in
                             if error == nil {
                                 saveWithPointUse()
                             }
