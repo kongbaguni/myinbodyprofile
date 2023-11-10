@@ -84,7 +84,7 @@ struct DataDetailView: View {
                 }
             }
             
-            if to < profile.inbodys.count {
+            if to < profile.inbodys.filter("deleted = %@",false).count {
                 Button {
                     setIdx(lastIdx: to + rows)
                 } label : {

@@ -7,22 +7,6 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "01BB057B-9354-4CEA-96E0-B28EB6C0BAF8"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "myinbody/View/UpdateProfileView.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "32"
-            endingLineNumber = "32"
-            landmarkName = "saveWithPointUse()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
             uuid = "BE85694A-417F-4C9B-9E53-B38BCAF08BFF"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
@@ -39,56 +23,8 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "E573B6C1-AE0D-4E7F-8834-821F83C8038B"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "myinbody/View/UpdateProfileView.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "31"
-            endingLineNumber = "31"
-            landmarkName = "saveWithPointUse()"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "E573B6C1-AE0D-4E7F-8834-821F83C8038B - b4a150c94e1bad1a"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "myinbody.UpdateProfileView.saveWithPointUse() -&gt; ()"
-                  moduleName = "myinbody"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/changyeolseo/Documents/iOS/myinbody/myinbody/View/UpdateProfileView.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "31"
-                  endingLineNumber = "31"
-                  offsetFromSymbolStart = "112">
-               </Location>
-               <Location
-                  uuid = "E573B6C1-AE0D-4E7F-8834-821F83C8038B - 9eac638b38b50784"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (Swift.Optional&lt;Swift.Error&gt;) -&gt; () in myinbody.UpdateProfileView.saveWithPointUse() -&gt; ()"
-                  moduleName = "myinbody"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/changyeolseo/Documents/iOS/myinbody/myinbody/View/UpdateProfileView.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "32"
-                  endingLineNumber = "32"
-                  offsetFromSymbolStart = "116">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
             uuid = "53C7E819-7CA8-4EFB-BA98-06B25F9EC649"
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "myinbody/View/UpdateProfileView.swift"
