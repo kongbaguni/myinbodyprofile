@@ -157,4 +157,62 @@ extension PointModel {
         }
     }
     
+    static func pointLogCombine(progress:@escaping(_ progress:Progress)->Void, complete:@escaping(_ error:Error?)->Void) {
+        guard let collection = FirebaseFirestoreHelper.pointCollection else {
+            return
+        }
+        
+        func deleteAll() {
+            let realm = Realm.shared
+            let list = realm.objects(PointModel.self)
+            realm.beginWrite()
+            realm.delete(list)
+            try! realm.commitWrite()
+        }
+        
+        func delete(ids:[String]) {
+            let realm = Realm.shared
+            realm.beginWrite()
+            for id in ids {
+                if let model = realm.object(ofType: PointModel.self, forPrimaryKey: id) {
+                    realm.delete(model)
+                }
+            }
+            try! realm.commitWrite()
+        }
+        
+        let sum = PointModel.sum
+        let list = Realm.shared.objects(PointModel.self)
+        var deleteSucessList:[String] = []
+        var deletedSum:Int = 0
+        
+        for point in list {
+            let id = point.id
+            let value = point.value
+            
+            collection.document(id).delete { error in
+                if error == nil {
+                    deleteSucessList.append(id)
+                    deletedSum += value
+                    let p = Progress(totalUnitCount: Int64(list.count))
+                    p.completedUnitCount = Int64(deleteSucessList.count)
+                    progress(p)
+                    
+                    if deleteSucessList.count == list.count {
+                        deleteAll()
+                        PointModel.add(value: sum, desc: "combin point history") { error in
+                            complete(error)
+                        }
+                    }
+                } else {
+                    complete(error)
+                    delete(ids: deleteSucessList)
+                    PointModel.add(value: deletedSum, desc: "combin point history") { error in
+                        
+                    }
+                }
+            }
+        }
+        
+    }
 }

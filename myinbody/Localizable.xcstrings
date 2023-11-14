@@ -286,6 +286,44 @@
         }
       }
     },
+    "combin point history" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "포인트 내역 결합"
+          }
+        }
+      }
+    },
+    "combine point" : {
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "포인트 결합"
+          }
+        }
+      }
+    },
+    "combine point history alert" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Combine point history.\nWhen you combine, the point usage history so far will be added up and the point history will disappear.\nDo you want to run it?"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "포인트 이력을 결합합니다. \n결합을 실행하면 지금까지 포인트 사용 내역이 합산되어 포인트 내역이 사라지게 됩니다.\n실행하겠습니까? "
+          }
+        }
+      }
+    },
     "confirm" : {
       "extractionState" : "manual",
       "localizations" : {

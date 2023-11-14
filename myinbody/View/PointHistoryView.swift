@@ -23,6 +23,8 @@ struct PointHistoryView: View {
         }
     }
     @State var isAlert:Bool = false
+    
+    
     var body: some View {
         List {
             HStack {
@@ -49,6 +51,15 @@ struct PointHistoryView: View {
                             .foregroundStyle(.secondary)
                         Text(point.localizedDesc)
                             .foregroundStyle(.secondary)
+                    }
+                }
+            }
+            if points.count > 1 {
+                Section {
+                    NavigationLink {
+                        PointHistoryCombineView()
+                    } label: {
+                        Text("combin point history")
                     }
                 }
             }
