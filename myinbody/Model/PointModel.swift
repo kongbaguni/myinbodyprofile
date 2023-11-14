@@ -223,7 +223,7 @@ extension PointModel {
         var isAppearCombinLog = false
         var deleteModels:[PointModel] = []
         for object in list {
-            if object.desc == "combin point history" {
+            if object.desc == "combin point history" && isAppearCombinLog == false {
                 isAppearCombinLog = true
                 continue
             }
