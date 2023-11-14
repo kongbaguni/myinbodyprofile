@@ -1350,7 +1350,7 @@
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "등록일 :"
+            "value" : "등록일시 :"
           }
         }
       }
@@ -1361,7 +1361,7 @@
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "등록일 :"
+            "value" : "등록일시 :"
           }
         }
       }
@@ -1483,6 +1483,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "지원하지 않는 형식입니다."
+          }
+        }
+      }
+    },
+    "update dt :" : {
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "수정일시 :"
           }
         }
       }

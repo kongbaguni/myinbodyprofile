@@ -103,6 +103,10 @@ struct InbodyDataDetailView: View {
                 Text("reg dt :").foregroundStyle(.secondary)
                 Text(inbodyModel.regDateTime.formatting(format: "yyyy.MM.dd hh:mm:ss")).foregroundStyle(.primary)
             }
+            HStack {
+                Text("update dt :").foregroundStyle(.secondary)
+                Text(inbodyModel.updateDateTime.formatting(format: "yyyy.MM.dd hh:mm:ss")).foregroundStyle(.primary)
+            }
             
             Section("ad"){
                 NativeAdView()
