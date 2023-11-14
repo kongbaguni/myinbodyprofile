@@ -81,6 +81,7 @@ extension PointModel {
                     realm.create(PointModel.self, value: data, update: .all)
                 }
                 try! realm.commitWrite()
+                PointModel.pointLogCombineCheck()
             }
             NotificationCenter.default.post(name: .pointDidChanged, object: PointModel.sum)
             complete(error)
@@ -213,6 +214,28 @@ extension PointModel {
                 }
             }
         }
+    }
+    
+    // 포인트 내역 결합이 있는 경우 과거 로그 삭제
+    static func pointLogCombineCheck() {
+        let realm = Realm.shared
+        let list = realm.objects(PointModel.self).sorted(byKeyPath: "regTimeIntervalSince1970", ascending: false)
+        var isAppearCombinLog = false
+        var deleteModels:[PointModel] = []
+        for object in list {
+            if object.desc == "combin point history" {
+                isAppearCombinLog = true
+                continue
+            }
+            if isAppearCombinLog {
+                deleteModels.append(object)
+            }
+        }
         
+        realm.beginWrite()
+        for item in deleteModels {
+            realm.delete(item)
+        }
+        try! realm.commitWrite()
     }
 }
