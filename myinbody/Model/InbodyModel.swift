@@ -359,6 +359,7 @@ extension InbodyModel {
         var dicValue = dictionmaryValue
         let id = self.id
         dicValue["id"] = nil
+        dicValue["updateDtTimeIntervalSince1970"] = Date().timeIntervalSince1970
         collection.document(id).setData(dicValue) { error in
             if error == nil {
                 dicValue["id"] = id
