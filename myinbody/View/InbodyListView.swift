@@ -21,7 +21,7 @@ struct InbodyListView: View {
     @State var isAlert:Bool = false
     var body: some View {
         List {
-            ForEach(profile.inbodys.filter("deleted = %@", false), id:\.self) { inbody in
+            ForEach(profile.inbodys.filter("deleted = %@", false).sorted(byKeyPath: "measurementDateTimeIntervalSince1970", ascending: false), id:\.self) { inbody in
                 if inbody.deleted {
                     Text("deleted")
                 } else {
