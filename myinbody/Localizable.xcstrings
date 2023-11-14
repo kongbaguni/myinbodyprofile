@@ -1189,6 +1189,70 @@
         }
       }
     },
+    "Point Description 1" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Users can earn points by watching ads."
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "사용자는 광고를 시청하여 포인트를 얻을 수 있습니다."
+          }
+        }
+      }
+    },
+    "Point Description 2" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Points are used when creating, modifying, or deleting a profile, or registering, modifying, or deleting InBody data."
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "포인트는 프로필을 생성,수정,삭제 하거나 인바디 데이터를 등록,수정,삭제 할 때 사용됩니다."
+          }
+        }
+      }
+    },
+    "Point Description 3" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Point usage\n* Register profile: 5\n* Delete Profile: 10\n* Edit Profile: 2\n* InBody data input: 1\n* InBody data modification: 3\n* InBody data deletion: 4"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "포인트 사용량 \n* 프로필 등록 : 5\n* 프로필 삭제 : 10\n* 프로필 수정 : 2\n* 인바디 데이터 입력 : 1\n* 인바디 데이터 수정 : 3\n* 인바디 데이터 삭제 : 4"
+          }
+        }
+      }
+    },
+    "Point Description title" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "What is Point?"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "포인트가 뭔가요?"
+          }
+        }
+      }
+    },
     "points history" : {
       "extractionState" : "manual",
       "localizations" : {

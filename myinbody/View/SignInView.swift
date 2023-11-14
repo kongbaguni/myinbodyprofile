@@ -18,7 +18,9 @@ struct SignInView: View {
     @State var point:Int = PointModel.sum
     @State var error:Error? = nil {
         didSet {
-            isAlert = error != nil
+            if error != nil {
+                isAlert = true
+            }
         }
     }
     @State var isAlert:Bool = false
@@ -32,7 +34,7 @@ struct SignInView: View {
     }
     @State var isSignin = false
     @State var isAnomymouse = false
-    @State var currentUser:User? = nil
+//    @State var currentUser:User? = nil
     
     private func makeImage(image:Image, text:Text)-> some View {
         HStack {
@@ -56,7 +58,7 @@ struct SignInView: View {
     }
     
     func checkSignin() {
-        currentUser = AuthManager.shared.auth.currentUser
+//        currentUser = AuthManager.shared.auth.currentUser
         isSignin = AuthManager.shared.isSignined
         isAnomymouse = isSignin ? AuthManager.shared.auth.currentUser?.isAnonymous ?? false : false
         if isSignin {
@@ -190,7 +192,7 @@ struct SignInView: View {
         List {
             Section {
                 if isSignin {
-                    if let user = currentUser {
+                    if let user = AuthManager.shared.auth.currentUser {
                         makeText(left: .init("id :"), right: user.uid)
                         if let date = user.metadata.lastSignInDate {
                             makeText(left: .init("last signin date :"), right: date.formatted(date: .numeric, time: .shortened))
@@ -265,7 +267,7 @@ struct SignInView: View {
         .listStyle(.automatic)
         .navigationTitle(isSignin ? Text("signin info") : Text("signin"))
         .onAppear {
-            currentUser = AuthManager.shared.auth.currentUser
+//            currentUser = AuthManager.shared.auth.currentUser
             checkSignin()
         }
         .onReceive(NotificationCenter.default.publisher(for: .pointDidChanged), perform: { noti in

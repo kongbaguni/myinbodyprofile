@@ -93,6 +93,7 @@
 		1BD9936B2AFB5D5B0061E466 /* AdIDs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BD9936A2AFB5D5B0061E466 /* AdIDs.swift */; };
 		1BD9936D2AFB606A0061E466 /* PointModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BD9936C2AFB606A0061E466 /* PointModel.swift */; };
 		1BDF27C42AE0C1D800D32183 /* Date+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BDF27C32AE0C1D800D32183 /* Date+Extensions.swift */; };
+		1BE27BB92B02FC7E003249E9 /* PointDescriptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BE27BB82B02FC7E003249E9 /* PointDescriptionView.swift */; };
 		1BFACFE42AD7C9EB00AA106C /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BFACFE32AD7C9EB00AA106C /* HomeView.swift */; };
 		1BFACFE82AD7D30F00AA106C /* ProfileModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BFACFE72AD7D30F00AA106C /* ProfileModel.swift */; };
 		1BFACFEB2AD7D33D00AA106C /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = 1BFACFEA2AD7D33D00AA106C /* Realm */; };
@@ -161,6 +162,7 @@
 		1BD9936A2AFB5D5B0061E466 /* AdIDs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdIDs.swift; sourceTree = "<group>"; };
 		1BD9936C2AFB606A0061E466 /* PointModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PointModel.swift; sourceTree = "<group>"; };
 		1BDF27C32AE0C1D800D32183 /* Date+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extensions.swift"; sourceTree = "<group>"; };
+		1BE27BB82B02FC7E003249E9 /* PointDescriptionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PointDescriptionView.swift; sourceTree = "<group>"; };
 		1BFACFE32AD7C9EB00AA106C /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		1BFACFE72AD7D30F00AA106C /* ProfileModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileModel.swift; sourceTree = "<group>"; };
 		1BFACFEF2AD7D3E700AA106C /* Realm+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Realm+Extensions.swift"; sourceTree = "<group>"; };
@@ -334,6 +336,7 @@
 				1B2D307D2AFDBD0F004C55F4 /* InbodyDataEditView.swift */,
 				1B2D307F2AFDE72A004C55F4 /* PointNeedView.swift */,
 				1B2D30812AFDFF05004C55F4 /* InbodyDataDeleteConfirmView.swift */,
+				1BE27BB82B02FC7E003249E9 /* PointDescriptionView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -507,6 +510,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1BE27BB92B02FC7E003249E9 /* PointDescriptionView.swift in Sources */,
 				1B97E53A2AD91051007EC45B /* ImageTextView.swift in Sources */,
 				1B11B8412AD66BEF00B0F5DB /* ContentView.swift in Sources */,
 				1B2D307C2AFCCA82004C55F4 /* InbodyDataDetailView.swift in Sources */,

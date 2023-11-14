@@ -13,7 +13,9 @@ struct InbodyDataDetailView: View {
 
     @State var error:Error? = nil {
         didSet {
-            isAlert = error != nil
+            if error != nil {
+                isAlert = true
+            }
         }
     }
     @State var isAlert:Bool = false

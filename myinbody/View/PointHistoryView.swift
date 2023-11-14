@@ -17,7 +17,9 @@ struct PointHistoryView: View {
     
     @State var error:Error? = nil {
         didSet {
-            isAlert = error != nil
+            if error != nil {
+                isAlert = true
+            }
         }
     }
     @State var isAlert:Bool = false
@@ -31,6 +33,12 @@ struct PointHistoryView: View {
                     .foregroundStyle(.primary)
                 
             }
+            NavigationLink {
+                PointDescriptionView()
+            } label: {
+                Text("Point Description title")
+            }
+
             Section {
                 ForEach(points, id:\.self) { point in
                     HStack {
