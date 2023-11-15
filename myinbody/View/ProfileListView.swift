@@ -36,46 +36,47 @@ struct ProfileListView: View {
                         .scaledToFit()
                         .padding(20)
                 }
-            }
-            Section {
-                ForEach(profiles, id:\.self) { profile in
-                    NavigationLink {
-                        ProfileDetailView(profile: profile)
-                    } label: {
-                        HStack {
-                            ProfileImageView(profile: profile, size: .init(width: 150, height: 150), drawRound: true)
-                            VStack(alignment: .leading) {
-                                Text(profile.name)
-                                    .font(.system(size: 18))
-                                    .bold()
-                                if let inbody = profile.inbodys.filter("deleted = %@", false).last {
-                                    Divider()
-                                    
-                                    HStack {
-                                        Text("weight :")
-                                            .foregroundStyle(.secondary)
-                                            .font(.system(size: 12))
-                                        Text(String(format: "%0.0f", inbody.weight))
-                                            .font(.system(size: 18, weight: .heavy))
-                                        Text("kg")
-                                            .foregroundStyle(.secondary)
-                                            .font(.system(size: 12))
-                                    }
-                                    
-                                    HStack {
-                                        Text("inbody point :")
-                                            .foregroundStyle(.secondary)
-                                            .font(.system(size: 12))
-                                        Text(String(format: "%0.0f", inbody.inbodyPoint))
-                                            .font(.system(size: 18, weight: .heavy))
-                                    }
-                                    
-                                    HStack {
-                                        Text("BMI :")
-                                            .foregroundStyle(.secondary)
-                                            .font(.system(size: 12))
-                                        Text(String(format: "%0.1f", inbody.bmi))
-                                            .font(.system(size: 18, weight: .heavy))
+            } else {
+                Section {
+                    ForEach(profiles, id:\.self) { profile in
+                        NavigationLink {
+                            ProfileDetailView(profile: profile)
+                        } label: {
+                            HStack {
+                                ProfileImageView(profile: profile, size: .init(width: 150, height: 150), drawRound: true)
+                                VStack(alignment: .leading) {
+                                    Text(profile.name)
+                                        .font(.system(size: 18))
+                                        .bold()
+                                    if let inbody = profile.inbodys.filter("deleted = %@", false).last {
+                                        Divider()
+                                        
+                                        HStack {
+                                            Text("weight :")
+                                                .foregroundStyle(.secondary)
+                                                .font(.system(size: 12))
+                                            Text(String(format: "%0.0f", inbody.weight))
+                                                .font(.system(size: 18, weight: .heavy))
+                                            Text("kg")
+                                                .foregroundStyle(.secondary)
+                                                .font(.system(size: 12))
+                                        }
+                                        
+                                        HStack {
+                                            Text("inbody point :")
+                                                .foregroundStyle(.secondary)
+                                                .font(.system(size: 12))
+                                            Text(String(format: "%0.0f", inbody.inbodyPoint))
+                                                .font(.system(size: 18, weight: .heavy))
+                                        }
+                                        
+                                        HStack {
+                                            Text("BMI :")
+                                                .foregroundStyle(.secondary)
+                                                .font(.system(size: 12))
+                                            Text(String(format: "%0.1f", inbody.bmi))
+                                                .font(.system(size: 18, weight: .heavy))
+                                        }
                                     }
                                 }
                             }
