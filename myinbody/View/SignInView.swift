@@ -62,10 +62,8 @@ struct SignInView: View {
         isSignin = AuthManager.shared.isSignined
         isAnomymouse = isSignin ? AuthManager.shared.auth.currentUser?.isAnonymous ?? false : false
         if isSignin {
-            ProfileModel.sync { errorA in
-                PointModel.initPoint { errorB in
-                    self.error = errorA ?? errorB
-                }
+            PointModel.initPoint { errorB in
+                self.error = errorA ?? errorB
             }
         }
     }

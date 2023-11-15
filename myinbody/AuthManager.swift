@@ -124,6 +124,9 @@ class AuthManager : NSObject {
                     return
                 }
                 complete(true, nil)
+                if error == nil {
+                    NotificationCenter.default.post(name: .authDidSucessed, object: nil)
+                }
             }
         }
     }
@@ -153,6 +156,9 @@ class AuthManager : NSObject {
                 return
             }
             complete(true,nil)
+            if error == nil {
+                NotificationCenter.default.post(name: .authDidSucessed, object: nil)
+            }
         }
     }
     //MARK: - 로그아웃
@@ -305,6 +311,9 @@ class AuthManager : NSObject {
             let credential = GoogleAuthProvider.credential(withIDToken: idToken,
                                                            accessToken: accessToken)
             auth.currentUser?.link(with: credential, completion: { result, error in
+                if error == nil {
+                    NotificationCenter.default.post(name: .authDidSucessed, object: nil)
+                }
                 complete(error == nil, error)
             })
         }
@@ -363,6 +372,9 @@ extension AuthManager: ASAuthorizationControllerDelegate {
             } else {
                 auth.currentUser?.link(with: credential, completion: { [unowned self] result, error in
                     didComplete(error == nil, error)
+                    if error == nil {
+                        NotificationCenter.default.post(name: .authDidSucessed, object: nil)
+                    }
                 })
             }
             
