@@ -77,12 +77,14 @@ struct ProfileListView: View {
     var body: some View {
         List {
             Section {
-                profiles.count == 0
-                ? Image("launchIcon")
-                    .resizable()
-                    .scaledToFit()
-                    .padding(20)
-                : profileList
+                if profiles.count == 0 {
+                    Image("launchIcon")
+                        .resizable()
+                        .scaledToFit()
+                        .padding(20)
+                } else {
+                    profileList
+                }
             }
             Section("ad") {
                 NativeAdView()
