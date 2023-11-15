@@ -73,15 +73,20 @@ extension PointModel {
         
         collection.whereField("regTimeIntervalSince1970", isGreaterThan: regTime).getDocuments { snapShot, error in
             if error == nil {
-                let realm = Realm.shared
-                realm.beginWrite()
-                for document in snapShot?.documents ?? [] {
-                    var data = document.data()
-                    data["id"] = document.documentID
-                    realm.create(PointModel.self, value: data, update: .all)
+                do {
+                    let realm = Realm.shared
+                    realm.beginWrite()
+                    for document in snapShot?.documents ?? [] {
+                        var data = document.data()
+                        data["id"] = document.documentID
+                        realm.create(PointModel.self, value: data, update: .all)
+                    }
+                    try realm.commitWrite()
+                    PointModel.pointLogCombineCheck()
+                } catch {
+                    complete(error)
+                    return
                 }
-                try! realm.commitWrite()
-                PointModel.pointLogCombineCheck()
             }
             NotificationCenter.default.post(name: .pointDidChanged, object: PointModel.sum)
             complete(error)
@@ -107,12 +112,17 @@ extension PointModel {
             
             pointRegRefId = collection.addDocument(data: data) { error in
                 if let id = pointRegRefId {
-                    if error == nil {
-                        data["id"] = id
-                        let realm = Realm.shared
-                        realm.beginWrite()
-                        realm.create(PointModel.self, value: data, update: .all)
-                        try! realm.commitWrite()
+                    do {
+                        if error == nil {
+                            data["id"] = id
+                            let realm = Realm.shared
+                            realm.beginWrite()
+                            realm.create(PointModel.self, value: data, update: .all)
+                            try realm.commitWrite()
+                        }
+                    } catch {
+                        complete(error)
+                        return
                     }
                     pointRegRefId = nil
                     NotificationCenter.default.post(name: .pointDidChanged, object: PointModel.sum)
@@ -163,23 +173,33 @@ extension PointModel {
             return
         }
         
-        func deleteAll() {
-            let realm = Realm.shared
-            let list = realm.objects(PointModel.self)
-            realm.beginWrite()
-            realm.delete(list)
-            try! realm.commitWrite()
+        func deleteAll()->Error? {
+            do {
+                let realm = Realm.shared
+                let list = realm.objects(PointModel.self)
+                realm.beginWrite()
+                realm.delete(list)
+                try realm.commitWrite()
+            } catch {
+                return error
+            }
+            return nil
         }
         
-        func delete(ids:[String]) {
-            let realm = Realm.shared
-            realm.beginWrite()
-            for id in ids {
-                if let model = realm.object(ofType: PointModel.self, forPrimaryKey: id) {
-                    realm.delete(model)
+        func delete(ids:[String])->Error? {
+            do {
+                let realm = Realm.shared
+                realm.beginWrite()
+                for id in ids {
+                    if let model = realm.object(ofType: PointModel.self, forPrimaryKey: id) {
+                        realm.delete(model)
+                    }
                 }
+                try realm.commitWrite()
+            } catch {
+                return error
             }
-            try! realm.commitWrite()
+            return nil
         }
         
         let sum = PointModel.sum
@@ -231,11 +251,14 @@ extension PointModel {
                 deleteModels.append(object)
             }
         }
-        
-        realm.beginWrite()
-        for item in deleteModels {
-            realm.delete(item)
+        do {
+            realm.beginWrite()
+            for item in deleteModels {
+                realm.delete(item)
+            }
+            try realm.commitWrite()
+        } catch {
+            print(error.localizedDescription)
         }
-        try! realm.commitWrite()
     }
 }

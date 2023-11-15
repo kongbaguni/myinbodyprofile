@@ -278,17 +278,22 @@ extension InbodyModel {
         let id = profile.id
         
         query.getDocuments { snapshot, error in
-            let realm = Realm.shared
-            let profile = realm.object(ofType: ProfileModel.self, forPrimaryKey: id)
-            
-            try! realm.write {
-                for document in snapshot?.documents ?? [] {
-                    let id = document.documentID
-                    var data = document.data()
-                    data["id"] = id
-                    let model = realm.create(InbodyModel.self, value: data, update: .all)
-                    profile?.inbodys.append(model)
+            do {
+                let realm = Realm.shared
+                let profile = realm.object(ofType: ProfileModel.self, forPrimaryKey: id)
+                
+                try realm.write {
+                    for document in snapshot?.documents ?? [] {
+                        let id = document.documentID
+                        var data = document.data()
+                        data["id"] = id
+                        let model = realm.create(InbodyModel.self, value: data, update: .all)
+                        profile?.inbodys.append(model)
+                    }
                 }
+            } catch {
+                complete(error)
+                return
             }
             complete(error)
         }
@@ -313,14 +318,19 @@ extension InbodyModel {
             }
             var dbData = data
             dbData["id"] = id
-            let realm = Realm.shared
-            try! realm.write {
+            do {
+                let realm = Realm.shared
+                realm.beginWrite()
                 let obj = realm.create(InbodyModel.self, value: dbData)
                 let profile = realm.object(ofType: ProfileModel.self, forPrimaryKey: profile.id)!
                 profile.inbodys.append(obj)
+                try realm.commitWrite()
+                FirebaseFirestoreHelper.documentReferance = nil
+                print(realm.objects(InbodyModel.self).count)
             }
-            FirebaseFirestoreHelper.documentReferance = nil
-            print(realm.objects(InbodyModel.self).count)
+            catch {
+                complete(error)
+            }
         }
     }
     
@@ -340,11 +350,15 @@ extension InbodyModel {
         
         collection.document(id).updateData(data) { error in
             if error == nil {
-                data["id"] = id
-                let realm = Realm.shared
-                realm.beginWrite()
-                realm.create(InbodyModel.self, value: data, update: .modified)
-                try! realm.commitWrite()
+                do {
+                    data["id"] = id
+                    let realm = Realm.shared
+                    realm.beginWrite()
+                    realm.create(InbodyModel.self, value: data, update: .modified)
+                    try realm.commitWrite()
+                } catch {
+                    complete(error)
+                }
             }
             complete(error)
         }
@@ -362,11 +376,16 @@ extension InbodyModel {
         dicValue["updateDtTimeIntervalSince1970"] = Date().timeIntervalSince1970
         collection.document(id).setData(dicValue) { error in
             if error == nil {
-                dicValue["id"] = id
-                let realm = Realm.shared
-                realm.beginWrite()
-                realm.create(InbodyModel.self, value:dicValue, update: .all)
-                try! realm.commitWrite()
+                do {
+                    dicValue["id"] = id
+                    let realm = Realm.shared
+                    realm.beginWrite()
+                    realm.create(InbodyModel.self, value:dicValue, update: .all)
+                    try realm.commitWrite()
+                } catch {
+                    complete(error)
+                    return
+                }
             }            
             complete(error)
         }
@@ -379,11 +398,16 @@ extension InbodyModel {
         }
         collection.document(id).getDocument { snapshot, error in
             if let documentID = snapshot?.documentID, var data = snapshot?.data() {
-                data["id"] = documentID
-                let realm = Realm.shared
-                realm.beginWrite()
-                realm.create(InbodyModel.self, value: data, update: .all)
-                try! realm.commitWrite()
+                do {
+                    data["id"] = documentID
+                    let realm = Realm.shared
+                    realm.beginWrite()
+                    realm.create(InbodyModel.self, value: data, update: .all)
+                    try realm.commitWrite()
+                } catch {
+                    complete(error)
+                    return 
+                }
             }
             complete(error)
         }
