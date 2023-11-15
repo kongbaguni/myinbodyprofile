@@ -123,12 +123,9 @@ struct HomeView: View {
             }
         }
         .navigationTitle(Text("home"))
-        .onReceive(NotificationCenter.default.publisher(for: .profileModelDidUpdated), perform: { noti in
-            isSignin = AuthManager.shared.isSignined
-        })
         .onAppear {
             ProfileModel.sync { error in
-                
+                isSignin = AuthManager.shared.isSignined
             }
         }
     }
