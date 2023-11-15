@@ -126,6 +126,11 @@ struct HomeView: View {
         .onReceive(NotificationCenter.default.publisher(for: .profileModelDidUpdated), perform: { noti in
             isSignin = AuthManager.shared.isSignined
         })
+        .onAppear {
+            ProfileModel.sync { error in
+                
+            }
+        }
     }
     
 }
