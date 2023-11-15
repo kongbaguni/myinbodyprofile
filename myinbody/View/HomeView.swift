@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct HomeView: View {
-    @State var isSignin = false
+    @State var isSignin = AuthManager.shared.isSignined
     var body: some View {
         VStack {
             if isSignin {
