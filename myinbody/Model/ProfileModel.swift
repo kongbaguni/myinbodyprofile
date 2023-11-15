@@ -9,6 +9,10 @@ import Foundation
 import RealmSwift
 import FirebaseFirestore
 
+extension Notification.Name {
+    static let profileModelDidUpdated = Notification.Name("profileModelDidUpdated_observer")
+}
+
 class ProfileModel  : Object, ObjectKeyIdentifiable {
     @Persisted(primaryKey: true) var id:String = ""
     @Persisted var name:String = ""
@@ -76,7 +80,8 @@ extension ProfileModel  {
         }
         collection.getDocuments { snapshot, error in
             let realm = Realm.shared
-            try! realm.write {
+            do {
+                realm.beginWrite()
                 for document in snapshot?.documents ?? [] {
                     var data = document.data()
                     data["id"] = document.documentID
@@ -88,8 +93,12 @@ extension ProfileModel  {
                             }
                         }
                     }
-
+                    
                 }
+                try realm.commitWrite()
+            }
+            catch {
+                complete(error)
             }
         }
     }
@@ -109,10 +118,13 @@ extension ProfileModel  {
                 if error == nil {
                     var dbData = value
                     dbData["id"] = documentId
-                    
-                    let realm = Realm.shared
-                    try! realm.write {
+                    do {
+                        let realm = Realm.shared
+                        realm.beginWrite()
                         realm.create(ProfileModel .self, value: dbData, update: .all)
+                        try realm.commitWrite()
+                    } catch {
+                        complete(documentId, error)
                     }
                 }
                 complete(documentId, error)
@@ -138,12 +150,18 @@ extension ProfileModel  {
             return 
         }
         collection.document(id).getDocument { snapShot, error in
-            if var data = snapShot?.data() {
-                data["id"] = id
-                let realm = Realm.shared
-                try! realm.write {
+            do {
+                if var data = snapShot?.data() {
+                    data["id"] = id
+                    let realm = Realm.shared
+                    realm.beginWrite()
                     realm.create(ProfileModel.self,value: data, update: .all)
+                    try realm.commitWrite()
+                    NotificationCenter.default.post(name: .profileModelDidUpdated, object: nil)
                 }
+            } catch {
+                complete(error)
+                return
             }
             complete(error)
         }
@@ -191,11 +209,16 @@ extension ProfileModel  {
         func deleteself()  {
             DispatchQueue.main.async {
                 if removeWithLocal {
-                    let realm = Realm.shared
-                    if let obj = realm.object(ofType: ProfileModel.self, forPrimaryKey: id) {
-                        try! realm.write {
+                    do {
+                        let realm = Realm.shared
+                        if let obj = realm.object(ofType: ProfileModel.self, forPrimaryKey: id) {
+                            realm.beginWrite()
                             realm.delete(obj)
+                            try realm.commitWrite()
+                            NotificationCenter.default.post(name: .profileModelDidUpdated, object: nil)
                         }
+                    } catch {
+                        print(error)
                     }
                 }
 
