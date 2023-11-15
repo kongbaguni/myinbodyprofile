@@ -27,6 +27,8 @@ struct ProfileListView: View {
     
     @State var isAlert:Bool = false
     
+    @State var profileCount = 0
+    
     var profileList : some View {
         ForEach(profiles, id:\.self) { profile in
             NavigationLink {
@@ -77,7 +79,7 @@ struct ProfileListView: View {
     var body: some View {
         List {
             Section {
-                if profiles.count == 0 {
+                if profileCount == 0 {
                     Image("launchIcon")
                         .resizable()
                         .scaledToFit()
@@ -100,11 +102,13 @@ struct ProfileListView: View {
         .refreshable {
             ProfileModel.sync { error in
                 self.error = error
+                profileCount = Realm.shared.objects(ProfileModel.self).count
             }
         }
         .onAppear {
             ProfileModel.sync { error in
                 self.error = error
+                profileCount = Realm.shared.objects(ProfileModel.self).count
             }
         }
         .alert(isPresented: $isAlert) {
