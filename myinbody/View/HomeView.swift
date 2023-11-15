@@ -107,6 +107,11 @@ struct HomeView: View {
                         height:UIScreen.main.bounds.height * 0.5))
                 .padding(50)
                 
+                Text("app desc home")
+                    .font(.caption2)
+                    .bold()
+                    .padding(20)
+                
                 NavigationLink {
                     SignInView()
                 } label: {

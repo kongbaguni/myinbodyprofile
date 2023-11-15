@@ -24,6 +24,7 @@ fileprivate func userMessagePlatformPrompt(complete:@escaping()->Void) {
             }
             return
         }
+        
       // Loads a consent form. Must be called on the main thread.
         UMPConsentForm.load { form, loadError in
             if loadError != nil {
@@ -35,18 +36,19 @@ fileprivate func userMessagePlatformPrompt(complete:@escaping()->Void) {
                     form?.present(
                         from: lvc,
                         completionHandler: { dismissError in
-                            if UMPConsentInformation.sharedInstance.consentStatus == UMPConsentStatus.obtained {
-                                // App can start requesting ads.
+                            switch UMPConsentInformation.sharedInstance.consentStatus {
+                                case UMPConsentStatus.obtained:
+                                    // App can start requesting ads.
+                                    break
+                                default:
+                                    // Handle dismissal by reloading form.
+                                    break
                             }
-                            // Handle dismissal by reloading form.
-//                            loadForm();
                         })
                 } else {
                     // Keep the form available for changes to user consent.
                 }
-                
             }
-
         }
     }
     
