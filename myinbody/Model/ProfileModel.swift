@@ -96,6 +96,7 @@ extension ProfileModel  {
                     
                 }
                 try realm.commitWrite()
+                NotificationCenter.default.post(name: .profileModelDidUpdated, object: nil)
             }
             catch {
                 complete(error)
