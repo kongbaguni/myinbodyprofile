@@ -82,9 +82,11 @@ extension ProfileModel  {
             let realm = Realm.shared
             do {
                 realm.beginWrite()
-                for obj in realm.objects(ProfileModel.self) {
-                    realm.delete(obj)
+                let ids = realm.objects(ProfileModel.self).map { model in
+                    model.id
                 }
+
+                var serverIds:[String] = []
                 
                 for document in snapshot?.documents ?? [] {
                     var data = document.data()
@@ -97,8 +99,19 @@ extension ProfileModel  {
                             }
                         }
                     }
+                    serverIds.append(document.documentID)
                 }
+                
+                for id in ids {
+                    if serverIds.firstIndex(of: id) == nil {
+                        if let obj = realm.object(ofType: ProfileModel.self, forPrimaryKey: id) {
+                            realm.delete(obj)
+                        }
+                    }
+                }
+
                 try realm.commitWrite()
+                
                 
             }
             catch {
