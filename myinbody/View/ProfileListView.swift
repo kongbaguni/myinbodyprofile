@@ -10,7 +10,7 @@ import RealmSwift
 
 struct ProfileListView: View {
     @ObservedResults(
-        ProfileModel .self,
+        ProfileModel.self,
         sortDescriptor: .init(
             keyPath: "name"
             ,ascending: true
@@ -114,9 +114,7 @@ struct ProfileListView: View {
         ProfileModel.sync { error in
             self.error = error
             if error == nil {
-                DispatchQueue.main.async {
-                    profileCount = Realm.shared.objects(ProfileModel.self).count                    
-                }
+                profileCount = profiles.count
             }
         }
     }

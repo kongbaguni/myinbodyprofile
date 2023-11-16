@@ -149,7 +149,6 @@ struct ProfileDetailView: View {
                             realm.beginWrite()
                             realm.delete(obj)
                             try! realm.commitWrite()
-                            NotificationCenter.default.post(name: .profileModelDidUpdated, object: nil)
                         }
                         presentationMode.wrappedValue.dismiss()
                     default:

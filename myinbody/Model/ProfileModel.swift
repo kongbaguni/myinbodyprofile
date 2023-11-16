@@ -82,10 +82,14 @@ extension ProfileModel  {
             let realm = Realm.shared
             do {
                 realm.beginWrite()
+                for obj in realm.objects(ProfileModel.self) {
+                    realm.delete(obj)
+                }
+                
                 for document in snapshot?.documents ?? [] {
                     var data = document.data()
                     data["id"] = document.documentID
-                    let model = realm.create(ProfileModel .self, value: data, update: .all)
+                    let model = realm.create(ProfileModel.self, value: data, update: .all)
                     if let id = model.profileImageId {
                         FirebaseStorageHelper.shared.getDownloadURL(uploadPath: .profileImage, id: id) { url, error in
                             if let url = url {
@@ -93,15 +97,14 @@ extension ProfileModel  {
                             }
                         }
                     }
-                    
                 }
                 try realm.commitWrite()
-                NotificationCenter.default.post(name: .profileModelDidUpdated, object: nil)
+                
             }
             catch {
                 complete(error)
                 return
-            }            
+            }
             complete(error)
         }
     }
@@ -160,7 +163,6 @@ extension ProfileModel  {
                     realm.beginWrite()
                     realm.create(ProfileModel.self,value: data, update: .all)
                     try realm.commitWrite()
-                    NotificationCenter.default.post(name: .profileModelDidUpdated, object: nil)
                 }
             } catch {
                 complete(error)
@@ -218,7 +220,6 @@ extension ProfileModel  {
                             realm.beginWrite()
                             realm.delete(obj)
                             try realm.commitWrite()
-                            NotificationCenter.default.post(name: .profileModelDidUpdated, object: nil)
                         }
                     } catch {
                         print(error)
