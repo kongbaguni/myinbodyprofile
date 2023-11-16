@@ -100,7 +100,9 @@ extension ProfileModel  {
             }
             catch {
                 complete(error)
-            }
+                return
+            }            
+            complete(error)
         }
     }
     

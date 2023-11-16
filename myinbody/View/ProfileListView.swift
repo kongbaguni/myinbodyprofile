@@ -100,19 +100,20 @@ struct ProfileListView: View {
             }
         }
         .refreshable {
-            ProfileModel.sync { error in
-                self.error = error
-                profileCount = Realm.shared.objects(ProfileModel.self).count
-            }
+            loadData()
         }
         .onAppear {
-            ProfileModel.sync { error in
-                self.error = error
-                profileCount = Realm.shared.objects(ProfileModel.self).count
-            }
+            loadData()
         }
         .alert(isPresented: $isAlert) {
             .init(title: .init("alert"), message: .init(error?.localizedDescription ?? ""))
+        }
+    }
+    
+    func loadData() {
+        ProfileModel.sync { error in
+            self.error = error
+            profileCount = Realm.shared.objects(ProfileModel.self).count
         }
     }
 }

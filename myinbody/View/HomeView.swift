@@ -124,9 +124,7 @@ struct HomeView: View {
         }
         .navigationTitle(Text("home"))
         .onAppear {
-            ProfileModel.sync { error in
-                isSignin = AuthManager.shared.isSignined
-            }
+            isSignin = AuthManager.shared.isSignined
         }
     }
     
