@@ -113,7 +113,11 @@ struct ProfileListView: View {
     func loadData() {
         ProfileModel.sync { error in
             self.error = error
-            profileCount = Realm.shared.objects(ProfileModel.self).count
+            if error == nil {
+                DispatchQueue.main.async {
+                    profileCount = Realm.shared.objects(ProfileModel.self).count                    
+                }
+            }
         }
     }
 }
