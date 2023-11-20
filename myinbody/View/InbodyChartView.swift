@@ -15,11 +15,12 @@ struct InbodyChartView: View {
     let dataType:InbodyModel.InbodyInputDataType
     let last:(date:Date,value:Double)?
     var maxCount:Int = 10
-    var data:[ChartData] {
+    var data:(first:[ChartData],second:[ChartData]) {
         
-        var result:[ChartData] = []
+        var first:[ChartData] = []
+        var second:[ChartData] = []
         if profile.id.isEmpty {
-            return []
+            return (first:[],second:[])
         }
         let list = profile.inbodys.filter("deleted = %@", false).sorted(byKeyPath: "measurementDateTimeIntervalSince1970")
         
@@ -28,46 +29,47 @@ struct InbodyChartView: View {
             
             switch dataType {
             case .inbodyPoint:
-                result.append(.init(date: date, value: inbody.inbodyPoint))
+                first.append(.init(date: date, value: inbody.inbodyPoint))
                 
             case .measurementDate:
-                result.append(.init(date: date, value: inbody.measurementDateTimeIntervalSince1970))
+                first.append(.init(date: date, value: inbody.measurementDateTimeIntervalSince1970))
                 
             case .height:
-                result.append(.init(date: date, value: inbody.height))
+                first.append(.init(date: date, value: inbody.height))
                 
             case .weight:
-                result.append(.init(date: date, value: inbody.weight))
+                first.append(.init(date: date, value: inbody.weight))
                 
             case .skeletal_muscle_mass:
-                result.append(.init(date: date, value: inbody.skeletal_muscle_mass))
+                first.append(.init(date: date, value: inbody.skeletal_muscle_mass))
                 
             case .body_fat_mass:
-                result.append(.init(date: date, value: inbody.body_fat_mass))
+                first.append(.init(date: date, value: inbody.body_fat_mass))
                 
             case .total_body_water:
-                result.append(.init(date: date, value: inbody.total_body_water))
+                first.append(.init(date: date, value: inbody.total_body_water))
                 
             case .protein:
-                result.append(.init(date: date, value: inbody.protein))
+                first.append(.init(date: date, value: inbody.protein))
                 
             case .mineral:
-                result.append(.init(date: date, value: inbody.mineral))
+                first.append(.init(date: date, value: inbody.mineral))
                 
             case .bmi:
-                result.append(.init(date: date, value: inbody.bmi))
+                first.append(.init(date: date, value: inbody.bmi))
                 
             case .percent_body_fat:
-                result.append(.init(date: date, value: inbody.percent_body_fat))
+                first.append(.init(date: date, value: inbody.percent_body_fat))
                 
             case .waist_hip_ratio:
-                result.append(.init(date: date, value: inbody.waist_hip_ratio))
+                first.append(.init(date: date, value: inbody.waist_hip_ratio))
                 
             case .basal_metabolic_ratio:
-                result.append(.init(date: date, value: inbody.basal_metabolic_ratio))
+                first.append(.init(date: date, value: inbody.basal_metabolic_ratio))
+                second.append(.init(date: date, value: inbody.getBMR(type: .harrisBenedict)))
                 
             case .visceral_fat:
-                result.append(.init(date: date, value: inbody.visceral_fat))
+                first.append(.init(date: date, value: inbody.visceral_fat))
             }
         }
         if list.count < maxCount {
@@ -83,14 +85,23 @@ struct InbodyChartView: View {
         }
         
         if let last = last {
-            result.append(.init(date: last.date, value: last.value))
+            first.append(.init(date: last.date, value: last.value))
         }
-        return result.sorted { a, b in
-            return a.date < b.date
-        }
+        
+        return ( first : first.sorted { a, b in
+            a.date < b.date
+        }, second : second.sorted(by: { a, b in
+            a.date < b.date
+        }))
     }
     var body: some View {
-        ChartView(data: data, selectData: nil)
+        ZStack {
+            ChartView(data: data.first, selectData: nil)
+            if data.second.count > 0 {
+                ChartView(data: data.second, selectData: nil)
+                    .opacity(0.2)
+            }
+        }
     }
 }
 

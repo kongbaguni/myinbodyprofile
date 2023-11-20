@@ -39,6 +39,21 @@ class ProfileModel  : Object, ObjectKeyIdentifiable {
             }
         }
     }
+    
+    enum BMRType : Int, CaseIterable {
+        case harrisBenedict = 0
+        case mifflinStJeor = 1
+        
+        var textValue:Text {
+            switch self {
+            case .harrisBenedict:
+                return .init("Harris Benedict")
+            case .mifflinStJeor:
+                return .init("Mifflin St. Jeor")
+            }
+        }
+    }
+
 }
 
 extension ProfileModel  {

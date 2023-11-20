@@ -59,6 +59,7 @@ class InbodyModel : Object, ObjectKeyIdentifiable {
 }
 
 extension InbodyModel {
+    
     enum InbodyInputDataType  {
         case measurementDate
         case height
@@ -223,6 +224,35 @@ extension InbodyModel {
     var inbodyPoint:Double {
         (skeletal_muscle_mass / body_fat_mass / weight) * 1000
     }
+    
+    func getBMR(type:ProfileModel.BMRType)->Double {
+        guard let gender = owner.first?.gender , let age = owner.first?.birthday.age else {
+            return 0
+        }
+                
+        switch type {
+        case .harrisBenedict:
+            switch gender {
+            case .mail:
+                return Double(66.5) + (13.75 * weight) + (5.003 * height) - (6.75 * Double(age))
+            case .femail:
+                return Double(655.1) + (9.536 * weight) + (1.850 * height) - (4.676 * Double(age))
+            default:
+                return 0
+            }
+            
+        case .mifflinStJeor:
+            switch gender {
+            case .mail:
+                return (10 * weight) + (6.25 * height) - (5 * Double(age)) + 5
+            case .femail:
+                return (10 * weight) + (6.25 * height) - (5 * Double(age)) - 161
+            default:
+                return 0
+            }
+        }
+    }
+    
     
     func getValueByType(type:InbodyModel.InbodyInputDataType)->Double {
         switch type {
