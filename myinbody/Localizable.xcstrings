@@ -171,6 +171,23 @@
         }
       }
     },
+    "app desc home" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "MyInbody is an app that inputs Inbody data and visualizes the changes in a graph.\nYou cannot use this app for medical purposes.\n\nThis app is not a medical app!"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "마이인바디는 인바디 데이터를 입력하여 그 변화를 그래프로 시각화 하는 앱입니다.\n이 앱을 의료목적으로 이 앱을 활용할 수는 없습니다.\n\n이 앱은 의료용 앱이 아닙니다!"
+          }
+        }
+      }
+    },
     "App Version :" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -181,23 +198,6 @@
           }
         }
       }
-    },
-    "app desc home" : {
-        "extractionState" : "manual",
-        "localizations" : {
-          "en" : {
-            "stringUnit" : {
-              "state" : "translated",
-              "value" : "MyInbody is an app that inputs Inbody data and visualizes the changes in a graph.\nYou cannot use this app for medical purposes.\n\nThis app is not a medical app!"
-            }
-          },
-          "ko" : {
-            "stringUnit" : {
-              "state" : "translated",
-              "value" : "마이인바디는 인바디 데이터를 입력하여 그 변화를 그래프로 시각화 하는 앱입니다.\n이 앱을 의료목적으로 이 앱을 활용할 수는 없습니다.\n\n이 앱은 의료용 앱이 아닙니다!"
-            }
-          }
-        }
     },
     "Before" : {
       "extractionState" : "manual",
@@ -659,6 +659,17 @@
         }
       }
     },
+    "femail" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "여성"
+          }
+        }
+      }
+    },
     "first point" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -666,6 +677,26 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "최초 포인트 지급"
+          }
+        }
+      }
+    },
+    "gender" : {
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "성별"
+          }
+        }
+      }
+    },
+    "gender :" : {
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "성별 :"
           }
         }
       }
@@ -1152,6 +1183,17 @@
         }
       }
     },
+    "mail" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "남성"
+          }
+        }
+      }
+    },
     "minute ago" : {
       "comment" : "time",
       "localizations" : {
@@ -1500,6 +1542,17 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "지원하지 않는 형식입니다."
+          }
+        }
+      }
+    },
+    "unknown" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "모름"
           }
         }
       }

@@ -8,6 +8,7 @@
 import Foundation
 import RealmSwift
 import FirebaseFirestore
+import SwiftUI
 
 extension Notification.Name {
     static let profileModelDidUpdated = Notification.Name("profileModelDidUpdated_observer")
@@ -17,13 +18,38 @@ class ProfileModel  : Object, ObjectKeyIdentifiable {
     @Persisted(primaryKey: true) var id:String = ""
     @Persisted var name:String = ""
     @Persisted var regDtTimeIntervalSince1970:Double = 0
-    @Persisted var inbodys: List<InbodyModel>
+    @Persisted var updateDtTimeIntervalSince1970:Double = 0
+    @Persisted var inbodys: RealmSwift.List<InbodyModel>
+    @Persisted var genderValue:Int = 0
+    enum Gender : Int , CaseIterable {
+        case unkonown = 0
+        case mail = 1
+        case femail = 2
+        
+        var textValue:Text {
+            switch self {
+            case .femail:
+                return .init("femail")
+            case .mail:
+                return .init("mail")
+            case .unkonown:
+                return .init("unknown")
+            }
+        }
+    }
 }
 
 extension ProfileModel  {
+    var gender:Gender? {
+        .init(rawValue: genderValue)
+    }
     
     var lastInbody:InbodyModel? {
         inbodys.sorted(byKeyPath: "measurementDateTimeIntervalSince1970", ascending: true).last
+    }
+    
+    var updateDt:Date {
+        .init(timeIntervalSince1970: updateDtTimeIntervalSince1970)
     }
     
     var regDt:Date {
@@ -111,7 +137,7 @@ extension ProfileModel  {
                 }
 
                 try realm.commitWrite()
-                
+                NotificationCenter.default.post(name: .profileModelDidUpdated, object: nil)
                 
             }
             catch {
@@ -142,6 +168,7 @@ extension ProfileModel  {
                         realm.beginWrite()
                         realm.create(ProfileModel .self, value: dbData, update: .all)
                         try realm.commitWrite()
+                        NotificationCenter.default.post(name: .profileModelDidUpdated, object: nil)
                     } catch {
                         complete(documentId, error)
                     }
@@ -176,6 +203,7 @@ extension ProfileModel  {
                     realm.beginWrite()
                     realm.create(ProfileModel.self,value: data, update: .all)
                     try realm.commitWrite()
+                    NotificationCenter.default.post(name: .profileModelDidUpdated, object: nil)
                 }
             } catch {
                 complete(error)
@@ -185,19 +213,30 @@ extension ProfileModel  {
         }
     }
     
-    func updateFirestore(complete:@escaping(_ error:Error?)->Void) {
+    func updateFirestore(name:String, gender:ProfileModel.Gender, complete:@escaping(_ error:Error?)->Void) {
         guard let collection = collection else {
             return
         }
-        var dicValue = dictionmaryValue
-        dicValue["id"] = nil
-        dicValue["inbodys"] = nil 
-        print("updateProfile : \(dicValue.count)")
+        var dicValue:[String:AnyHashable] =
+        [
+            "name" : name,
+            "genderValue" : gender.rawValue,
+            "updateDtTimeIntervalSince1970" : Date().timeIntervalSince1970
+        ]
+
         for item in dicValue {
             print("\(item.key) \(item.value)")
         }
         
-        collection.document(id).setData(dicValue) { error in
+        collection.document(id).updateData(dicValue) { error in
+            if error == nil {
+                dicValue["id"] = self.id
+                
+                let realm = Realm.shared
+                realm.beginWrite()
+                realm.create(ProfileModel.self, value: dicValue, update: .modified)                
+                try! realm.commitWrite()
+            }
             complete(error)
         }
     }
@@ -233,6 +272,7 @@ extension ProfileModel  {
                             realm.beginWrite()
                             realm.delete(obj)
                             try realm.commitWrite()
+                            NotificationCenter.default.post(name: .profileModelDidUpdated, object: nil)
                         }
                     } catch {
                         print(error)

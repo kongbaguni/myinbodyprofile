@@ -21,7 +21,7 @@ struct CreateProfileView: View {
             }
         }
     }
-    
+    @State var gender:ProfileModel.Gender = .unkonown
     @State var isAlert:Bool = false
     @State var photoData:Data? = nil
     @State var isLoading:Bool = false
@@ -34,8 +34,9 @@ struct CreateProfileView: View {
             return
         }
         isLoading = true
-        let value = [
-            "name":name
+        let value:[String:AnyHashable] = [
+            "name":name,
+            "genderValue":gender.rawValue
         ]
       
         ProfileModel.create(value: value) { profileId, error1 in
@@ -94,7 +95,12 @@ struct CreateProfileView: View {
                     placeHolder: .init("input name"),
                     value: $name)
                 
-                
+                Picker("gender", selection: $gender) {
+                    ForEach(ProfileModel.Gender.allCases, id:\.self) {
+                        $0.textValue
+                    }
+                }
+
                 PointNeedView(pointCase: .createProfile)
                 
                 Button {

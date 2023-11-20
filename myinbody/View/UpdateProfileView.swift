@@ -26,7 +26,8 @@ struct UpdateProfileView: View {
     @State var photoData:Data? = nil
     @State var needDeletePhoto:Bool = false
     @State var deleteAlert:Bool = false
-    
+    @State var gender:ProfileModel.Gender = .unkonown
+    @State var name:String = ""
     func saveWithPointUse() {
         PointModel.use(useCase: .editProfile) { error in
             if error == nil {
@@ -37,7 +38,7 @@ struct UpdateProfileView: View {
     }
     
     func updateProfile() {
-        if profile.name.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty {
+        if name.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty {
             error = CustomError.emptyName
             return
         }
@@ -68,9 +69,8 @@ struct UpdateProfileView: View {
                 }
             }
             return
-        }
-        
-        profile.updateFirestore { error in
+        }    
+        profile.updateFirestore(name: name, gender: gender) { error in
             if error == nil {
                 presentationMode.wrappedValue.dismiss()
             }
@@ -86,41 +86,53 @@ struct UpdateProfileView: View {
     }
     
     var normalView : some View {
-        VStack(alignment:.center) {
+        List {
             if isEdited {
-                ActivityIndicatorView(isVisible: $isEdited, type: .default(count: 10))
-                    .frame(width:50, height:50)
-                Text("update profile...")
-            } else {
-                List {
-                    Section {
-                        PointNeedView(pointCase: .editProfile)
+                HStack(alignment: .center) {
+                    Spacer()
+                    VStack {
+                        Spacer(minLength: 100)
+                        ActivityIndicatorView(isVisible: $isEdited, type: .default(count: 10))
+                            .frame(width:50, height:50)
+                        Text("update profile...")
+                        Spacer(minLength: 100)
                     }
-                    Section {
-                        PhotoPickerView(selectedImageData: $photoData, size: .init(width: 150, height: 150), placeHolder: nil, profileImageView: ProfileImageView(profile: profile, size: .init(width: 150, height: 150), drawRound: false))
-                        
-                        if profile.profileImageURL != nil  && photoData == nil {
-                            Toggle(isOn: $needDeletePhoto) {
-                                Text("delete photo")
-                            }
+                    Spacer()
+                }
+            } else {
+                Section {
+                    PointNeedView(pointCase: .editProfile)
+                }
+                Section {
+                    PhotoPickerView(selectedImageData: $photoData, size: .init(width: 150, height: 150), placeHolder: nil, profileImageView: ProfileImageView(profile: profile, size: .init(width: 150, height: 150), drawRound: false))
+                    
+                    if profile.profileImageURL != nil  && photoData == nil {
+                        Toggle(isOn: $needDeletePhoto) {
+                            Text("delete photo")
                         }
                     }
-                    Section {
-                        TitleTextFieldView(
-                            id:"name",
-                            title: .init("name"),
-                            placeHolder: .init("input name"),
-                            value: $profile.name)
+                }
+                Section {
+                    TitleTextFieldView(
+                        id:"name",
+                        title: .init("name"),
+                        placeHolder: .init("input name"),
+                        value: $name)
+                    
+                    Picker("gender", selection: $gender) {
+                        ForEach(ProfileModel.Gender.allCases, id:\.self) {
+                            $0.textValue
+                        }
+                    }
+                }
+                
+                Section {
+                    NavigationLink {
+                        DeleteProfileConfirmView(profile:profile)
+                    } label: {
+                        ImageTextView(image: .init(systemName: "trash.square"), text: .init("delete profile"))
                     }
                     
-                    Section {
-                        NavigationLink {
-                            DeleteProfileConfirmView(profile:profile)
-                        } label: {
-                            ImageTextView(image: .init(systemName: "trash.square"), text: .init("delete profile"))
-                        }
-                        
-                    }
                 }
             }
         }
@@ -129,6 +141,14 @@ struct UpdateProfileView: View {
                 saveWithPointUse()
             } label: {
                 Text("save")
+            }
+        }
+        .onAppear {
+            if name.isEmpty {
+                name = profile.name
+            }
+            if gender == .unkonown {
+                gender = profile.gender ?? .unkonown
             }
         }
         .onDisappear {

@@ -220,14 +220,14 @@ extension PointModel {
                     progress(p)
                     
                     if deleteSucessList.count == list.count {
-                        deleteAll()
+                        _ = deleteAll()
                         PointModel.add(value: sum, desc: "combin point history") { error in
                             complete(error)
                         }
                     }
                 } else {
                     complete(error)
-                    delete(ids: deleteSucessList)
+                    _ = delete(ids: deleteSucessList)
                     PointModel.add(value: deletedSum, desc: "combin point history") { error in
                         
                     }

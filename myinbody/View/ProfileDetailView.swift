@@ -22,6 +22,9 @@ struct ProfileDetailView: View {
     }
     @State var isAlert:Bool = false
     
+    @State var name:String = ""
+    @State var gender:ProfileModel.Gender = .unkonown
+    
     var deletedView : some View {
         Text("")
             .onAppear {
@@ -40,11 +43,16 @@ struct ProfileDetailView: View {
                         HStack {
                             Text("name :")
                                 .foregroundStyle(.secondary)
-                            Text(profile.name)
+                            Text(name)
                                 .font(.system(size: 40))
                                 .bold()
                                 .foregroundStyle(.primary)
                         }
+                        HStack {
+                            Text("gender :")
+                            gender.textValue
+                        }
+                        
                     }
                 }
                 HStack {
@@ -136,6 +144,9 @@ struct ProfileDetailView: View {
         .onAppear {
             reload()
         }
+        .onReceive(NotificationCenter.default.publisher(for: .profileModelDidUpdated), perform: { noti in
+            reload()
+        })
         .alert(isPresented: $isAlert) {
             .init(
                 title: .init("alert"),
@@ -160,6 +171,9 @@ struct ProfileDetailView: View {
     }
     
     func reload() {
+        name = profile.name
+        gender = profile.gender ?? .unkonown
+        
         profile.isDeleted { error1 in
             if error1 == nil {
                 InbodyModel.sync(profile: profile) { error2 in
