@@ -250,6 +250,16 @@
         }
       }
     },
+    "bmrType" : {
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "BMR 계산법"
+          }
+        }
+      }
+    },
     "cancel" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -727,6 +737,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "성별 :"
+          }
+        }
+      }
+    },
+    "Harris Benedict" : {
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "해리스 베네딕트"
           }
         }
       }
@@ -1220,6 +1240,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "남성"
+          }
+        }
+      }
+    },
+    "Mifflin St. Jeor" : {
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "미핀 세인트 젤"
           }
         }
       }

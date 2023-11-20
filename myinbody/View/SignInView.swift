@@ -14,7 +14,7 @@ struct SignInView: View {
         case signoutAnomymouse
     }
     let ad = GoogleAd()
-        
+    @AppStorage("bmrtype") var bmr:ProfileModel.BMRType = .harrisBenedict
     @State var point:Int = PointModel.sum
     @State var error:Error? = nil {
         didSet {
@@ -227,6 +227,12 @@ struct SignInView: View {
                             )
                         }
                             
+                    }
+                    
+                    Picker("bmrType", selection: $bmr) {
+                        ForEach(ProfileModel.BMRType.allCases, id:\.self) {
+                            $0.textValue
+                        }
                     }
                     
                 }

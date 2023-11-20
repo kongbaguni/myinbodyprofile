@@ -11,7 +11,8 @@ import Charts
 
 struct InbodyChartView: View {
     @ObservedRealmObject var profile:ProfileModel
-
+    @AppStorage("bmrtype") var bmrType:ProfileModel.BMRType = .harrisBenedict
+    
     let dataType:InbodyModel.InbodyInputDataType
     let last:(date:Date,value:Double)?
     var maxCount:Int = 10
@@ -66,7 +67,7 @@ struct InbodyChartView: View {
                 
             case .basal_metabolic_ratio:
                 first.append(.init(date: date, value: inbody.basal_metabolic_ratio))
-                second.append(.init(date: date, value: inbody.getBMR(type: .harrisBenedict)))
+                second.append(.init(date: date, value: inbody.getBMR(type: bmrType)))
                 
             case .visceral_fat:
                 first.append(.init(date: date, value: inbody.visceral_fat))
