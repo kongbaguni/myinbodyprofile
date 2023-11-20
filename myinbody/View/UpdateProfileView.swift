@@ -28,6 +28,7 @@ struct UpdateProfileView: View {
     @State var deleteAlert:Bool = false
     @State var gender:ProfileModel.Gender = .unkonown
     @State var name:String = ""
+    @State var birthday:Date = .init(timeIntervalSince1970: 0)
     func saveWithPointUse() {
         PointModel.use(useCase: .editProfile) { error in
             if error == nil {
@@ -70,7 +71,7 @@ struct UpdateProfileView: View {
             }
             return
         }    
-        profile.updateFirestore(name: name, gender: gender) { error in
+        profile.updateFirestore(name: name, gender: gender, birthday: birthday) { error in
             if error == nil {
                 presentationMode.wrappedValue.dismiss()
             }
@@ -124,6 +125,8 @@ struct UpdateProfileView: View {
                             $0.textValue
                         }
                     }
+                    
+                    DatePicker("birthday", selection: $birthday, displayedComponents: .date)
                 }
                 
                 Section {
@@ -144,11 +147,10 @@ struct UpdateProfileView: View {
             }
         }
         .onAppear {
-            if name.isEmpty {
+            if birthday.timeIntervalSince1970 == 0 {
                 name = profile.name
-            }
-            if gender == .unkonown {
                 gender = profile.gender ?? .unkonown
+                birthday = profile.birthday
             }
         }
         .onDisappear {

@@ -29,4 +29,14 @@ extension Date {
         formatter.dateFormat = format
         return formatter.string(from: self)
     }
+    
+    var age:Int {
+        let calendar = Calendar.current
+        let currentDate = Date()
+        
+        let components = calendar.dateComponents([.year], from: self, to: currentDate)
+        guard let years = components.year else { return 0 }
+        
+        return years
+    }
 }

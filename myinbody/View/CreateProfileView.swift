@@ -25,6 +25,8 @@ struct CreateProfileView: View {
     @State var isAlert:Bool = false
     @State var photoData:Data? = nil
     @State var isLoading:Bool = false
+    @State var birthday:Date = Date()
+    
     private func createProfile() {
         if name.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty {
             error = CustomError.emptyName
@@ -36,7 +38,8 @@ struct CreateProfileView: View {
         isLoading = true
         let value:[String:AnyHashable] = [
             "name":name,
-            "genderValue":gender.rawValue
+            "genderValue":gender.rawValue,
+            "birthdayDtTimeIntervalSince1970":birthday.timeIntervalSince1970
         ]
       
         ProfileModel.create(value: value) { profileId, error1 in
@@ -95,6 +98,9 @@ struct CreateProfileView: View {
                     placeHolder: .init("input name"),
                     value: $name)
                 
+                DatePicker("birthday", selection: $birthday, displayedComponents: .date)
+                    
+                
                 Picker("gender", selection: $gender) {
                     ForEach(ProfileModel.Gender.allCases, id:\.self) {
                         $0.textValue
@@ -115,7 +121,9 @@ struct CreateProfileView: View {
             PointModel.sync { error in
                 point = PointModel.sum
             }            
-            NotificationCenter.default.post(name: .textfieldSetFocus, object: "name")
+            DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(500)) {
+                NotificationCenter.default.post(name: .textfieldSetFocus, object: "name")
+            }
         }
         .navigationTitle(Text("add people"))
         .alert(isPresented:$isAlert) {

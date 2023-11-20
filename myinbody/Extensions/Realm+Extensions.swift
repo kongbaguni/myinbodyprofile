@@ -10,7 +10,7 @@ import RealmSwift
 
 extension Realm {
     static var shared:Realm {
-        let config = Realm.Configuration(schemaVersion:5) { migration, oldSchemaVersion in
+        let config = Realm.Configuration(schemaVersion:6) { migration, oldSchemaVersion in
             if oldSchemaVersion < 5 {
                 migration.enumerateObjects(ofType: ProfileModel.className()) { oldObject, newObject in
                     if let update = oldObject?["regDtTimeIntervalSince1970"] as? Double {

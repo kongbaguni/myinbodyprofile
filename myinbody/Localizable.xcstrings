@@ -126,6 +126,16 @@
         }
       }
     },
+    "age :" : {
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "나이(만) :"
+          }
+        }
+      }
+    },
     "alert" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -206,6 +216,26 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "이전"
+          }
+        }
+      }
+    },
+    "birthday" : {
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "생년월일"
+          }
+        }
+      }
+    },
+    "birthday :" : {
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "생년월일 :"
           }
         }
       }

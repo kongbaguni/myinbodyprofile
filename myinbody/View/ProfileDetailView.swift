@@ -49,10 +49,18 @@ struct ProfileDetailView: View {
                                 .foregroundStyle(.primary)
                         }
                         HStack {
-                            Text("gender :")
-                            gender.textValue
+                            Text("gender :").foregroundStyle(.secondary)
+                            gender.textValue.foregroundStyle(.primary)
                         }
-                        
+                        HStack {
+                            Text("birthday :").foregroundStyle(.secondary)
+                            Text(profile.birthday.formatting(format: "yyyy.MM.dd"))
+                                .foregroundStyle(.primary)
+                        }
+                        HStack {
+                            Text("age :").foregroundStyle(.secondary)
+                            Text("\(profile.birthday.age)")
+                        }
                     }
                 }
                 HStack {

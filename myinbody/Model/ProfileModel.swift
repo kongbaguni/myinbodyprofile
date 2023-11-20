@@ -21,6 +21,8 @@ class ProfileModel  : Object, ObjectKeyIdentifiable {
     @Persisted var updateDtTimeIntervalSince1970:Double = 0
     @Persisted var inbodys: RealmSwift.List<InbodyModel>
     @Persisted var genderValue:Int = 0
+    @Persisted var birthdayDtTimeIntervalSince1970:Double = 0
+    
     enum Gender : Int , CaseIterable {
         case unkonown = 0
         case mail = 1
@@ -46,6 +48,10 @@ extension ProfileModel  {
     
     var lastInbody:InbodyModel? {
         inbodys.sorted(byKeyPath: "measurementDateTimeIntervalSince1970", ascending: true).last
+    }
+    
+    var birthday:Date {
+        .init(timeIntervalSince1970: birthdayDtTimeIntervalSince1970)
     }
     
     var updateDt:Date {
@@ -213,7 +219,7 @@ extension ProfileModel  {
         }
     }
     
-    func updateFirestore(name:String, gender:ProfileModel.Gender, complete:@escaping(_ error:Error?)->Void) {
+    func updateFirestore(name:String, gender:ProfileModel.Gender, birthday:Date, complete:@escaping(_ error:Error?)->Void) {
         guard let collection = collection else {
             return
         }
@@ -221,6 +227,7 @@ extension ProfileModel  {
         [
             "name" : name,
             "genderValue" : gender.rawValue,
+            "birthdayDtTimeIntervalSince1970" : birthday.timeIntervalSince1970,
             "updateDtTimeIntervalSince1970" : Date().timeIntervalSince1970
         ]
 
