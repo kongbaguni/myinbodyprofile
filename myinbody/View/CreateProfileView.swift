@@ -72,34 +72,36 @@ struct CreateProfileView: View {
     }
     
     var body: some View {
-        GeometryReader { proxy in
-            ZStack {
-                if isLoading {
+        List {
+            if isLoading {
+                HStack(alignment: .center) {
+                    Spacer()
                     VStack(alignment:.center) {
+                        Spacer(minLength: 100)
                         ActivityIndicatorView(isVisible: $isLoading, type: .default(count: 10))
                             .frame(width:50,height:50)
                         Text("uploading")
+                        Spacer(minLength: 100)
                     }
-                } else {
-                    List {
-                        PhotoPickerView(selectedImageData: $photoData, size:.init(width: 150, height: 150), placeHolder: .init(systemName: "person"), profileImageView: nil)                 
-                        
-                        TitleTextFieldView(
-                            id:"name",
-                            title: .init("name"),
-                            placeHolder: .init("input name"),
-                            value: $name)
-                        
-                        
-                        PointNeedView(pointCase: .createProfile)
-                        
-                        Button {
-                            createProfile()
-                            
-                        } label: {
-                            ImageTextView(image: .init(systemName: "return"), text: .init("create"))
-                        }
-                    }
+                    Spacer()
+                }
+            } else {
+                PhotoPickerView(selectedImageData: $photoData, size:.init(width: 150, height: 150), placeHolder: .init(systemName: "person"), profileImageView: nil)
+                
+                TitleTextFieldView(
+                    id:"name",
+                    title: .init("name"),
+                    placeHolder: .init("input name"),
+                    value: $name)
+                
+                
+                PointNeedView(pointCase: .createProfile)
+                
+                Button {
+                    createProfile()
+                    
+                } label: {
+                    ImageTextView(image: .init(systemName: "return"), text: .init("create"))
                 }
             }
         }
