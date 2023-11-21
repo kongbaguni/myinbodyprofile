@@ -480,6 +480,16 @@
         }
       }
     },
+    "data" : {
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "데이터"
+          }
+        }
+      }
+    },
     "date" : {
       "localizations" : {
         "ko" : {
@@ -1466,6 +1476,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "개인정보 처리방침"
+          }
+        }
+      }
+    },
+    "profile" : {
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "프로필"
           }
         }
       }

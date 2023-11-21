@@ -35,19 +35,11 @@ struct ProfileDetailView: View {
     
     var normalView : some View {
         List {
-            Section {
+            Section("profile") {
                 HStack(alignment:.top) {
                     ProfileImageView(profile: profile, size: .init(width: 150, height: 150), drawRound: true)
                         .frame(height: 150)
                     VStack(alignment:.leading) {
-                        HStack {
-                            Text("name :")
-                                .foregroundStyle(.secondary)
-                            Text(name)
-                                .font(.system(size: 40))
-                                .bold()
-                                .foregroundStyle(.primary)
-                        }
                         HStack {
                             Text("gender :").foregroundStyle(.secondary)
                             gender.textValue.foregroundStyle(.primary)
@@ -78,10 +70,10 @@ struct ProfileDetailView: View {
                     }
                 }
                 
-            }
+            } 
             
             if profile.inbodys.filter("deleted = %@", false).count > 0 {
-                Section {
+                Section("data") {
                     ForEach(InbodyModel.InbodyInputDataType.allCasesForProfileView, id:\.self) { type in
                         HStack {
                             VStack {
