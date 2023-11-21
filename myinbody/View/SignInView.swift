@@ -229,7 +229,7 @@ struct SignInView: View {
                             
                     }
                     
-                    Picker("bmrType", selection: $bmr) {
+                    Picker("BMRCalculateType", selection: $bmr) {
                         ForEach(ProfileModel.BMRType.allCases, id:\.self) {
                             $0.textValue
                         }
