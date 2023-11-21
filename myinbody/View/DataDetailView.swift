@@ -17,10 +17,22 @@ struct DataDetailView: View {
     @State var from = 0
     @State var to = 0
     @State var selectedChartData:ChartData? = nil
+    @AppStorage("bmrtype") var bmrType:ProfileModel.BMRType = .harrisBenedict
     
     var chartData:[ChartData] {
         datas.map { model in
             .init(date: model.measurementDateTime, value: model.getValueByType(type: dataType))
+        }
+    }
+    
+    var secondChartData:[ChartData]? {
+        switch dataType {
+        case .basal_metabolic_ratio:
+            return datas.map { model in
+                    .init(date: model.measurementDateTime, value: model.getBMR(type: bmrType))
+            }
+        default:
+            return nil
         }
     }
     
@@ -44,7 +56,13 @@ struct DataDetailView: View {
     var body: some View {
         List {
             Section {
-                ChartView(data: chartData, selectData:selectedChartData)
+                ZStack {
+                    ChartView(data: chartData, selectData:selectedChartData)
+                    if let data = secondChartData {
+                        ChartView(data: data, selectData:selectedChartData)
+                            .opacity(0.2)
+                    }
+                }
             }
             if from > 0 {
                 Button {
@@ -74,11 +92,22 @@ struct DataDetailView: View {
                             .font(.system(size: 10))
                         let value:Double = data.getValueByType(type: dataType)
                         Text(String(format: dataType.formatString, value))
-                            .foregroundStyle(.primary)
+                            .foregroundStyle(.orange)
                             .fontWeight(.bold)
                         if let unit = dataType.unit {
                             unit.font(.caption)
                                 .foregroundStyle(.secondary)
+                        }
+                        if dataType == .basal_metabolic_ratio {
+                            Text("BMR :")
+                            let value = data.getBMR(type: bmrType)
+                            Text(String(format: dataType.formatString, value))
+                                .foregroundStyle(.green)
+                                .fontWeight(.bold)
+                            if let unit = dataType.unit {
+                                unit.font(.caption)
+                                    .foregroundStyle(.secondary)
+                            }
                         }
                     }
                 }

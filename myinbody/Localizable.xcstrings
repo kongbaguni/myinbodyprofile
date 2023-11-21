@@ -250,6 +250,16 @@
         }
       }
     },
+    "BMR :" : {
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : ""
+          }
+        }
+      }
+    },
     "bmrType" : {
       "localizations" : {
         "ko" : {
