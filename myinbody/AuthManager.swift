@@ -244,8 +244,8 @@ class AuthManager : NSObject {
             }
 
             var count = 0
-            for profile in profileDatas {
-                profile.delete { error in
+            for profile in profileDatas {                
+                profile.delete(freeDelete:true) { error in
                     if error == nil {
                         count += 1
                         DispatchQueue.main.async {

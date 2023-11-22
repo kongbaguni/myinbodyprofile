@@ -263,7 +263,7 @@ extension ProfileModel  {
         }
     }
     
-    func delete(removeWithLocal:Bool = false, isDeletedProfileImage:Bool? = nil ,isDeletedInbodyData:Bool? = nil ,complete:@escaping (_ error:Error?)->Void) {
+    func delete(removeWithLocal:Bool = false, isDeletedProfileImage:Bool? = nil ,isDeletedInbodyData:Bool? = nil, freeDelete:Bool = false ,complete:@escaping (_ error:Error?)->Void) {
         
         let id = self.id
         if id.isEmpty {
@@ -324,13 +324,7 @@ extension ProfileModel  {
                 }
             }
         }
-        
-        PointModel.use(useCase: .deleteProfile) { error in
-            if let error = error {
-                complete(error)
-                return
-            }
-            
+        if freeDelete {
             deleteInbodys { errorA in
                 if errorA != nil {
                     complete(errorA)
@@ -341,6 +335,26 @@ extension ProfileModel  {
                         deleteself()
                     }
                     complete(errorB)
+                }
+            }
+        } else {
+            PointModel.use(useCase: .deleteProfile) { error in
+                if let error = error {
+                    complete(error)
+                    return
+                }
+                
+                deleteInbodys { errorA in
+                    if errorA != nil {
+                        complete(errorA)
+                        return
+                    }
+                    collection.document(id).delete { errorB in
+                        if errorB == nil {
+                            deleteself()
+                        }
+                        complete(errorB)
+                    }
                 }
             }
         }
