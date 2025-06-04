@@ -80,15 +80,15 @@ struct SignInView: View {
                     }
                 }
 
-                Button {
-                    ad.showAd { error in
-                        self.error = error
-                    }
-                } label : {
-                    ImageTextView(
-                        image: .init(systemName: "sparkles.tv"),
-                        text: .init("ad watch"))
-                }
+//                Button {
+//                    ad.showAd { error in
+//                        self.error = error
+//                    }
+//                } label : {
+//                    ImageTextView(
+//                        image: .init(systemName: "sparkles.tv"),
+//                        text: .init("ad watch"))
+//                }
                 Button {
                     if AuthManager.shared.auth.currentUser?.isAnonymous == true {
                         alertType = .signoutAnomymouse

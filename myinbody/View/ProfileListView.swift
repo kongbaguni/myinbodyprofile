@@ -80,10 +80,15 @@ struct ProfileListView: View {
         List {
             Section {
                 if profileCount == 0 {
-                    Image("launchIcon")
-                        .resizable()
-                        .scaledToFit()
-                        .padding(20)
+                    HStack {
+                        Spacer()
+                        Image("launchIcon")
+                            .resizable()
+                            .scaledToFit()
+                            .padding(20)
+                            .frame(maxHeight: 200)
+                        Spacer()
+                    }
                 } else {
                     profileList
                 }
