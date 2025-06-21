@@ -14,14 +14,14 @@ import AppTrackingTransparency
 
 class GoogleAd : NSObject {
     
-    var interstitial:GADRewardedAd? = nil
+    var interstitial:RewardedAd? = nil
     
     private func loadAd(complete:@escaping(_ error:Error?)->Void) {
-        let request = GADRequest()
+        let request = Request()
         
         ATTrackingManager.requestTrackingAuthorization { status in
             print("google ad tracking status : \(status)")
-            GADRewardedAd.load(withAdUnitID: AdIDs.rewardAd, request: request) { [weak self] ad, error in
+            RewardedAd.load(with: AdIDs.rewardAd, request: request) { [weak self] ad, error in
                 if let err = error {
                     print("google ad load error : \(err.localizedDescription)")
                 }
@@ -51,7 +51,7 @@ class GoogleAd : NSObject {
             }
             self?.requsetAd = false 
             if let vc = UIApplication.shared.lastViewController {
-                self?.interstitial?.present(fromRootViewController: vc, userDidEarnRewardHandler: {
+                self?.interstitial?.present(from: vc, userDidEarnRewardHandler: {
                     
                 })
             }
@@ -61,24 +61,24 @@ class GoogleAd : NSObject {
     
 }
 
-extension GoogleAd : GADFullScreenContentDelegate {
+extension GoogleAd : FullScreenContentDelegate {
     //광고 실패
-    func ad(_ ad: GADFullScreenPresentingAd, didFailToPresentFullScreenContentWithError error: Error) {
+    func ad(_ ad: FullScreenPresentingAd, didFailToPresentFullScreenContentWithError error: Error) {
         print("google ad \(#function)")
         print(error.localizedDescription)
         DispatchQueue.main.async {
             self.callback(error)
         }
     }
-    func adDidRecordClick(_ ad: GADFullScreenPresentingAd) {
+    func adDidRecordClick(_ ad: FullScreenPresentingAd) {
         print("google ad \(#function)")
     }
     //광고시작
-    func adDidRecordImpression(_ ad: GADFullScreenPresentingAd) {
+    func adDidRecordImpression(_ ad: FullScreenPresentingAd) {
         print("google ad \(#function)")
     }
     //광고 종료
-    func adDidDismissFullScreenContent(_ ad: GADFullScreenPresentingAd) {
+    func adDidDismissFullScreenContent(_ ad: FullScreenPresentingAd) {
         print("google ad \(#function)")
         DispatchQueue.main.async {
             PointModel.add(value: 10, desc: "show ad") { error in

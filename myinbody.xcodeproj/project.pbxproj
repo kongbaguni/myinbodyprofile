@@ -70,6 +70,8 @@
 		1B97E5492ADCC62B007EC45B /* AlamofireImage in Frameworks */ = {isa = PBXBuildFile; productRef = 1B97E5482ADCC62B007EC45B /* AlamofireImage */; };
 		1B97E54C2ADCD32B007EC45B /* CachedAsyncImage in Frameworks */ = {isa = PBXBuildFile; productRef = 1B97E54B2ADCD32B007EC45B /* CachedAsyncImage */; };
 		1B97E54E2ADCD3B1007EC45B /* ProfileImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B97E54D2ADCD3B1007EC45B /* ProfileImageView.swift */; };
+		1BA59D3E2E069F0A004196C8 /* GoogleUserMessagingPlatform in Frameworks */ = {isa = PBXBuildFile; productRef = 1BA59D3D2E069F0A004196C8 /* GoogleUserMessagingPlatform */; };
+		1BA59D412E069F20004196C8 /* GoogleMobileAds in Frameworks */ = {isa = PBXBuildFile; productRef = 1BA59D402E069F20004196C8 /* GoogleMobileAds */; };
 		1BACDCFE2ADCFC30000E3AFE /* ActivityIndicatorView in Frameworks */ = {isa = PBXBuildFile; productRef = 1BACDCFD2ADCFC30000E3AFE /* ActivityIndicatorView */; };
 		1BACDD022ADD14AC000E3AFE /* CustomError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BACDD012ADD14AC000E3AFE /* CustomError.swift */; };
 		1BACDD042ADE12C7000E3AFE /* InbodyModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BACDD032ADE12C7000E3AFE /* InbodyModel.swift */; };
@@ -85,7 +87,6 @@
 		1BD993592AFB17C10061E466 /* AdLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BD993512AFB17C10061E466 /* AdLoader.swift */; };
 		1BD9935A2AFB17C10061E466 /* GoogleAdPrompt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BD993522AFB17C10061E466 /* GoogleAdPrompt.swift */; };
 		1BD9935B2AFB17C10061E466 /* GoogleAd.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BD993532AFB17C10061E466 /* GoogleAd.swift */; };
-		1BD9935F2AFB18200061E466 /* GoogleMobileAds in Frameworks */ = {isa = PBXBuildFile; productRef = 1BD9935E2AFB18200061E466 /* GoogleMobileAds */; };
 		1BD993612AFB194D0061E466 /* MultiColorAnimeTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BD993602AFB194D0061E466 /* MultiColorAnimeTextView.swift */; };
 		1BD993632AFB19A40061E466 /* Color+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BD993622AFB19A40061E466 /* Color+Extensions.swift */; };
 		1BD993652AFB45D60061E466 /* InfoPlist.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 1BD993642AFB45D60061E466 /* InfoPlist.xcstrings */; };
@@ -190,6 +191,8 @@
 				1B11B88A2AD682C700B0F5DB /* GoogleSignInSwift in Frameworks */,
 				1B11B86D2AD67F7400B0F5DB /* FirebaseFirestoreSwift in Frameworks */,
 				1B11B8592AD67F7400B0F5DB /* FirebaseAppCheck in Frameworks */,
+				1BA59D3E2E069F0A004196C8 /* GoogleUserMessagingPlatform in Frameworks */,
+				1BA59D412E069F20004196C8 /* GoogleMobileAds in Frameworks */,
 				1B11B8572AD67F7400B0F5DB /* FirebaseAnalyticsWithoutAdIdSupport in Frameworks */,
 				1B11B85D2AD67F7400B0F5DB /* FirebaseAuth in Frameworks */,
 				1B11B8612AD67F7400B0F5DB /* FirebaseCrashlytics in Frameworks */,
@@ -206,7 +209,6 @@
 				1B11B85F2AD67F7400B0F5DB /* FirebaseAuthCombine-Community in Frameworks */,
 				1B11B87D2AD67F7400B0F5DB /* FirebasePerformance in Frameworks */,
 				1B11B8752AD67F7400B0F5DB /* FirebaseInAppMessagingSwift-Beta in Frameworks */,
-				1BD9935F2AFB18200061E466 /* GoogleMobileAds in Frameworks */,
 				1BFACFEB2AD7D33D00AA106C /* Realm in Frameworks */,
 				1B11B8832AD67F7400B0F5DB /* FirebaseStorage in Frameworks */,
 				1B11B8672AD67F7400B0F5DB /* FirebaseDynamicLinks in Frameworks */,
@@ -224,6 +226,7 @@
 			isa = PBXGroup;
 			children = (
 				1B11B83D2AD66BEF00B0F5DB /* myinbody */,
+				1B21F2FB2E069E0B002F10A1 /* Frameworks */,
 				1B11B83C2AD66BEF00B0F5DB /* Products */,
 			);
 			sourceTree = "<group>";
@@ -280,6 +283,13 @@
 				1BD993622AFB19A40061E466 /* Color+Extensions.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		1B21F2FB2E069E0B002F10A1 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		1BD9934B2AFB17C10061E466 /* GoogleAd */ = {
@@ -416,7 +426,8 @@
 				1B97E5482ADCC62B007EC45B /* AlamofireImage */,
 				1B97E54B2ADCD32B007EC45B /* CachedAsyncImage */,
 				1BACDCFD2ADCFC30000E3AFE /* ActivityIndicatorView */,
-				1BD9935E2AFB18200061E466 /* GoogleMobileAds */,
+				1BA59D3D2E069F0A004196C8 /* GoogleUserMessagingPlatform */,
+				1BA59D402E069F20004196C8 /* GoogleMobileAds */,
 			);
 			productName = myinbody;
 			productReference = 1B11B83B2AD66BEF00B0F5DB /* myinbody.app */;
@@ -454,7 +465,8 @@
 				1B97E5472ADCC62B007EC45B /* XCRemoteSwiftPackageReference "AlamofireImage" */,
 				1B97E54A2ADCD32B007EC45B /* XCRemoteSwiftPackageReference "swiftui-cached-async-image" */,
 				1BACDCFC2ADCFC2F000E3AFE /* XCRemoteSwiftPackageReference "ActivityIndicatorView" */,
-				1BD9935D2AFB18200061E466 /* XCRemoteSwiftPackageReference "swift-package-manager-google-mobile-ads" */,
+				1BA59D3C2E069F0A004196C8 /* XCRemoteSwiftPackageReference "swift-package-manager-google-user-messaging-platform" */,
+				1BA59D3F2E069F20004196C8 /* XCRemoteSwiftPackageReference "swift-package-manager-google-mobile-ads" */,
 			);
 			productRefGroup = 1B11B83C2AD66BEF00B0F5DB /* Products */;
 			projectDirPath = "";
@@ -625,7 +637,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
@@ -683,7 +695,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
@@ -705,6 +717,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"myinbody/Preview Content\"";
 				DEVELOPMENT_TEAM = QU9EPTU238;
+				DRIVERKIT_DEPLOYMENT_TARGET = 23.6;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = myinbody/Info.plist;
@@ -714,10 +727,12 @@
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = "Launch Screen.storyboard";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MACOSX_DEPLOYMENT_TARGET = 14.6;
 				MARKETING_VERSION = 1.1.2;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = net.kongbaguni.myinbody;
@@ -725,6 +740,7 @@
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
+				TVOS_DEPLOYMENT_TARGET = 17.6;
 			};
 			name = Debug;
 		};
@@ -739,6 +755,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"myinbody/Preview Content\"";
 				DEVELOPMENT_TEAM = QU9EPTU238;
+				DRIVERKIT_DEPLOYMENT_TARGET = 23.6;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = myinbody/Info.plist;
@@ -748,10 +765,12 @@
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = "Launch Screen.storyboard";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MACOSX_DEPLOYMENT_TARGET = 14.6;
 				MARKETING_VERSION = 1.1.2;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = net.kongbaguni.myinbody;
@@ -759,6 +778,7 @@
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
+				TVOS_DEPLOYMENT_TARGET = 17.6;
 			};
 			name = Release;
 		};
@@ -818,20 +838,28 @@
 				minimumVersion = 2.1.1;
 			};
 		};
+		1BA59D3C2E069F0A004196C8 /* XCRemoteSwiftPackageReference "swift-package-manager-google-user-messaging-platform" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/googleads/swift-package-manager-google-user-messaging-platform/";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 3.0.0;
+			};
+		};
+		1BA59D3F2E069F20004196C8 /* XCRemoteSwiftPackageReference "swift-package-manager-google-mobile-ads" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/googleads/swift-package-manager-google-mobile-ads";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 12.6.0;
+			};
+		};
 		1BACDCFC2ADCFC2F000E3AFE /* XCRemoteSwiftPackageReference "ActivityIndicatorView" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/exyte/ActivityIndicatorView.git";
 			requirement = {
 				kind = upToNextMajorVersion;
 				minimumVersion = 1.1.1;
-			};
-		};
-		1BD9935D2AFB18200061E466 /* XCRemoteSwiftPackageReference "swift-package-manager-google-mobile-ads" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/googleads/swift-package-manager-google-mobile-ads.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 10.13.0;
 			};
 		};
 		1BFACFE92AD7D33D00AA106C /* XCRemoteSwiftPackageReference "realm-swift" */ = {
@@ -1000,15 +1028,20 @@
 			package = 1B97E54A2ADCD32B007EC45B /* XCRemoteSwiftPackageReference "swiftui-cached-async-image" */;
 			productName = CachedAsyncImage;
 		};
+		1BA59D3D2E069F0A004196C8 /* GoogleUserMessagingPlatform */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 1BA59D3C2E069F0A004196C8 /* XCRemoteSwiftPackageReference "swift-package-manager-google-user-messaging-platform" */;
+			productName = GoogleUserMessagingPlatform;
+		};
+		1BA59D402E069F20004196C8 /* GoogleMobileAds */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 1BA59D3F2E069F20004196C8 /* XCRemoteSwiftPackageReference "swift-package-manager-google-mobile-ads" */;
+			productName = GoogleMobileAds;
+		};
 		1BACDCFD2ADCFC30000E3AFE /* ActivityIndicatorView */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 1BACDCFC2ADCFC2F000E3AFE /* XCRemoteSwiftPackageReference "ActivityIndicatorView" */;
 			productName = ActivityIndicatorView;
-		};
-		1BD9935E2AFB18200061E466 /* GoogleMobileAds */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 1BD9935D2AFB18200061E466 /* XCRemoteSwiftPackageReference "swift-package-manager-google-mobile-ads" */;
-			productName = GoogleMobileAds;
 		};
 		1BFACFEA2AD7D33D00AA106C /* Realm */ = {
 			isa = XCSwiftPackageProductDependency;

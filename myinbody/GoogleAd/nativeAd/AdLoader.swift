@@ -11,11 +11,11 @@ import GoogleMobileAds
 class AdLoader : NSObject {
     static let shared = AdLoader()
     
-    private let adLoader:GADAdLoader
+    private let adLoader:GoogleMobileAds.AdLoader
         
-    private var nativeAds:[GADNativeAd] = []
+    private var nativeAds:[NativeAd] = []
     
-    public var nativeAd:GADNativeAd? {
+    public var nativeAd:NativeAd? {
         if let ad = nativeAds.first {
             nativeAds.removeFirst()
             return ad
@@ -24,7 +24,7 @@ class AdLoader : NSObject {
         return nil
     }
     
-    public func getNativeAd(getAd:@escaping(_ ad:GADNativeAd)->Void) {
+    public func getNativeAd(getAd:@escaping(_ ad:NativeAd)->Void) {
         if let ad = nativeAd {
             getAd(ad)
             return
@@ -36,11 +36,12 @@ class AdLoader : NSObject {
     }
     
     override init() {
-        let option = GADMultipleAdsAdLoaderOptions()
+        let option = MultipleAdsAdLoaderOptions()
         option.numberOfAds = 4
-        adLoader = GADAdLoader(adUnitID: AdIDs.nativeAd,
-                                    rootViewController: UIApplication.shared.lastViewController,
-                                    adTypes: [.native], options: [option])
+        adLoader = .init(adUnitID: AdIDs.nativeAd,
+                         rootViewController: UIApplication.shared.lastViewController,
+                         adTypes: [.native],
+                         options: [option])
         super.init()
         adLoader.delegate = self
         loadAd()
@@ -52,19 +53,19 @@ class AdLoader : NSObject {
         
 }
 
-extension AdLoader : GADNativeAdLoaderDelegate {
+extension AdLoader : AdLoaderDelegate {
+    func adLoader(_ adLoader: GoogleMobileAds.AdLoader, didFailToReceiveAdWithError error: any Error) {
+        print("\(#function) \(#line) \(error.localizedDescription)")
+    }
     
-    func adLoader(_ adLoader: GADAdLoader, didReceive nativeAd: GADNativeAd) {
+    func adLoaderDidFinishLoading(_ adLoader: GoogleMobileAds.AdLoader) {
+        print("\(#function) \(#line) nativeAdsCount : \(nativeAds.count)")
+    }
+    
+    
+    func adLoader(_ adLoader: GoogleMobileAds.AdLoader, didReceive nativeAd: GoogleMobileAds.NativeAd) {
         print("\(#function) \(#line) nativeAdsCount : \(nativeAds.count)")
         nativeAds.append(nativeAd)
-    }
-    
-    func adLoaderDidFinishLoading(_ adLoader: GADAdLoader) {
-        print("\(#function) \(#line) nativeAdsCount : \(nativeAds.count)")
-    }
-    
-    func adLoader(_ adLoader: GADAdLoader, didFailToReceiveAdWithError error: Error) {
-        print("\(#function) \(#line) \(error.localizedDescription)")
     }
     
 }

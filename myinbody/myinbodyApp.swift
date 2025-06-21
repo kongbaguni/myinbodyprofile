@@ -23,7 +23,7 @@ struct myinbodyApp: App {
         AppCheck.setAppCheckProviderFactory(providerFactory)
 
         FirebaseApp.configure()
-        GADMobileAds.sharedInstance().start { status in
+        MobileAds.shared.start { status in
             print("google ad status : \(status.adapterStatusesByClassName)")
             GoogleAdPrompt.promptWithDelay {
                 

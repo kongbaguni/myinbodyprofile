@@ -17,7 +17,7 @@ extension Notification.Name {
 
 struct NativeAdView : View {
     @State var loading = true
-    @State var nativeAd:GADNativeAd? = nil
+    @State var nativeAd:NativeAd? = nil
     
     var body: some View {
         GeometryReader { proxy in
