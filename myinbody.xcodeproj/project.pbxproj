@@ -385,7 +385,6 @@
 				1B11B8382AD66BEF00B0F5DB /* Frameworks */,
 				1B11B8392AD66BEF00B0F5DB /* Resources */,
 				1B1BF5092AEB52DB003E2F74 /* ShellScript */,
-				1BB494262E06ED1D00495EF9 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -442,7 +441,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1500;
-				LastUpgradeCheck = 1500;
+				LastUpgradeCheck = 1640;
 				TargetAttributes = {
 					1B11B83A2AD66BEF00B0F5DB = {
 						CreatedOnToolsVersion = 15.0;
@@ -499,6 +498,7 @@
 /* Begin PBXShellScriptBuildPhase section */
 		1B1BF5092AEB52DB003E2F74 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
 			buildActionMask = 2147483647;
 			files = (
 			);
@@ -518,23 +518,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n\"${BUILD_DIR%/Build/*}/SourcePackages/checkouts/firebase-ios-sdk/Crashlytics/run\"\n";
-		};
-		1BB494262E06ED1D00495EF9 /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-			);
-			outputFileListPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\nset -e\n\nframeworks=(\n  \"GoogleAppMeasurement.framework\"\n  \"GoogleAppMeasurementIdentitySupport.framework\"\n  \"GoogleAppMeasurementOnDeviceConversion.framework\"\n  \"gRPC-Core.framework\"\n  \"gRPC-C++.framework\"\n  \"BoringSSL-GRPC.framework\"\n  \"FirebaseAnalytics.framework\"\n  \"FirebaseFirestoreInternal.framework\"\n  \"abseil.framework\"\n  \"FirebaseAnalytics.framework\"\n  \"FirebaseFirestoreInternal.framework\"\n  # 필요한 프레임워크 모두 추가\n)\n\nfor framework in \"${frameworks[@]}\"; do\n  plist=\"${BUILT_PRODUCTS_DIR}/${FRAMEWORKS_FOLDER_PATH}/${framework}/Info.plist\"\n  if [ ! -f \"$plist\" ]; then\n    cat > \"$plist\" << EOF\n<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<!DOCTYPE plist PUBLIC \"-//Apple//DTD PLIST 1.0//EN\" \"http://www.apple.com/DTDs/PropertyList-1.0.dtd\">\n<plist version=\"1.0\">\n<dict>\n  <key>CFBundleIdentifier</key>\n  <string>com.google.temp.$framework</string>\n  <key>CFBundleName</key>\n  <string>$framework</string>\n  <key>CFBundleShortVersionString</key>\n  <string>1.1.2</string>\n  <key>CFBundleVersion</key>\n  <string>1</string>\n  <key>MinimumOSVersion</key>\n  <string>11.0</string>\n</dict>\n</plist>\nEOF\n  fi\ndone\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -608,6 +591,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
@@ -638,6 +622,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = QU9EPTU238;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				ENABLE_USER_SCRIPT_SANDBOXING = YES;
@@ -673,6 +658,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
@@ -703,6 +689,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = QU9EPTU238;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_USER_SCRIPT_SANDBOXING = YES;
@@ -736,7 +723,6 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"myinbody/Preview Content\"";
-				DEVELOPMENT_TEAM = QU9EPTU238;
 				DRIVERKIT_DEPLOYMENT_TARGET = 23.6;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -774,7 +760,6 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"myinbody/Preview Content\"";
-				DEVELOPMENT_TEAM = QU9EPTU238;
 				DRIVERKIT_DEPLOYMENT_TARGET = 23.6;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;

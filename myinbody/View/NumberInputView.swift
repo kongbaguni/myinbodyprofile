@@ -96,6 +96,5 @@ struct NumberInputView: View {
 
 
 #Preview {
-    @State var value:Double = 139.12
-    return NumberInputView(format: "%.2f", unit: .init("kg"), value: $value)
+    return NumberInputView(format: "%.2f", unit: .init("kg"), value: .constant(0.0))
 }
