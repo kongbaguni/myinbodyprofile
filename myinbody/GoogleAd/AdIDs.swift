@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct AdIDs {
+enum AdIDs {
     #if DEBUG
     static let nativeAd = "ca-app-pub-3940256099942544/3986624511"
     static let rewardAd = "ca-app-pub-3940256099942544/1712485313"

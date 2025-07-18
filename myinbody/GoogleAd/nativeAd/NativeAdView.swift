@@ -39,3 +39,7 @@ struct NativeAdView : View {
     }
 }
 
+
+#Preview {
+    NativeAdView()
+}

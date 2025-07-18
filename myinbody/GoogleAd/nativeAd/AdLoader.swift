@@ -53,7 +53,7 @@ class AdLoader : NSObject {
         
 }
 
-extension AdLoader : AdLoaderDelegate {
+extension AdLoader : NativeAdLoaderDelegate {
     func adLoader(_ adLoader: GoogleMobileAds.AdLoader, didFailToReceiveAdWithError error: any Error) {
         print("\(#function) \(#line) \(error.localizedDescription)")
     }
